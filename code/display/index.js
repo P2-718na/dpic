@@ -1,4 +1,4 @@
-import * as THREE from "three";
+/*import * as THREE from "three";
 import ODESolver from "orbit/src/ode-solver";
 
 const { sin, cos, PI:pi, pow } = Math;
@@ -197,3 +197,6 @@ export default class DPCart {
 
 // Random resources I used:
 // https://12000.org/my_notes/cart_motion/report.htm#:~:text=To%20%EF%AC%81nd%20the%20equation%20of%20motion%20for%20we%20apply%20%CF%84,motion)%20where%20is%20the%20torque.&text=Therefore%20(6)%20%CE%B8%20%C2%A8%20%3D,required%20equation%20of%20motion%20for%20.
+*/
+
+export default class Ciao {}
