@@ -11,7 +11,6 @@ const htmlPage = new HtmlWebpackPlugin({
       inject: true,
       template: `./code/display/index.ejs`, // Input ejs template file location
       filename: `./html/index.html`, // Output html file name
-      chunks: ["index"],
     })
 
 module.exports = {
@@ -22,7 +21,7 @@ module.exports = {
 
   output: {
     path: pathResolve(__dirname, 'dist'),
-    filename: './js/[name].js',
+    filename: './js/index.js',
     clean: true,
   },
 
