@@ -1,0 +1,33 @@
+{
+  "name": "inverted-pendulum",
+  "version": "1.0.0",
+  "description": "tbd",
+  "main": " ",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build:report": "sh scripts/build:report.sh",
+    "watch:report": "nodemon -e tex --watch ./docs/report --exec ./scripts/build:report.sh",
+    "build:display": "webpack",
+    "watch:display": "nodemon --watch src --watch config --watch pages --exec npm run build -e js,ejs,json,css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/P2-718na/inverted-pendulum.git"
+  },
+  "author": "Matteo Bonacini @P2-718na",
+  "license": "AGPLv3",
+  "bugs": {
+    "url": "https://github.com/P2-718na/inverted-pendulum/issues"
+  },
+  "homepage": "https://github.com/P2-718na/inverted-pendulum#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
