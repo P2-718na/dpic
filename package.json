@@ -10,7 +10,7 @@
     "build:report": "sh scripts/build:report.sh",
     "watch:report": "nodemon -e tex --watch ./docs/report --exec ./scripts/build:report.sh",
     "build:display": "webpack",
-    "watch:display": "nodemon --watch src --watch config --watch pages --exec npm run build -e js,ejs,json,css"
+    "watch:display": "nodemon --watch code/display --exec npm run build:display -e js,ejs,json,css"
   },
   "repository": {
     "type": "git",
