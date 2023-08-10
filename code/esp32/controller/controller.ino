@@ -21,11 +21,11 @@ struct State {
   // Assume control setpoint to be at zero.
   // NOTE THST THIS SHOULD BE INTEGER KYS ARDUINO
   int optimalControl() {
-    return 48;//-x/60.; //+ v;//400*a1 + 150*w1;
+    return (a1 > 0 ? 50 : -50) + 25.*a1 + 20.*w1;//-50;//-x/60.; //+ v;//400*a1 + 150*w1;
   }
 
   bool controllable() {
-    return true;//a1 > -.3 && a1 < .3;
+    return (a1 > -.6 && a1 < -.001) || (a1 > .001  && a1 < .6);
   }
 };
 State state;
@@ -77,8 +77,8 @@ void setup() {
 
   // Setup motor
   // channel, freq, resolution(bits)
-  ledcSetup(RPWM_CHANNEL, 5000, 8);
-  ledcSetup(LPWM_CHANNEL, 5000, 8);
+  ledcSetup(RPWM_CHANNEL, 500, 8);
+  ledcSetup(LPWM_CHANNEL, 500, 8);
   ledcAttachPin(RPWM_OUT, RPWM_CHANNEL);
   ledcAttachPin(LPWM_OUT, LPWM_CHANNEL);
 
@@ -96,8 +96,10 @@ void loop() {
 
   deltaTime = micros() - lastMicros;
   if (deltaTime > 5000) {
-    state.x = steps;
-    state.v = ((steps - lastSteps) * 1E6) / deltaTime;
+    constexpr float toMeters = .853 / 51144.;
+
+    state.x = steps * toMeters;
+    state.v = ((steps - lastSteps) * 1E6) / deltaTime * toMeters;
     lastMicros = micros();
     lastSteps = steps;
 
@@ -155,7 +157,7 @@ void applyControl(State& state) {
 
   // QUi ci andrà uno switch per tutti i possibili stati del sistema (down, up, swing up...)
   if (state.controllable()) {
-    //Serial.print("+");
+    Serial.print("+");
     //Fixme analogwrite does not work on esp32
     ledcWrite(LPWM_CHANNEL, (int)(control > 0 ?  control : 0));
     ledcWrite(RPWM_CHANNEL, (int)(control < 0 ? -control : 0));
