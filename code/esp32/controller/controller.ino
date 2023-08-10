@@ -113,9 +113,6 @@ void loop() {
     //}
   }
 
-
-  
-
   applyControl(state);
 }
 
