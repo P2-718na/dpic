@@ -54,6 +54,7 @@ void setup() {
 
   // Initialize communications
   Serial.begin(115200);
+  Serial.println("culo");
 }
 
 float x, v;
@@ -85,16 +86,17 @@ void loop() {
 }
 
 enum State {
-    positiveRunning;
-    positiveBack;
-    positiveWaitBeforeRunning;
-    positiveWaitBeforeBack;
-    negativeRunning;
-    negativeBack;
-    negativeWaitBeforeRunning;
-    negativeWaitBeforeBack;
-    switching;
-}
+    positiveRunning,
+    positiveBack,
+    positiveWaitBeforeRunning,
+    positiveWaitBeforeBack,
+    negativeRunning,
+    negativeBack,
+    negativeWaitBeforeRunning,
+    negativeWaitBeforeBack,
+    switching,
+    stop
+};
 
 int step = 1;
 int stepSize = 32;
@@ -108,13 +110,13 @@ void applyControl() {
         case positiveRunning:
             //write to console
             if (x > .5) {
-                state = positiveWaitBeforeBack
+                state = positiveWaitBeforeBack;
             }
 
         case positiveBack:
             control(-50);
             if (x <= 0) {
-                state = positiveWaitBeforeRunning
+                state = positiveWaitBeforeRunning;
             }
 
         case positiveWaitBeforeBack:
@@ -127,8 +129,8 @@ void applyControl() {
             delay(1000);
             step += 1;
             if (step * stepSize > 128) {
-                state = switching
-                return
+                state = switching;
+                return;
             }
 
             control(step * stepSize);
@@ -137,7 +139,7 @@ void applyControl() {
         case negativeRunning:
             //write to console
             if (x < .3) {
-                state = negativeWaitBeforeBack
+                state = negativeWaitBeforeBack;
             }
 
         case negativeWaitBeforeBack:
@@ -149,13 +151,19 @@ void applyControl() {
             control(0);
             delay(1000);
             step -= 1;
+            if (step * stepSize < -128) {
+                state = stop;
+                control(0);
+                return;
+            }
+
             control(step * stepSize);
             state = negativeRunning;
 
         case negativeBack:
             control(50);
             if (x >= .8) {
-                state = negativeWaitBeforeRunning
+                state = negativeWaitBeforeRunning;
             }
 
 
@@ -163,7 +171,7 @@ void applyControl() {
             step = -1;
             control(50);
               if (x >= .8) {
-                  state = negativeWaitBeforeRunning
+                  state = negativeWaitBeforeRunning;
               }
 
     }
