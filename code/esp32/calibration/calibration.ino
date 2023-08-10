@@ -76,10 +76,10 @@ void loop() {
     lastMicros = micros();
     lastSteps = steps;
 
-    Serial.print(x);
-    Serial.print(" ");
-    Serial.print(v);
-    Serial.println();
+    //Serial.print(x);
+    //Serial.print(" ");
+    //Serial.print(v);
+    //Serial.println();
   }
 
     applyControl();
@@ -98,8 +98,8 @@ enum State {
     stop
 };
 
-int step = 1;
-int stepSize = 32;
+int step = 2;
+int stepSize = 20;
 State state = positiveWaitBeforeRunning;
 void control(int ctrl) {
     ledcWrite(LPWM_CHANNEL, ctrl > 0 ?  ctrl : 0);
@@ -112,6 +112,11 @@ void applyControl() {
             if (x > .5) {
                 state = positiveWaitBeforeBack;
             }
+
+            Serial.print(", ");
+            Serial.print(millis());
+            Serial.print(", ");
+            Serial.print(v);
             break;
             
         case positiveBack:
@@ -125,13 +130,17 @@ void applyControl() {
             control(-20);
             delay(1000);
             state = positiveBack;
+            Serial.println("];");
             break;
 
         case positiveWaitBeforeRunning:
             control(0);
             delay(1000);
             step += 1;
-            if (step * stepSize > 128) {
+            Serial.print("[");
+            Serial.print(step);
+
+            if (step * stepSize > 200) {
                 state = switching;
                 break;
             }
@@ -142,7 +151,7 @@ void applyControl() {
 
         case negativeRunning:
             //write to console
-            if (x < .3) {
+            if (x < .2) {
                 state = negativeWaitBeforeBack;
             }
             break;
@@ -157,7 +166,8 @@ void applyControl() {
             control(0);
             delay(1000);
             step -= 1;
-            if (step * stepSize < -128) {
+            Serial.println(step);
+            if (step * stepSize < -200) {
                 state = stop;
                 control(0);
                 break;
@@ -169,16 +179,16 @@ void applyControl() {
 
         case negativeBack:
             control(50);
-            if (x >= .8) {
+            if (x >= .7) {
                 state = negativeWaitBeforeRunning;
             }
             break;
 
 
         case switching:
-            step = -1;
+            step = -2;
             control(50);
-            if (x >= .8) {
+            if (x >= .7) {
                 state = negativeWaitBeforeRunning;
             }
             break;
