@@ -98,8 +98,9 @@ enum State {
     stop
 };
 
-int step = 2;
-int stepSize = 20;
+int step = 3;
+int stepSize = 15;
+int startTime = 0;
 State state = positiveWaitBeforeRunning;
 void control(int ctrl) {
     ledcWrite(LPWM_CHANNEL, ctrl > 0 ?  ctrl : 0);
@@ -114,7 +115,7 @@ void applyControl() {
             }
 
             Serial.print(", ");
-            Serial.print(millis());
+            Serial.print(millis() - startTime);
             Serial.print(", ");
             Serial.print(v);
             break;
@@ -136,14 +137,15 @@ void applyControl() {
         case positiveWaitBeforeRunning:
             control(0);
             delay(1000);
+            startTime = millis();
             step += 1;
-            Serial.print("[");
-            Serial.print(step);
-
-            if (step * stepSize > 200) {
+            
+            if (step * stepSize > 165) {
                 state = switching;
                 break;
             }
+            Serial.print("[");
+            Serial.print(step);
 
             control(step * stepSize);
             state = positiveRunning;
@@ -154,24 +156,33 @@ void applyControl() {
             if (x < .2) {
                 state = negativeWaitBeforeBack;
             }
+            Serial.print(", ");
+            Serial.print(millis() - startTime);
+            Serial.print(", ");
+            Serial.print(v);
             break;
 
         case negativeWaitBeforeBack:
             control(20);
             delay(1000);
             state = negativeBack;
+            Serial.println("];");
             break;
 
         case negativeWaitBeforeRunning:
             control(0);
             delay(1000);
+            startTime = millis();
             step -= 1;
-            Serial.println(step);
-            if (step * stepSize < -200) {
+            
+            if (step * stepSize < -165) {
                 state = stop;
                 control(0);
                 break;
             }
+
+            Serial.print("[");
+            Serial.print(step);
 
             control(step * stepSize);
             state = negativeRunning;
@@ -186,7 +197,7 @@ void applyControl() {
 
 
         case switching:
-            step = -2;
+            step = -3;
             control(50);
             if (x >= .7) {
                 state = negativeWaitBeforeRunning;
