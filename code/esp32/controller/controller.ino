@@ -150,20 +150,34 @@ void printState(State& state) {
 }
 
 void applyControl(State& state) {
-  int control = state.optimalControl();
+  int control = 1;//state.optimalControl();
 
   // QUi ci andrà uno switch per tutti i possibili stati del sistema (down, up, swing up...)
   if (state.controllable()) {
     Serial.print("+");
-    //Fixme analogwrite does not work on esp32
-    ledcWrite(LPWM_CHANNEL, (int)(control > 0 ?  control : 0));
-    ledcWrite(RPWM_CHANNEL, (int)(control < 0 ? -control : 0));
+    driveMotorWithForce(control, state.v)
     return;
   }
 
   //Serial.print("=");
-  ledcWrite(LPWM_CHANNEL, 0);
-  ledcWrite(RPWM_CHANNEL, 0);
+  driveMotorWithForce(0, 0)
+}
+
+void driveMotorWithForce(float f, v) {
+    constexpr float A =  .649
+    constexpr float B =  .059977569
+    constexpr float C = -.1114644
+
+    // deltaT
+    constexpr float dT = .005;
+    // massa carrello
+    constexpr float m = .259
+
+    float u = ((1 - A) * v + dT * f/m + copysignf(C, v)) / B
+    u = u *255./12.;
+
+    ledcWrite(LPWM_CHANNEL, (int)(u > 0 ?  u : 0));
+    ledcWrite(RPWM_CHANNEL, (int)(u < 0 ? -u : 0));
 }
 
 
