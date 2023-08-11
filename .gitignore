@@ -11,7 +11,7 @@ node_modules
 assets/*.bkp
 
 ### Latex
-docs/report/build
+
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
