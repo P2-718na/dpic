@@ -7,8 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "build:report": "sh scripts/build:report.sh",
-    "watch:report": "nodemon -e tex --watch ./docs/report --exec ./scripts/build:report.sh",
+    "build:report": "./scripts/build:report.sh",
+    "watch:report": "nodemon -e tex,cls,sty,bib --watch ./docs/report --exec npm run build:report",
+    "build:report-fast": "./scripts/build:report-fast.sh",
+    "watch:report-fast": "nodemon -e tex,cls,sty --watch ./docs/report --exec npm run build:report-fast",
     "build:display": "webpack",
     "watch:display": "nodemon --watch code/display --exec npm run build:display -e js,ejs,json,css"
   },

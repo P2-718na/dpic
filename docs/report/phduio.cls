@@ -598,18 +598,18 @@
 {%
     \leavevmode\unskip\space
     \ifcase\the\month
-    \or January
-    \or February
-    \or March
-    \or April
-    \or May
-    \or June
-    \or July
-    \or August
-    \or September
-    \or October
-    \or November
-    \or December
+    \or Gennaio
+    \or Febbraio
+    \or Marzo
+    \or Aprile
+    \or Maggio
+    \or Giugno
+    \or Luglio
+    \or Agosto
+    \or Settembre
+    \or Ottobre
+    \or Novembre
+    \or Dicembre
     \fi
     \ignorespaces
 }

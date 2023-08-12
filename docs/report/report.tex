@@ -1,13 +1,17 @@
 % https://github.com/martinhelso/phduio-article-based
 
 % Add [final] to remove marginal notes:
-\documentclass[colophon, english]{phduio}
+%colophon
+\documentclass[a4paper, italian]{phduio}
 
 \usepackage{phdstyle}   % Custom style
-\usepackage{kantlipsum} % Dummy text
+\usepackage[italian]{babel}
+\usepackage{amsmath}
 
-\author{Author}
-\title{Working Title}
+\def\titolo{Working Title}
+
+\author{Matteo Bonacini}
+\title{\titolo}
 \subtitle{Optional subtitle}
 \department{Department}
 \faculty{Faculty}
@@ -17,18 +21,14 @@
     \and
     Optional Further Specification
 }
-\ISSN{1234-5678}           % Request correct number from repro@uio.no
-\dissertationseries{1234}  % Request correct number from repro@uio.no
 
 
 \includeonly
 {
     sections/dedication,
     sections/preface,
-    sections/papers,
     sections/introduction,
     sections/paperI,
-    sections/paperII,
     sections/paperIII,
     sections/appendixA,
     sections/appendixB,
@@ -39,11 +39,10 @@
 
     \frontmatter        % Folios in Roman numerals, unnumbered chapters.
 
-    \uiotitle
+    \uiotitle % need to replace with unibotitle
 
     \include{sections/dedication}
     \include{sections/preface}
-    \include{sections/papers}
 
     \cleartorecto
     \tableofcontents    % Or \tableofcontents*
@@ -54,79 +53,25 @@
 
     \mainmatter         % Folios in Arabic numerals, numbered chapters.
 
-    \include{sections/introduction}
+    %\paper              % "Chapter" is renamed "Paper"
+    %\paperpage          % Similar to \part*{Papers}, but appears in TOC
+    \part*{\titolo}
+    \addcontentsline{toc}{chapter}{\titolo}
+    \cleartorecto
 
-    \paper              % "Chapter" is renamed "Paper"
-    \paperpage          % Similar to \part*{Papers}, but appears in TOC
     \numberofpapers{3}  % Specify size of thumb indices
 
+    \include{sections/introduction}
     \include{sections/paperI}
-    \include{sections/paperII}
     \include{sections/paperIII}
 
     \appendix           % "Chapter" is renamed "Appendix"
     \appendixpage       % Similar to \part*{Appendices}, but appears in TOC
 
     \include{sections/appendixA}
-    \include{sections/appendixB}
 
+
+    %\bibliographystyle{unsrt} % We choose the "plain" reference style
+    %\bibliography{dpicRefs}
 \end{document}
 
-
-\iffalse
-\documentclass[11pt, a4paper, twocolumn]{article}
-\raggedbottom
-
-\usepackage{amsfonts}
-% \usepackage{titlesec}
-\usepackage{indentfirst}
-\usepackage{graphicx}
-\usepackage[italian]{babel}
-\usepackage{catchfile} % used in \getenv command
-\usepackage{amsmath}
-
-
-%\titlespacing*{\section}{0px}{3mm}{1mm}
-%\titlespacing*{\subsection}{0px}{3mm}{1mm}
-
-
-\graphicspath{ {./assets}, {../../assets} }
-
-% hyphen in bib
-\makeatletter
-\newcommand*\nobreakhyphen{\hbox{-}\nobreak\hskip\z@skip}
-\makeatother
-
-% Allow use of command \getenv{VARNAME}.
-% Taken from: https://tex.stackexchange.com/questions/62010/can-i-access-system-environment-variables-from-latex-for-instance-home
-\newcommand{\getenv}[2][]{
-    \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
-    \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
-
-% Roman numerals
-\newcommand{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
-
-% authors, date and title---------------------------------------------------------------
-\author{Matteo Bonacini \\ \getenv{MAT1}}
-\date{\today}
-\title{Controllo di un pendolo invertito su rotaia}
-%---------------------------------------------------------------------------------------
-\begin{document}
-
-
-
-    %\input{sections/introduzione.tex}
-    %\input{sections/modello-del-sistema.tex}
-    %\input{sections/controller-LQR.tex}
-    %\input{sections/controller-PID.tex}
-    %\input{sections/risultati.tex}
-    %\input{sections/conclusioni.tex}
-    %\input{sections/appendice.tex}
-
-
-
-    \bibliographystyle{unsrt} % We choose the "plain" reference style
-    \bibliography{dpicRefs}
-\end{document}
-
-\fi
