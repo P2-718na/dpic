@@ -2,7 +2,7 @@
 mkdir -p ./docs/report/build &&
 cd docs/report &&
 export "$(xargs < .env)" &&
-pdflatex -output-directory=build ./report.tex;
-bibtex build/report.aux;     # Whoever wrote bibtex needs to just stop.
-pdflatex -output-directory=build ./report.tex && # Yep. Needed for references.
-pdflatex -output-directory=build ./report.tex;   # Yep. Needed for bibtex.
+xelatex -interaction=batchmode  -output-directory=build ./report.tex > /dev/null;
+texfot bibtex build/report.aux;     # Whoever wrote bibtex needs to just stop.
+xelatex -interaction=batchmode -output-directory=build ./report.tex  > /dev/null; # Yep. Needed for references.
+texfot xelatex -file-line-error -interaction=nonstopmode  -output-directory=build ./report.tex;   # Yep. Needed for bibtex.
