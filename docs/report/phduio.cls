@@ -83,7 +83,7 @@ SOFTWARE.
 \RequirePackage[dvipsnames, svgnames, cmyk]{xcolor}
 \RequirePackage{pdfpages}
 \RequirePackage{graphicx}
-\graphicspath{{figures/}}
+\graphicspath{{assets/}}
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 
