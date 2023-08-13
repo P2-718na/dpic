@@ -154,12 +154,12 @@ SOFTWARE.
             \vskip-\lastskip
             \vskip16mm
 
-            \resizebox{\textwidth}{!}
-            {%
+            %\resizebox{\textwidth/2}{!}
+            %{%
                 \bfseries
-                \phduio@thesis\
-                submitted for the degree of Philosophiae Doctor
-            }
+
+                Tesi di Laurea Triennale in Fisica
+            %}
 
             \AND
 
@@ -335,11 +335,11 @@ SOFTWARE.
 %% Title for papers
 \renewcommand{\maketitle}
 {
-    \paperauthors{\theauthor}
+    %\paperauthors{\theauthor}
     \edef\papertitle{{\thetitle}}
     \expandafter\chapter\papertitle
     \paperthumb
-    \saythanks
+    %\saythanks
 }
 
 

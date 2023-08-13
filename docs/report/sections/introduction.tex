@@ -1,125 +1,50 @@
-\title{Introduction}
+\title{Introduzione}
 \maketitle
 \label{sec:intro}
 
-\todo[inline]{Rewrite this!}
 
-\section{Figures and Tables}
+\section{Teoria del controllo}
 
-% Standalone with \input:
-\begin{figure}[htbp]
-    \centering
-    %\input{figures/ball}
-    \caption[One ball]{One ball.}
-\end{figure}
+\paragraph{È facile come andare in bicicletta.}
+Questo proverbio viene spesso
+usato quando si vuole sottolineare che un certo compito è \emph{molto facile}.
+Infatti, sin da bambini, si può imparare ad usare la bicicletta con facilità e,
+al giorno d'oggi, la maggior parte degli italiani\cite{https://www.ipsos.com/sites/default/files/ct/news/documents/2022-05/Ipsos\%20-\%20Cycling\%20Across\%20the\%20World-2022.pdf}
+sa andare in bici.
+Tuttavia, indagando più in profondità, si scopre che la matematica che ci
+permette di svolgere un compito così semplice non è affatto banale\cite{a}.
+Infatti, a differenza di ciò che spesso si pensa, non è sufficiente affidarsi
+all'effetto giroscopico delle ruote per rimanere stabili, ma bisogna attivamente
+\emph{controllare} la bici, agendo sul manubrio e spostando il proprio peso corporeo.
+La moderna \empgh{Teoria del Controllo} è la scienza che ci permette di studiare
+analiticamente fenomeni di questo tipo, riconciliando la dualità che spesso
+si osserva nella forma di \emph{compito-facile $\iff$ matematica-non-banale}.
 
-% Standalone with \includegraphics:
-\begin{figure}[thbp]
-    \centering
-    %\includegraphics{balls}
-    \caption[Two balls]{Two balls.}
-\end{figure}
+\paragraph{La necessità di avere Controllo} è ampiamente diffusa in Natura\cite[b].
+Basti pensare che tutti gli organismi viventi necessitano di meccanismi per controllare
+il proprio metabolismo.
+Meccanismi diversi permettono al singolo organismo di muoversi e agire secondo le sue decisioni.
+Altri meccanismi regolano l'interazione tra organismi diversi della stessa specie.
+Tutti questi fenomeni di natura diversa possono essere studiati tramite la stessa
+formulazione matematica.
 
-% Todonotes:
-\begin{figure}[hbp]
-    \centering
-    \missingfigure{Three balls.}
-    \caption[Three balls]{Three balls.}
-\end{figure}
+Per fissare le idee, consideriamo un sistema fisico descritto dall'equazione
+\begin{equation*}
+    \b A( \b y) = \b f( \b u)
+\end{equation}
+. $\b y \in Y$ è lo \emph{stato} e appartiene a uno spazio vettoriale
+$Y$. $u \in \mathcal U_a$ è il \emph{controllo} e appartiene all'insieme dei
+\emph{controlli ammissibili} $\mathcal U_a$.
+\todo{bla bla ricopia paper storia swag fino a subito prima parte di feedback}
 
-%\kant[5-6] % Dummy text
 
-% Booktabs:
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{@{}ll@{}}
-        \toprule
-        \textbf{Correct}               & \textbf{Incorrect}      \\
-        \midrule
-        \( \varphi \colon X \to Y \)   & \( \varphi : X \to Y \) \\[0.5ex]
-        \( \varphi(x) \coloneqq x^2 \) & \( \varphi(x) := x^2 \) \\
-        \bottomrule
-    \end{tabular}
-    \caption[Colons]{Proper colon usage.}
-\end{table}
+\subsection{Alcuni concetti fondamentali}
 
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{@{}ll@{}}
-        \toprule
-        \textbf{Correct}     & \textbf{Incorrect}         \\
-        \midrule
-        \( A \implies B \)   & \( A \Rightarrow B \)      \\
-        \( A \impliedby B \) & \( A \Leftarrow B \)       \\
-        \( A \iff B \)       & \( A \Leftrightarrow B \)  \\
-        \bottomrule
-    \end{tabular}
-    \caption[Arrows]{Proper arrow usage.}
-\end{table}
+\paragraph{Open loop}
 
-% Tablefootnote and multirow:
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{@{}ll@{}}
-        \toprule
-        \textbf{Correct}
-        & 
-        \textbf{Incorrect}
-        \\
-        \midrule
-        \( -1 \) 
-        & 
-        -1
-        \\[0.3ex]
-        1--10
-        &
-        1-10
-        \\[0.3ex]
-        Birch--Swinnerton-Dyer\tablefootnote{It is now easy to tell that Birch and Swinnerton-Dyer are two people.} conjecture
-        &
-        Birch-Swinnerton-Dyer conjecture
-        \\[0.3ex]
-        The ball \dash which is blue \dash is round.
-        &
-        \multirow{ 2}{*}{The ball - which is blue - is round.}
-        \\[0.3ex]
-        The ball---which is blue---is round. 
-        &
-        \\
-        \bottomrule
-    \end{tabular}
-    \caption[Dashes]{Proper dash usage.}
-\end{table}
+\paragraph{Closed loop}
 
-\begin{table}[hbtp]
-    \centering
-    \begin{tabular}{@{}*{2}{p{0.5\textwidth}}@{}}
-        \toprule
-        \textbf{Correct} &  \textbf{Incorrect}
-        \\
-        \midrule
-        \enquote{This is an \enquote{inner quote} inside an outer quote}
-        &
-        "This is an 'inner quote' inside an outer quote"
-        \\
-        \bottomrule
-    \end{tabular}
-    \caption[Quotation marks]
-    {Proper quotation mark usage.
-    The \texttt{\textbackslash enquote} command chooses the correct
-    quotation marks for the specified language.}
-\end{table}
+\subsection{Controllabilità dei sistemi}
 
-\section{Summary of Papers}
+\section{Il "doppio pendolo invertito su rotaia"}
 
-\begin{description}
-    \item[\cref{pap:first}]
-    focuses on the aspects of being the first paper of a thesis,
-    following \cref{sec:intro}.
-
-    \item[\cref{pap:A4}]
-    demonstrates how illegible the font size becomes when an A4 paper article is shrunk in order to fit into the thesis.
-
-    \item[\cref{pap:third}]
-    shows a new and exciting result about the final paper in an article based doctoral thesis.
-\end{description}

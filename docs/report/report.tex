@@ -5,16 +5,19 @@
 \documentclass[a4paper, italian]{phduio}
 
 \usepackage{phdstyle}   % Custom style
-\usepackage[italian]{babel}
 \usepackage{amsmath}
+\usepackage[toc]{glossaries}
+\usepackage{mdframed}
+%\usepackage[utf8]{inputenc}
 
 \def\titolo{Working Title}
 
 \author{Matteo Bonacini}
 \title{\titolo}
 \subtitle{Optional subtitle}
-\department{Department}
-\faculty{Faculty}
+\faculty{Scuola di Scienze}
+\department{Dipartimento di Fisica e Astronomia}
+
 \affiliation
 {
     Optional Second Affiliation
@@ -26,52 +29,56 @@
 \includeonly
 {
     sections/dedication,
-    sections/preface,
+    sections/abstract,
     sections/introduction,
-    sections/paperI,
-    sections/paperIII,
+    sections/chapter2,
+    sections/chapter3,
+    sections/chapter4,
     sections/appendixA,
-    sections/appendixB,
+    sections/glossary,
+    sections/theorems
 }
 
+\input{sections/glossary}
+\input{sections/theorems}
 
 \begin{document}
 
     \frontmatter        % Folios in Roman numerals, unnumbered chapters.
 
-    \uiotitle % need to replace with unibotitle
+        \uiotitle % need to replace with unibotitle
 
-    \include{sections/dedication}
-    \include{sections/preface}
+        \include{sections/dedication}
+        \include{sections/abstract}
 
-    \cleartorecto
-    \tableofcontents    % Or \tableofcontents*
-    \cleartorecto
-    \listoffigures      % Or \listoffigures*
-    \cleartorecto
-    \listoftables       % Or \listoftables*
+        \cleartorecto
+        \tableofcontents    % Or \tableofcontents*
+        \cleartorecto
+        \listoffigures      % Or \listoffigures*
+        \cleartorecto
+        \listoftables       % Or \listoftables*
+        \cleartorecto
+        \printglossary[title=Glossario, toctitle=Glossario]
 
     \mainmatter         % Folios in Arabic numerals, numbered chapters.
 
-    %\paper              % "Chapter" is renamed "Paper"
-    %\paperpage          % Similar to \part*{Papers}, but appears in TOC
-    \part*{\titolo}
-    \addcontentsline{toc}{chapter}{\titolo}
-    \cleartorecto
+        \part*{\titolo}
+        \addcontentsline{toc}{chapter}{\titolo}
+        \cleartorecto
 
-    \numberofpapers{3}  % Specify size of thumb indices
+            \numberofpapers{3}  % Specify size of thumb indices
 
-    \include{sections/introduction}
-    \include{sections/paperI}
-    \include{sections/paperIII}
+            \include{sections/introduction}
+            \include{sections/chapter2}
+            \include{sections/chapter3}
+            \include{sections/chapter4}
 
-    \appendix           % "Chapter" is renamed "Appendix"
-    \appendixpage       % Similar to \part*{Appendices}, but appears in TOC
+        \appendix           % "Chapter" is renamed "Appendix"
+        \appendixpage       % Similar to \part*{Appendices}, but appears in TOC
 
-    \include{sections/appendixA}
+            \include{sections/appendixA}
 
 
     %\bibliographystyle{unsrt} % We choose the "plain" reference style
     %\bibliography{dpicRefs}
 \end{document}
-
