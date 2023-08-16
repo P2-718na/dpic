@@ -1,5 +1,6 @@
 \colorlet{shadecolor}{lightgray!50}
 \newtheorem{thm-env}{Teorema} % is it right?
+\newtheorem{def-env}{Definizione} % is it right?
 \newenvironment{thm}
 {
     \begin{shaded}
@@ -7,5 +8,15 @@
 }
 {
     \end{thm-env}
+    \end{shaded}
+}
+
+\newenvironment{definition}
+{
+    \begin{shaded}
+    \begin{def-env}
+}
+{
+    \end{def-env}
     \end{shaded}
 }

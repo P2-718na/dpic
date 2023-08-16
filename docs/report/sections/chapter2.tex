@@ -2,26 +2,56 @@
 \maketitle
 \label{sec:linear-systems-and-control}
 
+La teoria del controllo dei sistemi lineari è molto robusta e fornisce gli
+strumenti
 
-\section{Ripasso dei sistemi}
-\section{Introduzione}
+\section{Sistemi lineari}
+La definizione di sistema lineare cambia leggermente a seconda di che si parli
+di un sistema a tempo continuo o discreto.
+È quindi opportuno enunciare la seguente definizione:
 
-culo2
-\begin{thm}[\text{culo}]
-    \label{thm:dedekind}
-    Let \( A \) be a Noetherian domain of dimension one. Then the following are equivalent:
-    \begin{enumerate}
-        \item
-        \( A \) is integrally closed;
+\todo{sistema numeraione delle definizioni}
+\begin{definition}
+    Un \textbf{insieme del tempo} $\mathcal T$ è un sottogruppo di $(\R, +)$.
+\end{definition}
+Nella pratica, $\mathcal T$ coinciderà sempre con $\R$ o con $\Z$, a seconda
+che il sistema sia a tempo continuo o discreto, rispettivamente.
+Inoltre, quando è definito un insieme del tempo $\mathcal T$, si assume che tutti gli
+intervalli siano ristretti a $\mathcal T$.
 
-        \item
-        Every primary ideal in \( A \) is a prime power;
+\begin{definition}[Sistema]
+    La quadrupla $\Sigma = (\mathcal T, \mathcal X, \mathcal U, \phi)$,
+    dove:
+    \begin{itemize}
+        \item $\mathcal T$ è un insieme del tempo.
+        %zzz
+        \item $\mathcal X$ è un insieme non vuoto, detto \textbf{spazio delle fasi}.
+        %
+        \item $\mathcal U$ è un insieme non vuoto, detto \textbf{spazio dei controlli ammissibili}.
+        %
+        \item $\phi: D_\phi \to \mathcal X$ è un'applicazione, detta \textbf{flusso di fase},
+        definita su: \\ \\
+                $D_\phi :=
+                   \left{
+                       (\tau, \sigma, x, u) \mid
+                       \sigma, \tau \in \mathcal T, \sigma < \tau, x \in \mathcal X, u \in \mathcal U^{[\sigma, \tau)}
+                   \right}$, \\ \\
+        \todo{porco dio non so come avere spacing per questa roba diomerda latex kys}
+        dove $\mathcal U^{[\sigma, \tau)} := \left{u \mid u: [\sigma, \tau) \to \mathcal U \right}$.
+    \end{itemize}
+    È detta \textbf{sistema} se valgono le seguenti proprietà:
+    \begin{itemize}
+        \item \textbf{Non-banalità:}
+        \item \textbf{Restrizione:}
+        \item \textbf{Semigruppo:}
+        \item \textbf{Identità:}
+    \end{itemize}
+\end{definition}
 
-        \item
-        Every local ring \( A_\mathfrak{p} \) \( (\mathfrak{p} \neq 0) \) is a discrete valuation ring.
-    \end{enumerate}
-\end{thm}
+%qui sopra devo semplificare un attimo la definizione. Still, do definizione
+%di sistema e di sistema lineare.
+%la cosa migliore è partire da flusso di fase, dare definizione di campo vettoriale
+e vedere come passare da uuno all'altro.
 
-culo
-
+ù
 \section{Controllo ottimale: LQR} \todo glossary
