@@ -84,7 +84,7 @@ Inizio introducendo il concetto di \emph{spazio delle fasi} e \emph{flusso di fa
         \item \textbf{Identità:} $\phi^0(x_0) = x_0$.
         \item \textbf{Composizione:} $\phi^t \o \phi^s = \phi^{t+s}$.
         \item \textbf{Conservazione della misura:} esiste una misura $\mu$ di $\Sigma$ %
-        conservata: $\int_A d\mu = \int_{\phi^t(A)} d\mu$.
+        conservata $\int_A \det J_\phi \ d\mu = \int_{\phi^t(A)} d\mu$.
     \end{itemize}
 \end{definition}
 
@@ -167,14 +167,84 @@ risalire a $\phi$ partendo da $\b a$. Vedremo come nel prossimo paragrafo.
 Non so se serve, per ora non lo faccio.}
 
 
-\subsection{Sistemi lineari}
+\subsection{Equazioni differenziali lineari}
+Iniziamo con due righe di teoria sulle equazioni differenziali:
+
+\begin{definition}
+    Sia $\b x = \b x(t) \in \R^n$, $A \in \M_{2\times 2}(\R)$. Un'equazione nella forma
+    \begin{equation}
+        \dot{\b x} = A \b x
+        \label{eq:sistema-lineare}
+    \end{equation}
+    è detta \textbf{equazione differenziale omogenea (\textsc{ODE}) lineare di \rom{1} ordine.}
+    \label{def:sistema-lineare}
+\end{definition}
+\todo {glossario e small caps}
+
+Per le ODE di questo tipo esiste una soluzione analitica data da
+\begin{equation}
+    \b x(t) = e^{\b A t} \b x(0).
+    \label{eq:soluzione-lineare}
+\end{equation}
+Basta infatti sostituire la definizione di esponenziale di matrice
+\begin{equation}
+    e^{A} := \sum_{k=0}^{+\infty} \frac{A^k}{k!}
+    \label{eq:exp-matrice}
+\end{equation}
+nell'equazione \eqref{eq:sistema-lineare} e verificare che si ottiene un'identità.
+Inoltre, il \emph{Teorema di Esistenza e Unicità} ci garantisce che questa soluzione
+trovata è unica.
+
+\paragraph{}
+Ora, prendo in considerazione un sistema dinamico che ha come campo vettoriale associato
+l'equazione \eqref{eq:sistema-lineare}. Osservo che la soluzione \eqref{eq:soluzione-lineare}
+corrisponde proprio al flusso di fase associato al sistema. Infatti, se prendo
+$\phi^t(\b x) = e^{At} \b x$ e lo inserisco nella \eqref{eq:campo-vettoriale},
+trovo proprio
+\begin{equation*}
+    \begin{array}{ll}
+        \left. \frac d{dt} \right|_{t=0} e^{At} \b x_0 &= \\
+        &= A e^{A0} \b x  \\
+        &= A \b x.
+    \end{array}
+\end{equation*}
+
+\paragraph{}
+\todo {aaaa} Qui devo dire qualcosa riguardo alla possibilità di calcolare
+esponenziale di matrici per sistemi diagonalizzabili.
 
 
+\paragraph{}
+Questa possibilità di ricavare il flusso di fase partendo dal campo vettoriale per
+sistemi lineari vale anche nel caso in cui questi siano \emph{non omogenei}.
+Questo fatto ci è molto utile, visto che permetterà di passare da sistemi a tempo
+continuo a sistemi a tempo discreto. Vediamo come.
 
-\subsection{Sistemi a tempo continuo e discreto}
+\begin{definition}
+    %todo definizione eq non omogenea
+    ax +bu
+    \label{def:sistema-lineare}
+\end{definition}
+\todo {glossario e small caps}
 
-\subsection{Analisi dello spettro del sistema}
+%todo
+e questa ha soluzione.... Boh
+
+
+\subsection{Analisi dello spettro di $A$}
+In un sistema lineare, le soluzioni asintotiche possono avere tre comportamenti:
+0, +inf, oscillare. Questo dipende dagli autovalori...
+%todo
+e qui mostro nel caso diagonale come funzionano le dinamiche e spiego come l'esponenziale
+di matrice sia il mapping che mi fa passare da una cosa all'altra.
+
+\section{Linearizzazione di un sistema}
+qua ci metto la teoria delle piccole oscillazioni di bazzani
 
 \section{Controllabilità di un sistema lineare}
+Qui devo spiegare che controllabilità equivale a poter spostare gli autovalori a piacimento.
+Mostro le condizioni di controllabilità e qualche teoremino. Non so se mettere le
+dimostrazioni (no sbatti per ora, magari metto solo le citazioni).
 
 \section{Controllo ottimale: LQR} \todo {glossary LQR}
+Qui mi diverto
