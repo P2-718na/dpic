@@ -3,8 +3,9 @@
 \label{sec:linear-systems-and-control}
 
 La teoria del controllo dei sistemi lineari è molto robusta e fornisce gli
-strumenti
+strumenti... \todo{intro a questo capitolo}
 
+\iffalse
 \section{Sistemi lineari}
 La definizione di sistema lineare cambia leggermente a seconda di che si parli
 di un sistema a tempo continuo o discreto.
@@ -47,11 +48,133 @@ intervalli siano ristretti a $\mathcal T$.
         \item \textbf{Identità:}
     \end{itemize}
 \end{definition}
-
+\fi
 %qui sopra devo semplificare un attimo la definizione. Still, do definizione
 %di sistema e di sistema lineare.
 %la cosa migliore è partire da flusso di fase, dare definizione di campo vettoriale
-e vedere come passare da uuno all'altro.
+%e vedere come passare da uuno all'altro.
 
-ù
-\section{Controllo ottimale: LQR} \todo glossary
+\section{Sistemi lineari}
+\todo{scrivi qualcosa qui}
+
+\subsection{Sistemi dinamici}
+In questo testo ho già usato la parola "sistema" più volte, senza però darne
+una definizione rigorosa.
+Quello a cui mi riferisco è un \emph{sistema dinamico}, di cui ora darò una definizione.
+
+\paragraph {}
+Inizio introducendo il concetto di \emph{spazio delle fasi} e \emph{flusso di fase}.
+
+\begin{definition}
+    Lo \textbf{spazio delle fasi}, detto anche \textbf{spazio degli stati}, di
+    un sistema fisico è l'insieme di tutti i possibili stati del sistema.
+\end{definition}
+
+\begin{definition}
+    Sia $t \in \mathcal T \subseteq \R^+$. Siano $x_0, x(t) \in \Sigma$ spazio delle fasi.
+    L'applicazione: \\
+    \begin{equation*}
+        \begin{array}{cccc}%
+            \phi: &\mathcal T \times \Sigma &\to &\Sigma \\
+            &\phi^t(x_0) &\mapsto &x(t)
+        \end{array}%
+    \end{equation*}
+    è detta \textbf{flusso di fase} se e solo se rispetta le seguenti proprietà:
+    \begin{itemize}
+        \item \textbf{Identità:} $\phi^0(x_0) = x_0$.
+        \item \textbf{Composizione:} $\phi^t \o \phi^s = \phi^{t+s}$.
+        \item \textbf{Conservazione della misura:} esiste una misura $\mu$ di $\Sigma$ %
+        conservata: $\int_A d\mu = \int_{\phi^t(A)} d\mu$.
+    \end{itemize}
+\end{definition}
+
+Concettualmente, il flusso di fase è uno strumento che mi permette di sapere
+quale sarà lo stato futuro $x(t)$ di un sistema, conoscendo solamente lo stato
+iniziale $x_0 = x(0)$.
+Facciamo un esempio.
+
+\begin{example}[Semaforo]
+    \label{ex:semaforo}
+    Voglio descrivere il comportamento di un semaforo stradale.
+    Il semaforo può essere o verde o rosso e cambia colore a intervalli regolari.
+    Posso quindi definire lo spazio delle fasi del sistema come:
+    \begin{equation*}
+        \Sigma := \{\text{V}, \text{R} \}.
+    \end{equation*}
+    Il tempo è discreto: $\mathcal T \equiv \Z^+$ e il flusso di fase è definito come:
+    \begin{equation*}
+         \phi^t(\text R) = \left\{
+         \begin{array}{lrl}
+             V &$t$ &dispari\\
+             R &$t$ &pari
+         \end{array}
+         \right.
+    \end{equation*}
+    \begin{equation*}
+        \phi^t(\text V) = \left\{
+        \begin{array}{lrl}
+            R &$t$ &dispari\\
+            V &$t$ &pari
+        \end{array}
+        \right.
+        .
+    \end{equation*}
+    La tripla $(\Sigma, \mathcal T, \phi)$ che ho appena descritto è un \emph{sistema dinamico}.
+    Un esempio come questo, seppur banale, rende chiaro come l'effetto di $\phi$ sia
+    di \emph{saltare} da un punto ad un altro nello spazio delle fasi (Figura \ref{fig:esempio-semaforo}).
+
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{assets/ex-semaforo.png}
+        \captionof{figure}{Some figure}
+        \label{fig:esempio-semaforo}
+    \end{center}
+\end{example}
+
+È quindi immediato enunciare la definizione di \emph{sistema dinamico}:
+
+\begin{definition}
+    La tripla $(\Sigma, \mathcal T, \phi)$ in cui:
+    \begin{itemize}
+        %todo inserisci cosa sono i tre elementi.
+    \end{itemize}
+    è detta \textbf{sistema dinamico}.
+\end{definition}
+
+L'insieme $\mathcal T$ è chiamato \textbf{insieme del tempo} e può essere continuo
+o discreto (Vedi: esempio \ref{ex:semaforo}) (generalmente si prende $\mathcal T \equiv \R^+$ oppure $\mathcal T \equiv \Z^+$).
+
+\paragraph{}
+Spesso, dalla semplice osservazione di un sistema fisico, non se ne riesce a determinare
+immediatamente il flusso di fase associato. Possiamo invece costruire un \emph{campo vettoriale} $\b a(\b x)$
+che descrive il moto tramite un sistema di equazioni differenziali
+\begin{equation*}
+    \b a(\b x) = \dot {\b x} (t),
+\end{equation*}
+dove $\b x(t)$ è la \emph{legge oraria} del sistema.
+È naturale quindi chiedersi \emph{come e se} sia possibile passare da flusso di
+fase a campo vettoriale e viceversa. Si può dimostrare \todo{devo mettere la dimostrazione?} che
+i due oggetti sono legati secondo l'equazione:
+\begin{equation}
+    \b a (\b x) = \left.\frac d {dt} \right| _{t=0} \phi^t (\b x_0).
+    \label{eq:campo-vettoriale}
+\end{equation}
+
+La \eqref{eq:campo-vettoriale} è, in generale, impossibile da integrare analiticamente.
+Tuttavia, per i sistemi lineari, esiste una soluzione in forma chiusa che permette di
+risalire a $\phi$ partendo da $\b a$. Vedremo come nel prossimo paragrafo.
+
+\todo{eventualmente, posso fare un esempio di campo vettoriale mostrando il flow delle fasi...
+Non so se serve, per ora non lo faccio.}
+
+
+\subsection{Sistemi lineari}
+
+
+
+\subsection{Sistemi a tempo continuo e discreto}
+
+\subsection{Analisi dello spettro del sistema}
+
+\section{Controllabilità di un sistema lineare}
+
+\section{Controllo ottimale: LQR} \todo {glossary LQR}
