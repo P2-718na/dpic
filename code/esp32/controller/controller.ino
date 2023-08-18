@@ -10,8 +10,8 @@
 #define RPWM_CHANNEL 0
 #define LPWM_CHANNEL 1
 
-#define ENCODER_A 34
-#define ENCODER_B 35
+#define ENCODER_A 35
+#define ENCODER_B 34
 
 
 // State  and control /////////////////////////////////////////////
@@ -20,12 +20,12 @@ struct State {
 
   // Assume control setpoint to be at zero.
   // NOTE THST THIS SHOULD BE INTEGER KYS ARDUINO
-  int optimalControl() {
-    return (a1 > 0 ? 50 : -50) + 25.*a1 + 20.*w1;//-50;//-x/60.; //+ v;//400*a1 + 150*w1;
+  float optimalControl() {
+    return (-3.*x -3.*v + 30*a1 + 0*w1)*0.2;//-50;//-x/60.; //+ v;//400*a1 + 150*w1;
   }
 
   bool controllable() {
-    return (a1 > -.6 && a1 < -.001) || (a1 > .001  && a1 < .6);
+    return (a1 > -.6  && a1 < .6);
   }
 };
 State state;
@@ -144,38 +144,47 @@ void printState(State& state) {
   Serial.print(" ");
   Serial.print(state.w2);
   Serial.print(" ");
+  Serial.print(state.optimalControl());
+  Serial.print(" ");
   Serial.println();
 
   interval = millis();
 }
 
 void applyControl(State& state) {
-  int control = 1;//state.optimalControl();
+  float control = state.optimalControl();
 
   // QUi ci andrà uno switch per tutti i possibili stati del sistema (down, up, swing up...)
   if (state.controllable()) {
     Serial.print("+");
-    driveMotorWithForce(control, state.v)
+    driveMotorWithForce(control, state.v);
     return;
   }
 
   //Serial.print("=");
-  driveMotorWithForce(0, 0)
+  driveMotorWithForce(0, 0);
 }
 
-void driveMotorWithForce(float f, v) {
-    constexpr float A =  .649
-    constexpr float B =  .059977569
-    constexpr float C = -.1114644
+void driveMotorWithForce(float f, float v) {
+    constexpr float A =  .649;
+    constexpr float B =  .059977569;
+    constexpr float C = 0;//-.1114644;
 
     // deltaT
     constexpr float dT = .005;
     // massa carrello
-    constexpr float m = .259
+    constexpr float m = .259;
 
-    float u = ((1 - A) * v + dT * f/m + copysignf(C, v)) / B
+    float u = ((1 - A) * v + dT * f/m + copysignf(.1, f)) / B;
     u = u *255./12.;
 
+    if (f == 0) {
+      ledcWrite(LPWM_CHANNEL, 0);
+      ledcWrite(RPWM_CHANNEL, 0);
+
+      return ;
+
+    }
     ledcWrite(LPWM_CHANNEL, (int)(u > 0 ?  u : 0));
     ledcWrite(RPWM_CHANNEL, (int)(u < 0 ? -u : 0));
 }

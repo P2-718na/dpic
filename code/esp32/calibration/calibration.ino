@@ -10,8 +10,8 @@
 #define RPWM_CHANNEL 0
 #define LPWM_CHANNEL 1
 
-#define ENCODER_A 34
-#define ENCODER_B 35
+#define ENCODER_A 35
+#define ENCODER_B 34
 
 
 // Second core and x, v encoder ///////////////////////
@@ -98,7 +98,7 @@ enum State {
     stop
 };
 
-int step = 3;
+int step = 2;
 int stepSize = 15;
 int startTime = 0;
 State state = positiveWaitBeforeRunning;
@@ -140,7 +140,7 @@ void applyControl() {
             startTime = millis();
             step += 1;
             
-            if (step * stepSize > 165) {
+            if (step * stepSize > 140) {
                 state = switching;
                 break;
             }
@@ -175,7 +175,7 @@ void applyControl() {
             startTime = millis();
             step -= 1;
             
-            if (step * stepSize < -165) {
+            if (step * stepSize < -140) {
                 state = stop;
                 control(0);
                 break;
@@ -197,7 +197,7 @@ void applyControl() {
 
 
         case switching:
-            step = -3;
+            step = -2;
             control(50);
             if (x >= .7) {
                 state = negativeWaitBeforeRunning;
