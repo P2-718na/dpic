@@ -1,11 +1,11 @@
 #include <esp_now.h>
 #include <WiFi.h>
 #include <Encoder.h>
-//#include <EwmaT.h>
+#include <Ewma.h>
 //EwmaT <int> speedFilter(33, 100);
 
-#define ENCODER_A 34
-#define ENCODER_B 35
+#define ENCODER_A 35
+#define ENCODER_B 34
 #define BROADCAST_ADDRESS {0xBC, 0xDD, 0xC2, 0xD4, 0x52, 0x28}
 
 struct Variable {
@@ -67,17 +67,24 @@ void loop() {
   //}
   
   // 5ms delay between sends
-  if (deltaTime > 5000) {
+  if (deltaTime > 2000) {
     constexpr float toRadians = M_PI / 1200.;
 
+    // Just to be sure, I want to avoid race conditions.
+    const int currentSteps = steps;
+
+    static Ewma q_dotFilter(.1);
+
     data.id     = 1;
-    data.q      = (float)(euclideanMod(steps, 2400) - 1200) * toRadians ;
-    data.q_dot  = (float)(steps - lastSteps) * 1E6 / (float)deltaTime * toRadians; //todo smooth result
+    data.q      = (float)(euclideanMod(currentSteps, 2400) - 1200) * toRadians ;
+    data.q_dot  = q_dotFilter.filter(
+      (float)(currentSteps - lastSteps) / (float)deltaTime * toRadians * 1E6
+    );
   
     // Send message via ESP-NOW
     esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &data, sizeof(data));
 
-    lastSteps = steps;
+    lastSteps = currentSteps;
     lastMicros = micros();
   }
 }
