@@ -166,9 +166,16 @@ void applyControl(State& state) {
 }
 
 void driveMotorWithForce(float f, float v) {
-    constexpr float A =  .649;
-    constexpr float B =  .059977569;
-    constexpr float C = 0;//-.1114644;
+
+// old values
+    // 0.6440000000000005 0.06039107281145284 -0.11066436663505394
+
+//new
+// 0.6560000000000005 0.06163230308594066 -0.05354551267253291
+
+    constexpr float A =  .656;
+    constexpr float B =  .0616
+    constexpr float C = -.0535;//-.1114644;
 
     // deltaT
     constexpr float dT = .005;
