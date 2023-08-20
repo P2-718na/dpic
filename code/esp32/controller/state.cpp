@@ -30,7 +30,7 @@ void State::updateControl() {
 
 int State::convertToPWM(float force) {
   constexpr float A = 1.8;
-  constexpr float B = 6; // Dovrebbe essere 8, ma 8 non va lol
+  constexpr float B = 5; // Dovrebbe essere 8, ma 8 non va lol
 
   float u = A*force + B*v;
   u *= 255/14.;
