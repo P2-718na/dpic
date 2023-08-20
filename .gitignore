@@ -1,4 +1,6 @@
 docs/papers
+code/esp32/build
+code/build
 
 # Generic OS and IDE stuff...
 .DS_Store
