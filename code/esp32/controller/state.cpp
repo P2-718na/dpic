@@ -8,7 +8,7 @@ void State::init() {
 
 float State::optimalControl() {
  // return 1;
-  return (3*x + 3*v + 16*a1 + 1*w1)*.8;
+  return (4*x + 3*v + 16*a1 + 1*w1)*.9;
 }
 
 bool State::controllable() {
@@ -30,7 +30,7 @@ void State::updateControl() {
 
 int State::convertToPWM(float force) {
   constexpr float A = 1.8;
-  constexpr float B = 5; // Dovrebbe essere 8, ma 8 non va lol
+  constexpr float B = 6; // Dovrebbe essere 8, ma 8 non va lol
 
   float u = A*force + B*v;
   u *= 255/14.;
