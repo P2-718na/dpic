@@ -76,7 +76,7 @@ void loop() {
     static Ewma q_dotFilter(.1);
 
     data.id     = 2;
-    data.q      = (float)(euclideanMod(currentSteps, 2400) - 1200) * toRadians ;
+    data.q      = (float)(euclideanMod(currentSteps + 1200, 2400) - 1200) * toRadians ;
     data.q_dot  = q_dotFilter.filter(
         (float)(currentSteps - lastSteps) / (float)deltaTime * toRadians * 1E6
     );

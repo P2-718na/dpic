@@ -1,6 +1,6 @@
 #include "state.h"
 
-State::State() : printInterval(Interval(100)), controlInterval(Interval(10)), currentControl(0) {}
+State::State() : printInterval(Interval(100)), controlInterval(Interval(5)), currentControl(0) {}
 
 void State::init() {
   Serial.println("x v a1 w1 a2 w2");
@@ -8,18 +8,26 @@ void State::init() {
 
 float State::optimalControl() {
  // return 1;
-  return (4*x + 3*v + 16*a1 + 1*w1)*.9;
+ // SIngle pendulum
+  return (4*x + 3*v + 16*a1 + 1*w1);
+  return -(1.8*x + 2.9*v - 30*a1 - 0.97*w1 + 80.5*a2 + 8.00*w2)*.1;
 }
 
 bool State::controllable() {
   //return x <.6 && x >.01;
   return (a1 > -.4  && a1 < .4 && x < .35 && x > -.35);
+  return (a1 > -.8  && a1 < .8 && x < .35 && x > -.35 && a2 > -.5  && a2 < .5);
 }
 
 void State::updateControl() {
   // Qui ci va lo switch in base allo stato del sistema...
   if (!controllable()) {
     currentControl = 0;
+
+    if (abs(a1) > 2.8 && x < .3 && x > -.3) {
+      currentControl = w1/4;
+    }
+
     return;
   }
 
@@ -30,7 +38,7 @@ void State::updateControl() {
 
 int State::convertToPWM(float force) {
   constexpr float A = 1.8;
-  constexpr float B = 6; // Dovrebbe essere 8, ma 8 non va lol
+  constexpr float B = 6 ; // Dovrebbe essere 8, ma 8 non va lol
 
   float u = A*force + B*v;
   u *= 255/14.;
@@ -51,8 +59,8 @@ void State::updateMotor() {
   constexpr int LPWM_MIN = 18;
   constexpr int RPWM_MIN = 18;
 
-  ledcWrite(LPWM_CHANNEL, (int)(u > 0 ?  u + LPWM_MIN: 0));
-  ledcWrite(RPWM_CHANNEL, (int)(u < 0 ? -u + RPWM_MIN: 0));
+  ledcWrite(LPWM_CHANNEL, (int)(u > 0 ?  (u < LPWM_MIN ? u + LPWM_MIN : u): 0));
+  ledcWrite(RPWM_CHANNEL, (int)(u < 0 ?  (-u < RPWM_MIN ? -u + RPWM_MIN : -u) : 0));
 }
 
 void State::print() {

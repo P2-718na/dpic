@@ -15,10 +15,13 @@ void OnDataRecv(const uint8_t * maxsc, const uint8_t *incomingData, int len)  {
     state.a1 = data.q;
     state.w1 = data.q_dot;
 
+    // That would be nice. However, doesn't work. Need one more data to save...
+    //state.a2 = data.q + state.a1;
+
     return;
   }
 
-  state.a2 = data.q;
+  state.a2 = data.q + state.a1;
   state.w2 = data.q_dot;
 }
 
