@@ -56,8 +56,8 @@ void State::updateMotor() {
 
   int u = convertToPWM(currentControl);
 
-  constexpr int LPWM_MIN = 18;
-  constexpr int RPWM_MIN = 18;
+  constexpr int LPWM_MIN = 24;
+  constexpr int RPWM_MIN = 24;
 
   ledcWrite(LPWM_CHANNEL, (int)(u > 0 ?  (u < LPWM_MIN ? u + LPWM_MIN : u): 0));
   ledcWrite(RPWM_CHANNEL, (int)(u < 0 ?  (-u < RPWM_MIN ? -u + RPWM_MIN : -u) : 0));
