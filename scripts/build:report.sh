@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-mkdir -p ./docs/report/build &&
+mkdir -p ./docs/report/build/sections &&
 cd docs/report &&
 #export "$(xargs < .env)" &&
 xelatex -interaction=batchmode  -output-directory=build ./report.tex > /dev/null;
