@@ -24,8 +24,8 @@ void State::updateControl() {
   if (!controllable()) {
     currentControl = 0;
 
-    if (abs(a1) > 2.8 && x < .3 && x > -.3) {
-      currentControl = w1/4;
+    if (abs(a1) > 2.8 && x < .3 && x > -.3 && abs(v) < .6) {
+      currentControl = w1/2;
     }
 
     return;

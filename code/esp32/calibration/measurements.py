@@ -112,7 +112,7 @@ for m in range(0, len(u)):
         B.append(w0[m]*(1-exp(alpha[m]*t)))
         T.append(t)
         wk = a*wk + b*u[m] + c*np.sign(u[m])
-    plt.plot(T, A)
+    #plt.plot(T, A)
     #plt.plot(T, B)
 print(a,b,c)
 # 0.6490000000000005 0.059977569170621886 -0.11146438325750242
