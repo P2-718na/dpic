@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-mkdir -p ./docs/report/build/sections &&
-cd docs/report &&
+for i in {1..5}
+do
+  mkdir -p ./docs/report/build/sections/$i
+done;
+cd docs/report
 #export "$(xargs < .env)" &&
 xelatex -interaction=batchmode  -output-directory=build ./report.tex > /dev/null;
 makeglossaries -d build/sections sections/glossary;
