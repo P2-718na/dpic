@@ -250,4 +250,32 @@ SOFTWARE.
 \newcommand{\partialdd}[2]{\left. \frac \partial {\partial #1} \right|_{#2}}
 \newcommand{\totald}[1]{\frac {\text d} {\text d #1}}
 \newcommand{\sign}[1]{\ \mathrm{sign}\left(#1\right)}
+\newcommand{\ddp}{\emph{d.d.p} }
+
+
+\makeatletter
+
+\newcommand*{\@rowstyle}{}
+
+\newcommand*{\rowstyle}[1]{% sets the style of the next row
+  \gdef\@rowstyle{#1}%
+  \@rowstyle\ignorespaces%
+}
+
+\newcolumntype{=}{% resets the row style
+  >{\gdef\@rowstyle{}}%
+}
+
+\newcolumntype{+}{% adds the current row style to the next column
+  >{\@rowstyle}%
+}
+
+\newcolumntype{g}{% adds the current row style to the next column
+        >{\columncolor{LightGray}}%
+}
+
+\makeatother
+
+\newcommand{\thickvline}{!{\vrule width 2pt}}
+
 \endinput

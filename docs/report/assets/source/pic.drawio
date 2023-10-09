@@ -1,0 +1,88 @@
+<mxfile host="Electron" modified="2023-10-09T15:25:41.774Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="w518_exGA3o1rZrBsj5Q" version="22.0.2" type="device">
+  <diagram id="PKXgxyNqT-ygMeF7_D2m" name="Pagina-1">
+    <mxGraphModel dx="1194" dy="877" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3qhbwhjmdzM9JfU7vgDt-1" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="240" y="350" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="3qhbwhjmdzM9JfU7vgDt-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillStyle=hatch;fillColor=#000000;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="120" y="400" width="320" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="3qhbwhjmdzM9JfU7vgDt-8" value="$$\theta$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;strokeWidth=1;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="279" y="247" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3qhbwhjmdzM9JfU7vgDt-10" value="" style="endArrow=baseDash;html=1;rounded=0;strokeWidth=1;fontSize=20;sourcePerimeterSpacing=2;curved=1;startArrow=baseDash;startFill=0;endFill=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="286" y="270" as="sourcePoint" />
+            <mxPoint x="320" y="280" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="306" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="273" y="360" width="15" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#000000;arcSize=50;rotation=-60;strokeWidth=0;" parent="1" vertex="1">
+          <mxGeometry x="232.38" y="283.92" width="190" height="6" as="geometry" />
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-4" value="" style="endArrow=block;html=1;rounded=0;startArrow=oval;startFill=1;strokeWidth=3;endFill=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="390" as="sourcePoint" />
+            <mxPoint x="380" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-6" value="&lt;font&gt;$$q$$&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;strokeWidth=1;fontSize=20;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="190" y="300" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-7" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=2;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="400" as="sourcePoint" />
+            <mxPoint x="160" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-8" value="&lt;font&gt;$$q=0$$&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;strokeWidth=1;fontSize=20;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="130" y="200" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-9" value="&lt;font&gt;$$\theta=0$$&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;strokeWidth=1;fontSize=20;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="250" y="200" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-10" value="" style="endArrow=baseDash;html=1;rounded=0;endFill=0;startArrow=baseDash;startFill=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="165" y="330" as="sourcePoint" />
+            <mxPoint x="275" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-13" value="&lt;font&gt;$$f$$&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;strokeWidth=1;fontSize=20;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="310" y="358" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-16" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="342" y="242.92" width="13.08" height="13.08" as="geometry" />
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-14" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeWidth=3;" parent="N75XSlWMp56Blasehade-16" vertex="1">
+          <mxGeometry width="13.08" height="13.08" as="geometry" />
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-11" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Secchi_disk_pattern.svg/1920px-Secchi_disk_pattern.svg.png;" parent="N75XSlWMp56Blasehade-16" vertex="1">
+          <mxGeometry x="0.654" y="0.654" width="11.772" height="11.772" as="geometry" />
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-18" value="&lt;font&gt;$$L$$&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;strokeWidth=1;fontSize=20;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="310" y="300" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="N75XSlWMp56Blasehade-19" value="" style="endArrow=baseDash;html=1;rounded=0;endFill=0;startArrow=baseDash;startFill=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="292.38" y="374" as="sourcePoint" />
+            <mxPoint x="362.38" y="256" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3qhbwhjmdzM9JfU7vgDt-3" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=2;rounded=0;dashPattern=1 1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="368" as="sourcePoint" />
+            <mxPoint x="280" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

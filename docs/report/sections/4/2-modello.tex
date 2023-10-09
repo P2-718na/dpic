@@ -1,12 +1,14 @@
 \section{Modello del sistema}
-Nel paragrafo precedente ho detto che l'unica interazione possibile tra il sistema è l'esterno è l'applicazione di una forza sul carrello. Nella pratica, questo significa che è presente un motore vincolato al carrello in qualche modo. Mentre la natura del vincolo non è interessante, dobbiamo invece prestare particolare attenzione al tipo di motore utilizzato. Un motore esercita una forza che dipende sia da un segnale di controllo esterno, sia dallo stato interno dello stesso. È quindi conveniente separare lo studio del sistema in due: pendolo-carrello e motore.
-
-\begin{figure}[thb]
-    \centering
-    %\includegraphics[width=0.4\textwidth]{assets/pic.png}
-    \caption{Pic system. Qui ci va circa la stessa figura sopra, ma con l'immagine del motore collegato al carrello. }%todo
-    \label{fig:pic-real}
-\end{figure}
+Nel paragrafo precedente ho detto che l'unica interazione possibile tra il sistema
+e l'esterno è l'applicazione di una forza sul carrello.
+Nella pratica, questo significa che è presente un motore vincolato al carrello
+in qualche modo, come mostrato in figura~\ref{fig:pic-real}.
+Mentre la natura del vincolo non è interessante, dobbiamo invece prestare
+particolare attenzione al tipo di motore utilizzato.
+Un motore esercita una forza che dipende sia da un segnale di controllo esterno,
+sia dallo stato interno dello stesso.
+È quindi conveniente separare lo studio del sistema in due:
+pendolo-carrello e motore.
 
 \subsection{Pendolo e carrello}
 È immediato ricavare le equazioni del moto usando l'approccio Lagrangiano. Inizio fissando alcuni parametri che possono essere misurati sperimentalmente; sono riportati in tabella \ref{tab:parametri}. Posso quindi scrivere l'espressione per l'energia cinetica $T$ e potenziale $V$ del sistema:
@@ -26,8 +28,9 @@ La Lagrangiana $\mathcal L$ è data da:
 e posso ricavare le equazioni del moto usando le equazioni di Eulero:
 \begin{equation*}
     \begin{aligned}
-        asdasdasd %todo scrivi eq eulero
-    \end{aligned}.
+        \frac{\partial^2}{\partial t \partial \dot q} \mathcal L - \partiald q \mathcal L &= f, \\
+        \frac{\partial^2}{\partial t \partial \dot \theta} \mathcal L  - \partiald \theta \mathcal L &= 0.
+    \end{aligned}
     \label{eq:moto-sistema}
 \end{equation*}
 %todo
@@ -38,23 +41,27 @@ Studio inoltre i punti di equilibrio del sistema:
 \end{equation*}
 
 
+\bgroup
+\def\arraystretch{1.5}
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{@{}ll@{}}
-        \toprule
-        \textbf{Correct}     & \textbf{Incorrect}         \\
-        \midrule
-        \( A \implies B \)   & \( A \Rightarrow B \)      \\
-        \( A \impliedby B \) & \( A \Leftarrow B \)       \\
-        \( A \iff B \)       & \( A \Leftrightarrow B \)  \\
-        \bottomrule
+    \begin{tabular}{!{\color{Black}\vrule width 2pt} c | gl |}
+        \noalign{\hrule height 2pt}
+
+        \rowcolor{Black}%
+
+        \multicolumn{1}{=c}{\rowstyle{\bfseries\sffamily \color{White}} <Header 1>} & \multicolumn{1}{+c}{ <Header 2>} \\
+        \hline
+        x & Questa variabile è x \\
+        \hline
+        y & Questa variabile è y \\
+        \noalign{\hrule height 2pt}
     \end{tabular}
-    % Tra graffe ci sta il nome che viene visualizzato nell'elenco delle tabelle
-    \caption[Parametri]{Parametri}
-    %todo
+    \caption{ciao}
     \label{tab:parametri}
 \end{table}
-\todo{fai tabella}
+\egroup
+
 
 \subsection{Motore}
 \todo{fix reference}
@@ -103,7 +110,8 @@ Per trovare una soluzione al mio problema inizio risolvendo il sistema per $U$:
 In linea di principio questo è tutto quello che mi serve per controllare il motore, tuttavia, il termine che contiene $\dot \tau$ ha un coefficiente che non è facile da misurare con gli strumenti che ho a disposizione. Scelgo quindi di trascurare questo termine. Questa scelta è giustificata dal fatto che il segnale di controllo $\tau$ cambia solamente ogni $\Delta t$ secondi e posso scegliere $\Delta t$ in modo che sia maggiore del tempo del transiente dovuto a $\Delta \tau$.
 
 Ricordando che $\tau$ e $\omega$ sono proporzionali a $f$ e $v$, trovo che questo modello dipende solo da due parametri determinabili sperimentalmente, $A$ e $B$:
-\begin{equation*}
+\begin{equation}
     U = A f + B v.
-\end{equation*}
+    \label{eq:caratteristica-motore}
+\end{equation}
 La determinazione di questi parametri è descritta nel paragrafo \ref{subsec:parametri-motore}.

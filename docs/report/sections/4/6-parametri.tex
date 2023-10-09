@@ -13,3 +13,51 @@ In questa sezione userò i dati raccolti dal sistema reale per ottenere una stim
 
 \subsection{Parametri del motore}
 \label{subsec:parametri-motore}
+Per determinare i parametri del motore, osservo come si comporta il sistema del solo
+carrello, quando applico una \ddp $u$ costante ai capi del motore.
+L'equazione che regola il comportamento del motore è la \eqref{eq:caratteristica-motore}.
+Se scollego il pendolo dal carrello, l'espressione per la forza $f$
+esercitata dal motore è data dalla legge di Newton:
+\begin{equation}
+    f = M \ddot q.
+    \label{eq:newton-motore}
+\end{equation}
+Ora considero la sostituzione
+\begin{equation}
+    \begin{aligned}
+    \dot q \mapsto v \\
+    \ddot q \mapsto \dot v
+    \end{aligned}
+    \label{eq:sostituzione-motore}
+\end{equation}
+e inserendo \eqref{eq:newton-motore} e\eqref{eq:sostituzione-motore} dentro a \eqref{eq:caratteristica-motore}
+ottengo l'equazione di una legge esponenziale:
+\begin{equation*}
+    \dot v = \frac{u - B v} {Am}.
+\end{equation*}
+Fisso la condizione iniziale $v(0) = 0$ e ottengo la soluzione:
+\begin{equation}
+    v(t) = \frac u B \left(1 - e^{-\frac B {Am} t}\right).
+    \label{eq:equazione-fit-motore}
+\end{equation}
+I parametri $A$ e $B$ sono costanti quindi, variando $u$, mi aspetto di trovare
+una famiglia di curve con cui fittare la \eqref{eq:equazione-fit-motore}.
+
+In questa trattazione ho trascurato l'attrito tra carrello e rotaia.
+Visto che il carrello scorre sulla rotaia attraverso dei cuscinetti,
+l'attrito si può approssimare come costante.
+Nel paragrafo ?? \todo{ref sezione risultati} mostrerò che in effetti questo attrito
+è trascurabile.
+\todo {traduci?}
+Non è trascurabile invece il \emph{cogging torque} $\tau_c$ del motore,
+dovuto all'interazione tra i magneti permanenti e le armature. $\tau_c$ ha
+l'andamento descritto in figura \ref{fig:cogging} ed è predominante quando $\omega$ è
+piccola.
+L'approccio che ho usato per ridurne l'effetto è descritto nel paragrafo ?? \todo{anche qui paragrafo}.
+
+\begin{figure}[hbp]
+    \centering
+    \includegraphics{assets/cogging-torque}
+    \caption[Three balls]{Three balls.}
+    \label{fig:cogging}
+\end{figure}

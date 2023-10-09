@@ -1,4 +1,50 @@
+%swag tabella
+\bgroup
+\def\arraystretch{1.5}
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{!{\vrule width 2pt} =c | +l |}
+        \hline
+        \rowcolor{Black}
+        \rowstyle{\bfseries\sffamily \color{White}} Culo  & culo2 \\
+        \hline
+        variable 1 & a \\
+        \hline
+        variable 2 & a \\
+        \noalign{\hrule height 2pt}
+    \end{tabular}
+    \caption{ciao}
+    \label{tab:parametri}
+\end{table}
+\egroup
 
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graph1}
+        \caption{$y=x$}
+        \label{fig:y equals x}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graph2}
+        \caption{$y=3\sin x$}
+        \label{fig:three sin x}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{graph3}
+        \caption{$y=5/x$}
+        \label{fig:five over x}
+    \end{subfigure}
+    \caption{Three simple graphs}
+    \label{fig:three graphs}
+\end{figure}
 
 \todo[inline]{Rewrite this!}
 % Standalone with \input:
