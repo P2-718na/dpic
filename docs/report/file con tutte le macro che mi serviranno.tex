@@ -1,6 +1,7 @@
 %swag tabella
 \bgroup
-\def\arraystretch{1.5}
+\renewcommand{\tabularxcolumn}[1]{>{\arraybackslash}m{#1}}
+\renewcommand\arraystretch{1.5}
 \begin{table}[htbp]
     \centering
     \begin{tabular}{!{\vrule width 2pt} =c | +l |}

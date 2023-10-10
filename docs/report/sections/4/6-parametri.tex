@@ -1,14 +1,32 @@
 \section{Stima dei parametri del sistema nel mondo reale}
 Non tutti i parametri descritti in tabella \ref{tab:parametri} sono calcolabili facilmente. In particolare, mi sono sconosciuti:
 \begin{itemize}
-    \item Gli attriti.
     \item I parametri del motore.
     \item Il momento d'inerzia del pendolo.
 \end{itemize}
-In questa sezione userò i dati raccolti dal sistema reale per ottenere una stima di questi parametri. Anche qui, mi conviene separare lo studio del pendolo dallo studio del motore.
+In questa sezione userò i dati raccolti dal sistema reale per ottenere una stima di questi parametri.
+Anche qui, mi conviene separare lo studio del pendolo dallo studio del motore.
 
 \subsection{Parametri del pendolo}
-
+La massa del pendolo si può misurare direttamente con una bilancia.
+Anche la posizione del centro di massa è facile da trovare, bilanciando
+il pendolo su un supporto e misurando la distanza tra questo e l'estremità.
+Il momento d'inerzia è difficile da calcolare direttamente, visto che il
+pendolo che ho usato è stato realizzato tramite la stampa 3d e, di conseguenza,
+è estremamente disomogeneo all'interno; si può ricavare misurando
+il periodo $\tau_{osc}$ di oscillazione del pendolo.
+L'equazione del moto, nel regime delle piccole oscillazioni, è:
+\begin{equation*}
+    J \ddot \theta = mgL \sin \theta \approx mgL \theta
+\end{equation*}
+da cui
+\begin{align}
+    \omega &= \sqrt{\frac {m g L} J},\\
+    \tau_{osc} &= \frac{2\pi}\omega = 2\pi \sqrt{\frac J {mgL}}.
+    \label{eq:tau-osc}
+\end{align}
+La~\eqref{eq:tau-osc} permette di ricavare $J$ e fornisce una scala
+di tempo per il sistema.
 
 
 \subsection{Parametri del motore}
@@ -55,9 +73,9 @@ l'andamento descritto in figura \ref{fig:cogging} ed è predominante quando $\om
 piccola.
 L'approccio che ho usato per ridurne l'effetto è descritto nel paragrafo ?? \todo{anche qui paragrafo}.
 
-\begin{figure}[hbp]
+\begin{figure}[hb]
     \centering
     \includegraphics{assets/cogging-torque}
-    \caption[Three balls]{Three balls.}
+    \caption[Cogging torque]{Cogging toque del motore.}
     \label{fig:cogging}
 \end{figure}
