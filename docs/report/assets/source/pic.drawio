@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-10-09T15:25:41.774Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="w518_exGA3o1rZrBsj5Q" version="22.0.2" type="device">
+<mxfile host="Electron" modified="2023-10-11T09:46:55.614Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="8Rm2Sf-EKcArcvbujFbD" version="22.0.2" type="device">
   <diagram id="PKXgxyNqT-ygMeF7_D2m" name="Pagina-1">
-    <mxGraphModel dx="1194" dy="877" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
+    <mxGraphModel dx="1138" dy="824" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -66,15 +66,6 @@
         </mxCell>
         <mxCell id="N75XSlWMp56Blasehade-11" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Secchi_disk_pattern.svg/1920px-Secchi_disk_pattern.svg.png;" parent="N75XSlWMp56Blasehade-16" vertex="1">
           <mxGeometry x="0.654" y="0.654" width="11.772" height="11.772" as="geometry" />
-        </mxCell>
-        <mxCell id="N75XSlWMp56Blasehade-18" value="&lt;font&gt;$$L$$&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillStyle=auto;strokeWidth=1;fontSize=20;fontColor=#000000;" parent="1" vertex="1">
-          <mxGeometry x="310" y="300" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="N75XSlWMp56Blasehade-19" value="" style="endArrow=baseDash;html=1;rounded=0;endFill=0;startArrow=baseDash;startFill=0;" parent="1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="292.38" y="374" as="sourcePoint" />
-            <mxPoint x="362.38" y="256" as="targetPoint" />
-          </mxGeometry>
         </mxCell>
         <mxCell id="3qhbwhjmdzM9JfU7vgDt-3" value="" style="endArrow=none;dashed=1;html=1;strokeWidth=2;rounded=0;dashPattern=1 1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">

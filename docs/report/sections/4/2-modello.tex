@@ -11,36 +11,58 @@ sia dallo stato interno dello stesso.
 pendolo-carrello e motore.
 
 \subsection{Pendolo e carrello}
-È immediato ricavare le equazioni del moto usando l'approccio Lagrangiano. Inizio fissando alcuni parametri che possono essere misurati sperimentalmente; sono riportati in tabella \ref{tab:parametri}. Posso quindi scrivere l'espressione per l'energia cinetica $T$ e potenziale $V$ del sistema:
+È immediato ricavare le equazioni del moto usando l'approccio Lagrangiano.
+Inizio fissando alcuni parametri che possono essere calcolati o misurati
+sperimentalmente; sono riportati in tabella~\ref{tab:parametri}.
+Posso quindi scrivere l'espressione per l'energia cinetica $T$
+e potenziale $V$ del sistema:
 
 \begin{equation*}
     \begin{aligned}
-        T &= \frac 1 2 M  \dot q^2 +  \\ %todo
+        T &= \frac 1 2 M  \dot q^2 + \frac 1 2 m v_{cm}^2 + \frac 1 2 (J - lm^2)\dot \theta^2 \\ %todo
         V &= mgL \cos\theta
     \end{aligned}
-    \hspace{20pt} \text{con } q \in \R, \theta \in ]-\pi, +\pi].
+    \hspace{20pt} \text{con } q \in \R, \theta \in ]-\pi, +\pi]
     \label{eq:energy}
 \end{equation*}
-La Lagrangiana $\mathcal L$ è data da:
+dove $v_{cm}$ è la velocità del centro di massa del pendolo, data da:
+\begin{equation*}
+    v^2_{cm} = (\dot x + l \dot \theta \cos \theta)^2 + (+ l \dot \theta \Sin \theta)^2.
+\end{equation*}
+La Lagrangiana $\mathcal L$ è:
 \begin{equation*}
     \mathcal L = T - V
 \end{equation*}
-e posso ricavare le equazioni del moto usando le equazioni di Eulero:
+e posso impostare le equazioni di eulero
 \begin{equation*}
     \begin{aligned}
-        \frac{\partial^2}{\partial t \partial \dot q} \mathcal L - \partiald q \mathcal L &= f, \\
-        \frac{\partial^2}{\partial t \partial \dot \theta} \mathcal L  - \partiald \theta \mathcal L &= 0.
+        \frac{\partial^2}{\partial t \partial \dot q} \mathcal L - \partiald q \mathcal L &= f \\
+        \frac{\partial^2}{\partial t \partial \dot \theta} \mathcal L  - \partiald \theta \mathcal L &= 0
+    \end{aligned}
+    \label{eq:eulero}
+\end{equation*}
+da cui ricavo le equazioni del moto del sistema:
+\begin{equation}
+    \begin{aligned}
+        \ddot x &= \frac {-lm \ddot \theta \cos \theta + lm \dot \theta^2 \sin \theta + f} {m + M} \\
+        \ddot \theta &= \frac {lm (g\sin \theta - \cos \theta }{J} \ddot x.
     \end{aligned}
     \label{eq:moto-sistema}
-\end{equation*}
-%todo
-Qui ci dovrei mettere due considerazioni sulle forze (in particolare sugli attriti...)
-Studio inoltre i punti di equilibrio del sistema:
+\end{equation}
+In questo modello ho trascurato gli attriti tra il carrello e la rotaia e tra
+il pendolo e il perno.
+
+Per concludere devo studiare i punti di equilibrio del sistema.
+L'unica variabile che compare nel potenziale è $\theta$, quindi il calcolo è
+immediato.
 \begin{equation*}
     \left. \frac \partial {\partial \theta}\right |_{V=V_{eq}} V =  0 \implies V_{eq} = \{0, \pi\}.
 \end{equation*}
-
-
+È immediato anche studiarne al stabilità:
+\begin{align*}
+    \theta = 0 \mapsto \text{instabile} \\
+    \theta = \pi \mapsto \text{stabile}.
+\end{align*}
 
 \bgroup
 \renewcommand{\tabularxcolumn}[1]{>{\arraybackslash}m{#1}}
@@ -69,16 +91,12 @@ Studio inoltre i punti di equilibrio del sistema:
         $\theta$ & Angolo del pendolo rispetto alla verticale. \\
         \hline
         $f$ & Forza agente sul carrello. \\
-        \hline
-        $\tau$ & Coppia esercitata dal motore. \\
         \noalign{\hrule height 2pt}
     \end{tabularx}
     \caption{Descrizione di parametri e variabili del sistema carrello-pendolo.}
     \label{tab:parametri}
 \end{table}
 \egroup
-
-\pagebreak
 
 \subsection{Motore}
 \todo{fix reference}
@@ -95,7 +113,6 @@ Fisso alcuni parametri relativi al motore, riportati in tabella \ref{tab:paramet
         \noalign{\hrule height 2pt}
 
         \rowcolor{Black}%
-
         \multicolumn{1}{=c}{\rowstyle{\bfseries\sffamily \color{White}} Parametro/Variabile} & \multicolumn{1}{+c}{ Descrizione} \\
         \hline
         $u$ & \ddp tra le armature. \\
@@ -110,10 +127,9 @@ Fisso alcuni parametri relativi al motore, riportati in tabella \ref{tab:paramet
         \noalign{\hrule height 2pt}
     \end{tabularx}
     \caption{Descrizione di parametri e variabili del motore.}
-    \label{tab:parametri-motore}
+    \label{tab:parametri-motore} %todo qui manca la descrizion2e di un tot di parametri.i
 \end{table}
 \egroup
-\pagebreak
 
 Un motore DC è regolato dalle equazioni: \todo{qui devo ritrovare il pdf che spiega tutto bene e decidere se fare io i disegni o se citare semplicemente altri paper}
 \begin{equation*}
