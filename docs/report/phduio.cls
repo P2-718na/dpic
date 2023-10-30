@@ -92,11 +92,11 @@ SOFTWARE.
 
 
 %% Paper size
-\setstocksize{240mm}{170mm}
-\settrimmedsize{240mm}{170mm}{*}
+\setstocksize{297mm}{210mm}
+\settrimmedsize{297mm}{210mm}{*}
 \settrims{0mm}{0mm}
-\setlrmarginsandblock{20mm}{28.7mm}{*}
-\setulmarginsandblock{25mm}{25mm}{*}
+\setlrmarginsandblock{25mm}{33.7mm}{*}
+\setulmarginsandblock{30mm}{30mm}{*}
 \checkandfixthelayout
 
 
@@ -463,8 +463,8 @@ SOFTWARE.
         font           = \sffamily\bfseries\Huge,
         text width     = \thumbwidth,
         minimum height = \thumbheight,
-        outer sep      = 0pt,
-        inner xsep     = 1.5em
+        outer sep      = 0cm,
+        inner xsep     = 0.4cm
     }
 }
 
