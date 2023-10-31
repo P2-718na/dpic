@@ -2,6 +2,7 @@
 \newtheorem{thm-env}{Teorema} % is it right?
 \newtheorem{def-env}{Definizione} % is it right?
 \newtheorem{ex-env}{Esempio} % is it right?
+\newtheorem{prop-env}{Proposizione} % is it right?
 \newenvironment{thm}
 {
     \begin{shaded}
@@ -9,6 +10,16 @@
 }
 {
     \end{thm-env}
+    \end{shaded}
+}
+
+\newenvironment{prop}
+{
+    \begin{shaded}
+        \begin{prop-env}
+        }
+        {
+        \end{prop-env}
     \end{shaded}
 }
 
