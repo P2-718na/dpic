@@ -3,6 +3,7 @@
 \newtheorem{def-env}{Definizione} % is it right?
 \newtheorem{ex-env}{Esempio} % is it right?
 \newtheorem{prop-env}{Proposizione} % is it right?
+\newtheorem{lemma-env}{Lemma} % is it right?
 \newenvironment{thm}
 {
     \begin{shaded}
@@ -21,6 +22,25 @@
         {
         \end{prop-env}
     \end{shaded}
+}
+
+\newenvironment{lemma}
+{
+    \colorlet{shadecolor}{lightgray!20}
+    \begin{shaded}
+        \begin{lemma-env}
+        }
+        {
+        \end{lemma-env}
+    \end{shaded}
+}
+
+\newenvironment{steps}
+{
+    \begin{enumerate}[label={\emph{Passaggio \arabic*}.}, leftmargin=*]
+    }
+    {
+    \end{enumerate}
 }
 
 \newenvironment{definition}

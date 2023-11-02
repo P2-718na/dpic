@@ -31,13 +31,13 @@ questo testo. \todo{magari qui ci sta cit al turchetti che parla di questa roba 
     \begin{equation*}
         \begin{array}{cccc}%
             \phi: &\mathcal T \times \Sigma &\to &\Sigma \\
-            &\phi^t(x_0) &\mapsto &x(t)
+            &\phi^t(\b x_0) &\mapsto &\b x(t)
         \end{array}%
     \end{equation*}
     è detta \textbf{flusso di fase} se e solo se rispetta le seguenti proprietà:
     \begin{itemize}
-        \item \textbf{Identità:} $\phi^0(x_0) = x_0$.
-        \item \textbf{Composizione:} $\phi^t \o \phi^s = \phi^{t+s}$.
+        \item \textbf{Identità:} $\phi^0(\b x_0) = \b x_0$.
+        \item \textbf{Composizione:} $\phi^t \circ \phi^s = \phi^{t+s}$.
         \raggedright
         \item \textbf{Conservazione della misura:} esiste una misura $\mu$ di $\Sigma$ %
         conservata $\int_A \det J_\phi \ d\mu~=~\int_{\phi^t(A)} d\mu$.
@@ -55,6 +55,7 @@ Ora uso le definizioni appena enunciate per introdurre il concetto di
         \item $\phi$ è un flusso di fase%
     \end{itemize}
     è detta \textbf{sistema dinamico}.
+    \label{def:sistema-dinamico}
 \end{definition}
 
 A seconda di come è costruito il flusso di fase, un sistema dinamico
@@ -237,6 +238,7 @@ La soluzione per equazioni del tipo~\eqref{eq:sistema-lineare-non-omogeneo} è d
 \end{equation}
 
 \subsection{Linearizzazione di un sistema non lineare}
+\label{subsec:linearizzazione}
 Considero un sistema dinamico caratterizzato da un campo vettoriale del tipo
 \begin{equation}
     \dot {\b x} = \b a(\b x, \b u),\ \text{con}\ \b x = \b x (t)\ \text e\ \b u = \b u (t).

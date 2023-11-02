@@ -1,8 +1,203 @@
 \section{Controllabilità di un sistema lineare}
-Qui devo spiegare che controllabilità equivale a poter spostare gli autovalori a piacimento.
-Mostro le condizioni di controllabilità e qualche teoremino. Non so se mettere le
-dimostrazioni (no sbatti per ora, magari metto solo le citazioni).
 
 \subsection{Problema di controllo}
+Introduco la definizione di \emph{problema di controllo}.
+Questa si basa sulla definizione~\ref{def:sistema-dinamico} in cui,
+assieme allo spazio delle fasi, viene aggiunto uno \emph{spazio dei controlli}.
+Di seguito userò la notazione
+\begin{equation*}
+    \mathcal U^{\mathcal T},\ \text{con } \mathcal T \text{ intervallo}
+\end{equation*}
+per indicare lo spazio di tutte le funzioni da $\mathcal T$ a $\mathcal U$.
+
+\begin{definition}
+    La quadrupla $\left( \Sigma, \mathcal T, \mathcal U, \phi \right)$ in cui:
+    \begin{itemize}
+        \item $\Sigma$ è uno spazio delle fasi
+        \item $\mathcal T$ è un insieme del tempo
+        \item $\mathcal U \subseteq \R^n$ è l'insieme dei controlli ammessi
+        \item $\phi$ è un applicazione detta \textbf{mappa di transizione} del problema:
+            \begin{equation*}
+                  \begin{array}{cccc}%
+                      \phi: &D_\phi &\to &\Sigma \\
+                      &\phi^t(\b x_0,\omega) &\mapsto &\b x(t)
+                  \end{array}%
+            \end{equation*}
+            con $D_\phi$ dato da
+            \begin{equation*}
+                D_\phi = \left\{(t, \b x, \omega) | t \in \mathcal T, \b x \in \Sigma, \omega \in \mathcal U^{[0, t[ \subseteq \mathcal T} \right\}
+            \end{equation*}
+    \end{itemize}
+    definisce un \textbf{problema di controllo} se e solo se valgono le seguenti proprietà:
+    \begin{itemize}
+        \item \textbf{Identità:}
+            $\phi^0(\b x_0, \omega) = \b x_0$
+        \item \textbf{Composizione e restrizione:}
+            Se $\phi^t(\b x_0, \omega_1) = \b x_1$ e $\phi^s(\b x_1, \omega_2) = \b x_2$
+            allora $\phi^{t+s}(\b x_0, \omega) = \b x_2$, con $\omega = \omega_1 \circ \omega_2$.
+            È valido anche il contrario, ovvero, se $\phi^{t+s}(\b x_0, \omega) = \b x_2$, posso
+            scrivere $\omega = \omega_1 \circ \omega_2$ per cui vale $\phi^t(\b x_0, \omega_1) = \b x_1$ e $\phi^s(\b x_1, \omega_2) = \b x_2$.
+        \item \textbf{Non-trivialità:}
+            Per ogni stato $\b x \in \Sigma$ esiste sempre un tempo $t$ e un
+            controllo $\omega$ per cui $(t, \b x, \omega) \in D_\phi$
+    \end{itemize}
+    \label{def:problema-di-controllo}
+\end{definition}
+\todo{Questa definizione l'ho presa dal sontag e ho cercato di alleggerire appena la notazione, rendendola simile
+alla definizione di sistema dinamico. Il concetto alla base è lo stesso, spero che vada bene lo stesso.}
+
+Per descrivere un problema di controllo, posso usare un'equazione del moto con la stessa forma
+della~\eqref{eq:sistema-non-lineare}:
+\begin{equation*}
+    \dot {\b x} = \b a(\b x, \b u),\ \text{con } \b x = \b x(t)\ \text e\ \b u = \b u(t).
+\end{equation*}
+Come ho mostrato nel paragrafo~\ref{subsec:linearizzazione}, è possibile linearizzare
+una generica funzione $\b a(\b x, \b u)$ attorno a un punto fisso per ricondurmi alla
+forma~\eqref{eq:sistema-linearizzato}.
+In questo caso, $\b x$ è un punto dello spazio delle fasi e $B\b u = \omega$ è la funzione
+di controllo.
+
+Perché un problema di controllo sia ben posto, è necessario fissare un obiettivo.
+In generale, l'obiettivo che ci si pone è trovare una funzione di controllo $\omega$
+(o $\b u$ per i sistemi lineari) che alteri l'evoluzione dello stato del sistema $\b x$ a piacimento.
+Nel paragrafo~\ref{subsec:condizioni-controllabilità} troverò una condizione sufficiente
+alla realizzazione di questo scopo.
+Prima di proseguire, voglio sottolineare una precisazione: nella definizione~\ref{def:problema-di-controllo}
+ho preso $\omega$ funzione del tempo.
+In realtà, in questo testo assumerò che conoscere lo stato del sistema $\b x$
+a un certo istante di tempo $t$ sia sufficiente a determinare la funzione di controllo
+per quell'istante. $\omega$ deve quindi essere vista come funzione dello stato
+del sistema:
+\begin{equation*}
+    \omega = \omega(\b x(t)).
+\end{equation*}
+
 \subsection{Condizioni per la controllabilità}
+\label{subsec:condizioni-controllabilità}
+Intuitivamente, la nozione di controllabilità riguarda la possibilità di portare il sistema
+in uno stato arbitrario, partendo da una qualsiasi condizione iniziale.
+Ne enuncio la definizione.
+\begin{definition}
+    Un problema di controllo descritto dall'equazione del moto~\ref{eq:sistema-non-lineare}
+    è detto \textbf{controllabile} se per qualsiasi $t \in \mathcal T$ e per qualsiasi $\b x_0, \b x_1 \in \Sigma$
+    esiste una funzione di controllo $\omega \in  \mathcal U^{[0, t[ \in \mathcal T}$ tale che
+    \begin{equation*}
+        \phi^t(\b x_0, \omega) = \b x_1.
+    \end{equation*}
+    \label{def:controllabilità}
+\end{definition}
+
+Per un sistema lineare nella forma~\eqref{eq:sistema-linearizzato},
+la controllabilità dipende solamente dalla \emph{matrice di controllabilità} del sistema, definita come segue.
+\begin{definition}
+    Dato un sistema nella forma~\eqref{eq:sistema-linearizzato}, con $A \in \M_{n\times n}(\R), B \in \M_{n\times m}(\R)$,
+    la matrice
+    \begin{equation*}
+        \mathcal C = \left(B, AB, A^2B, \ldots, A^{n-1}B \right) \in \M_{n\times (mn)}(\R)
+    \end{equation*}
+    è detta \textbf{matrice di controllabilità} del sistema.
+    \label{def:matrice-controllabilità}
+\end{definition}
+Nella definizione~\ref{def:matrice-controllabilità}, la matrice $\mathcal C$ è
+da intendere come accostamento delle matrici $n \times m$ date dal prodotto delle
+potenze di $A$ per $B$.
+Dimostro ora una proposizione che fornisce una condizione necessaria e sufficiente per
+la controllabilità di un sistema lineare a tempo continuo.
+
+\begin{prop}
+    Un sistema nella forma~\eqref{eq:sistema-linearizzato} è controllabile
+    se e solo se la sua matrice di controllabilità ha rango massimo.
+    \label{prop:condizione-controllabilità}
+\end{prop}
+\emph{Dimostrazione $\left( \Longleftarrow \right)$.}
+Vale l'ipotesi $\rank(\mathcal C) = n$.
+La dimostrazione si basa sulla costruzione di una strategia di controllo $\b u(t)$
+che soddisfi la definizione~\ref{def:controllabilità} di controllabilità.
+Per chiarezza, divido la dimostrazione in più passaggi.
+\begin{steps}
+    \item Definisco il \emph{Gramiano di controllabilità} del sistema
+        \begin{equation}
+            W_{\mathcal C} = \int_0^t e^{-As} BB^{\T} e^{-A^\T s}\ ds \in \M_{n\times n} (\R),
+            \label{eq:controllability-gramian}
+        \end{equation}
+    dove ho usato il simbolo $\T$ a esponente per indicare la matrice trasposta.
+
+    \item Dimostro che l'ipotesi implica l'invertibilità di $W_{\mathcal C}$, ovvero,
+    $\Ker \Wc = \{\b 0\}$.
+    Sia $\b a \in \Ker \Wc$.
+    Posso scrivere
+    \begin{align*}
+        \b 0 &= \b a^\T \Wc \b a \\
+        &= \int_0^t \b a^\T \Wc \b a \ ds \\
+        &= \int_0^t \b a^{\T}\ e^{-As} B B^\T e^{-A^\T s} \ \b a \ ds \\
+        &= \int_0^t \left\| B^\T e^{-A^\T s} \b a \right\|^2\ ds
+    \end{align*}
+    che implica che la funzione integranda debba essere identicamente nulla nell'intervallo di
+    integrazione:
+    \begin{equation}
+        \b 0 = B^\T e^{-A^\T s} \b a  \text{ per } 0 \leq s \leq t.
+        \label{eq:bteata}
+    \end{equation}
+    Ora considero la~\eqref{eq:bteata} e le sue prime $n-1$ derivate rispetto
+    a $s$, che posso esprimere con
+    \begin{align*}
+        \b 0 &= B^{\T} (A^l)^{\T} e^{-A^\T s} \b a\\
+        &= (A^l B)^{\T}e^{-A^\T s} \b a , \text{ con } l = {0, 1, \ldots, n}. \numberthis \label{eq:bteata-derivate}
+    \end{align*}
+    Le~\eqref{eq:bteata-derivate} devono essere vere per ogni $s$ nell'intervallo $0 \leq s \leq t$.
+    Le valuto a $s = 0$ e ottengo
+    \begin{equation}
+        \b 0 = (A^l B)^{\T} \b a , \text{ con } l = {0, 1, \ldots, n}.
+        \label{eq:albta}
+    \end{equation}
+    La~\eqref{eq:albta} può essere riscritta tramite la matrice di controllabilità del sistema:
+    \begin{equation*}
+        \b 0 = \mathcal C^{\T} \b a
+    \end{equation*}
+    e questo implica che $\b a \in \Ker{\mathcal C}$.
+    Ma per ipotesi $\Ker{\mathcal C} = \{\b 0\}$, quindi $\Ker \Wc \ni \b a = \b 0$.
+    Dall'arbitrarietà nella scelta di $\b a$ ne consegue che $\Ker \Wc$ è formato solo
+    dal vettore nullo e quindi $\Wc$ è invertibile.
+
+    \item Dimostro che l'invertibilità di $W_{\mathcal C}$ implica la controllabilità del sistema.
+    Scelgo come strategia di controllo
+    \begin{equation*}
+        \b u(s) = B^\T e^{-A^\T s} \Wc^{-1} e^{-At} (\b x_1 - \b x_0) \in \mathcal U^{[0, t[}
+    \end{equation*}
+    con $\b x_0 = \b x(0)$ e $\b x_1$ è lo stato del sistema che voglio raggiungere al tempo $t$.
+    Applico la~\ref{eq:soluzione-lineare-non-omogeneo}:
+    \begin{align*}
+        \b x(t) &= \b x_0+ \int_0^t e^{A(t-s)} B \b u(s)\ ds \\
+                &= \b x_0 + (\b x_1 - \b x_0) \int_0^t e^{A(t-s)} B B^\T e^{-A^\T s} \Wc^{-1} e^{-At}\ ds \\
+                &= \b x_0 + (\b x_1 - \b x_0) e^{At} e^{-At} \left(\int_0^t e^{-As} B B^\T e^{-A^\T s}\ ds \right)\Wc^{-1}. \numberthis \label{eq:x0eatint}
+    \end{align*}
+    Nella~\eqref{eq:x0eatint} compare la definizione di Gramiano~\eqref{eq:controllability-gramian}
+    che si semplifica con il termine~$\Wc^{-1}$.
+    Anche i rimanenti due termini esponenziali si semplificano e si ottiene la soluzione
+    \begin{equation*}
+        \b x(t) = \b x_1.
+    \end{equation*}
+\end{steps}
+Di conseguenza, fissato uno stato arbitrario $x_1$, è possibile raggiungerlo in un tempo finito $t$
+partendo da qualsiasi condizione iniziale $\b x_0$ e quindi il sistema è controllabile.
+\hfill\qedsymbol
+
+\emph{Dimostrazione $\left( \Longrightarrow \right)$.}
+Inizio dimostrando il seguente lemma.
+\begin{lemma}
+    ciao
+\end{lemma}
+
+%todo
+\hfill\qedsymbol
+
+%todo spiegare che questo cale anche per sistemi a tempo discreto.
+
+L'esempio~\ref{ex:controllabilità} mostra due casi estremamente semplificati
+di sistemi rispettivamente controllabili e non controllaibli.
+\begin{example}
+    %todo
+    \label{ex:controllabilità}
+\end{example}
+
 \subsection{Pole placement}
