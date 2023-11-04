@@ -19,7 +19,7 @@ Considero un sistema lineare nella forma~\eqref{eq:sistema-lineare-non-omogeneo}
 Posso formulare un problema di controllo ottimale definendo una funzione costo.
 \begin{definition}
     Sia dato un problema di controllo lineare nella forma~\eqref{eq:sistema-lineare-non-omogeneo}.
-    Siano $Q \in \M_{n\times n}(\R)$, $R \in \M_{n\times m}(\R)$
+    Siano $Q \in \M_{n\times n}(\R)$, $R \in \M_{n\times m}(\R)$ matrici definite positive
     e sia definita la funzione costo
     \begin{equation}
         J(t) = \int_0^t
@@ -30,19 +30,20 @@ Posso formulare un problema di controllo ottimale definendo una funzione costo.
     con $\b x = \b x(s)$ e $\b u = \b u(s)$.
     La strategia di controllo $\b u = K\b x$ con $K \in \M_{n\times m}(\R)$ scelta in modo da
     minimizzare la funzione costo~\ref{eq:lqr-cost} per $t \to +\infty$ è
-    detta \textbf{regolatore lineare quadratico}.
+    detta \textbf{regolatore lineare quadratico (\textsc{LQR}}).
     \label{def:lqr}
 \end{definition}
 Le matrici $Q$ ed $R$ nella definizione~\ref{def:lqr} rappresentano rispettivamenge
 il costo della deviazione dello stato del sistema da $\b 0$ e il costo dell'attuazione del
 controllo.
 Nella sezione~\ref{subsec:derivazione-riccati} mostrerò che la soluzione per $K$ è
-\begin{equation*}
-    K = R^{-1}BX
-\end{equation*}
-dove $X$ è la soluzione all'equazione di Riccati
 \begin{equation}
-        A^{\T} X + X A - X B R^{-1} B^{\T} X + Q = \b 0.
+    K = R^{-1}BP
+    \label{eq:riccati-K}
+\end{equation}
+dove $P$ è la soluzione all'equazione di Riccati
+\begin{equation}
+        A^{\T} P + P A - P B R^{-1} B^{\T} P + Q = \b 0.
     \label{eq:riccati}
 \end{equation}
 La soluzione della~\eqref{eq:riccati} si può trovare numericamente in tempo polinomiale
@@ -53,7 +54,7 @@ in $n$.
 
 \label{subsec:derivazione-riccati}
 Devo minimizzare la~\eqref{eq:lqr-cost} lungo le traiettorie del sistema.
-Uso il metodo dei moltiplicatori di lagrange e impongo che la variazione totale sia nulla.
+Uso il metodo dei moltiplicatori di Lagrange e impongo che la variazione totale sia nulla.
 \begin{equation*}
     \delta J(t) = \delta \int_0^t
     \left[ \b x^{\T} Q \b x + \b u^\T R \b u  - \b \lambda(\dot{ \b x} - A \b x - B\b u)
@@ -108,7 +109,7 @@ La uso per sostituire $\dot x_j$ nella~\eqref{eq:sistema-variazionale-4}
 Ricavo $u_j$ dalla~\eqref{eq:sistema-variazionale-5}
 \begin{align*}
     2R^{-1}_{lb}R_{bk}u_k &= R^{-1}_{lb} B_{ib} P_{ij}x_j  \\
-    \delta_{lk} u_k &= \frac 1 2 R^{-1}_{lb} B_{ib} P_{ij}x_j
+    \delta_{lk} u_k &= \frac 1 2 R^{-1}_{lb} B_{ib} P_{ij}x_j \numberthis \label{eq:riccati-u}
 \end{align*}
 e lo sostituisco nella~\eqref{eq:sistema-variazionale-6}.
 \begin{equation}
@@ -122,5 +123,7 @@ La riscrivo in notazione matriciale
 \end{equation*}
 Raccogliendo $\b x$ e imponendo $\dot P \to 0$ per $t \to +\infty$ si riottiene
 la~\eqref{eq:riccati}. I fattori $2$ e $\frac 1 2$ possono essere rimossi
-definendo $P = 2P'$ e dividendo tutto per $2$.
+definendo $P = 2P'$ e dividendo tutto per $2$. Per ottenere la~\eqref{eq:riccati-K} basta riscrivere
+la~\eqref{eq:riccati-u} in forma matriciale.
+
 \hfill\qedsymbol

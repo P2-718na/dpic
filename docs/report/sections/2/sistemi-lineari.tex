@@ -2,8 +2,7 @@
 \todo{scrivi qualcosa qui}
 
 \subsection{Sistemi dinamici}
-Prima di enunciare la definizione di \emph{sistema dinamico}, è necessario che
-introduca alcuni concetti.
+Introduco alcuni concetti di base.
 
 \begin{definition}
     Un insieme $\mathcal T \subseteq \R^+$ è detto \textbf{insieme del tempo}.
@@ -26,7 +25,7 @@ oppure che sia un insieme dispcreto, ma ciò non è utile per quanto riguarda
 questo testo. \todo{magari qui ci sta cit al turchetti che parla di questa roba all'inizio}
 
 \begin{definition}
-    Sia $t$ insieme del tempo, $\Sigma$ spazio delle fasi di un sistema e siano $x_0, x(t) \in \Sigma$.
+    Sia $t \in \mathcal T$ insieme del tempo, $\Sigma$ spazio delle fasi di un sistema e siano $\b x_0, \b x(t) \in \Sigma$.
     L'applicazione: \\
     \begin{equation*}
         \begin{array}{cccc}%
@@ -59,9 +58,10 @@ Ora uso le definizioni appena enunciate per introdurre il concetto di
 \end{definition}
 
 A seconda di come è costruito il flusso di fase, un sistema dinamico
-può essere categorizzato come \emph{lineare} o\emph{non lineare}.
+può essere categorizzato come \emph{lineare} o \emph{non lineare}.
 Inoltre, a seconda della scelta di $\mathcal T$, il sistema è detto
 \emph{a tempo continuo} oppure \emph{a tempo discreto}.
+
 L'esempio \ref{ex:semaforo} mostra come è possibile costruire
 il più semplice sistema dinamico.
 
@@ -109,7 +109,7 @@ di equazioni differenziali che ne descrive il moto:
 \begin{equation*}
     \dot {\b x} (t) = \b a(\b x).
 \end{equation*}
-È naturale quindi chiedersi come \emph{e se} sia possibile ricavare il flusso di fase partendo
+È naturale quindi chiedersi \emph{come e se} sia possibile ricavare il flusso di fase partendo
 dal campo vettoriale (e viceversa).
 Si può dimostrare \todo{devo mettere la dimostrazione?} che vale la relazione~\eqref{eq:campo-vettoriale},
 che mette quindi in relazione ogni sistema di equazioni differenziali con un rispettivo sistema dinamico.
@@ -119,7 +119,7 @@ che mette quindi in relazione ogni sistema di equazioni differenziali con un ris
 \end{equation}
 
 La \eqref{eq:campo-vettoriale} è, in generale, impossibile da integrare analiticamente.
-Tuttavia, per i sistemi lineari, esiste una soluzione in forma chiusa al problema.
+Tuttavia, per i sistemi lineari, esiste una soluzione in forma chiusa.
 Questa proprietà dei sistemi lineari è molto utile, dato che permette di trasformare un sistema
 da tempo continuo a tempo discreto e viceversa.
 Mostrerò come nel paragrafo seguente.
@@ -131,12 +131,13 @@ Non so se serve, per ora non lo faccio.}
 \label{subsec:equazioni-differenziali-lineari}
 Introduco la definizione di \emph{equazione differenziale lineare}.
 \begin{definition}
-    Sia $\b x = \b x(t) \in \R^n$, $A \in \M_{2\times 2}(\R)$. Un'equazione nella forma
+    Sia $\b x = \b x(t) \in \R^n$, $A \in \M_{2\times 2}(\R)$, ovvero, lo spazio vettoriale delle
+    matrici $n \times n$ a coefficienti reali. Un'equazione nella forma
     \begin{equation}
         \dot{\b x} = A \b x
         \label{eq:sistema-lineare}
     \end{equation}
-    è detta \textbf{equazione differenziale lineare omogenea di \rom{1} ordine.}
+    è detta \textbf{equazione differenziale} (o sistema di equazioni differenziali) \textbf{lineare omogenea di \rom{1} ordine.}
     \label{def:sistema-lineare}
 \end{definition}
 \todo {glossario e small caps}
@@ -188,10 +189,7 @@ associato $\b a(\b x) = A\b x$.
 Infatti, considerando la proprietà~\eqref{eq:campo-vettoriale} e prendendo
 $\phi^t(\b x) = e^{At} \b x$ trovo
 \begin{equation*}
-    \begin{array}{ll}
-        \left. \frac d{dt} \right|_{t=0} e^{At} \b x_0 &= A e^{A0} \b x  \\
-        &= A \b x.
-    \end{array}
+        \left. \frac d{dt} \right|_{t=0} e^{At} \b x_0 = A \b x.
 \end{equation*}
 
 \todo {Qui posso dire qualcosa riguardo alla possibilità di calcolare
@@ -228,7 +226,7 @@ Tutte queste considerazioni possono essere estese anche ai sistemi lineari
         \dot{\b x} = A \b x + B \b u
         \label{eq:sistema-lineare-non-omogeneo}
     \end{equation}
-    è detta \textbf{equazione differenziale lineare non omogenea di \rom{1} ordine.}
+    è detta \textbf{equazione differenziale} (o sistema di equazioni differenziali) \textbf{lineare non omogenea di \rom{1} ordine.}
     \label{def:sistema-lineare-non-omogeneo}
 \end{definition}
 
@@ -248,6 +246,10 @@ analoga alla~\eqref{eq:mapping-sistema}, con
     B_d &= \int_0^{\Delta t}e^{As} B\ ds.
 \end{align*}
 %todo cite PII: S0098-1354(99)00007-1
+
+Nel corso di questo testo, userò il termine generale \emph{"sistema"} per indicare
+un sistema dinamico a cui è associata un equazione differenziale. Assumerò che le variabili
+coinvolte siano ristrette agli spazi definiti dal sistema dinamico.
 
 
 \subsection{Linearizzazione di un sistema non lineare}
@@ -280,9 +282,9 @@ Per chiarezza, le matrici $A$ e $B$ sono definite dalla~\eqref{eq:matrici-A-B}.
 \label{subsec:comportamento-asintotico}
 Le soluzioni di un sistema lineare omogeneo possono avere solo uno di tre comportamenti asintotici:
 \begin{itemize}
-    \item Convergere a zero,
-    \item Divergere,
-    \item Oscillare attorno a zero.
+    \item convergere a zero,
+    \item divergere,
+    \item oscillare attorno a zero.
 \end{itemize}
 Il comportamento è determinato interamente dagli autovalori della matrice $A$ che definisce il
 sistema, secondo la~\eqref{eq:sistema-lineare}.
@@ -308,7 +310,7 @@ In questa base, l'equazione differenziale diventa
     \label{eq:diagonale}
 \end{equation}
 dove $\Lambda$ è la matrice che ha sulla diagonale
-gli autovalori di $A$ e $\b z, \dot{\b z}$ sono i vettori $\b x, \dot{\b z}$ rappresentati secondo la nuova base.
+gli autovalori di $A$ e $\b z, \dot{\b z}$ sono i vettori $\b x, \dot{\b x}$ rappresentati secondo la nuova base.
 Sia $T$ la matrice di cambio base, allora $\Lambda$ è data da \todo{la fioresi la chiama così ma dovrei scrivere la definizione...}.
 \begin{equation*}
     \Lambda = T^{-1} A T,
