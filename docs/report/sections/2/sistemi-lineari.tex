@@ -200,7 +200,7 @@ esponenziale di matrici per sistemi diagonalizzabili.}
 Questa possibilità di ricavare il flusso di fase partendo dal campo vettoriale per
 sistemi lineari è utile, in quanto permette di passare da un sistema a tempo continuo
 a un sistema a tempo discreto.
-Le equazioni~\eqref{eq:mapping-sistema} descrivono lo stesso sistema fisico usando
+Fissato un intervallo di tempo $\Delta t$, le equazioni~\eqref{eq:mapping-sistema} descrivono lo stesso sistema fisico usando
 rispettivamente un insieme del tempo discreto e uno continuo.
 
 \begin{equation}
@@ -210,21 +210,22 @@ rispettivamente un insieme del tempo discreto e uno continuo.
     \end{array}
         \leftrightarrow
     \begin{array}{l}
-        \mathcal T = [0, +\infty ], \\
-        \dot{\b x} = A \b x
+        \mathcal T = [0, +\infty [, \\
+        \dot{\b x} = A \b x,
     \end{array}
     \label{eq:mapping-sistema}
 \end{equation}
+con $\b x_{k+1} = \b x(k\Delta t)$ e $\b x = \b x(t)$.
 
 Tutte queste considerazioni possono essere estese anche ai sistemi lineari
 \emph{non omogenei}.
 
 
 \begin{definition}
-    Sia $\b x = \b x(t) \in \R^n$, $A \in \M_{2\times 2}(\R), \b b = \b b(t) \in C^0(\R, \R^n)$.
+    Sia $\b x = \b x(t) \in \R^n$, $A \in \M_{n\times n}(\R)$, $B \in \M_{n\times m}(\R)$ e $\b u = \b u(t) \in C^0(\R, \R^n)$.
     Un'equazione nella forma
     \begin{equation}
-        \dot{\b x} = A \b x + \b b
+        \dot{\b x} = A \b x + B \b u
         \label{eq:sistema-lineare-non-omogeneo}
     \end{equation}
     è detta \textbf{equazione differenziale lineare non omogenea di \rom{1} ordine.}
@@ -233,15 +234,27 @@ Tutte queste considerazioni possono essere estese anche ai sistemi lineari
 
 La soluzione per equazioni del tipo~\eqref{eq:sistema-lineare-non-omogeneo} è data da
 \begin{equation}
-    \b x(t) = \b x(0) + \int_{0}^{t} e^{A(t-s)} b(s) \ ds.
+    \b x(t) = e^{At} \b x(0) + \int_{0}^{t} e^{A(t-s)} B \b u(s) \ ds.
     \label{eq:soluzione-lineare-non-omogeneo}
 \end{equation}
+Se si impone che $\b u = \b u_k$ sia costante nell'intervallo di tempo $[k \Delta t, (k + 1)\Delta t]$,
+la soluzione prende la forma
+\begin{equation*}
+    \b x_{k+1} = A_d \b x_k + B_d \b u_k
+\end{equation*}
+analoga alla~\eqref{eq:mapping-sistema}, con
+\begin{align*}
+    A_d &= e^{A\Delta t} \\
+    B_d &= \int_0^{\Delta t}e^{As} B\ ds.
+\end{align*}
+%todo cite PII: S0098-1354(99)00007-1
+
 
 \subsection{Linearizzazione di un sistema non lineare}
 \label{subsec:linearizzazione}
 Considero un sistema dinamico caratterizzato da un campo vettoriale del tipo
 \begin{equation}
-    \dot {\b x} = \b a(\b x, \b u),\ \text{con}\ \b x = \b x (t)\ \text e\ \b u = \b u (t).
+    \dot {\b x} = \b a(\b x, \b u),\ \text{con}\ \b x = \b x (t)\ \text e \ \b u = \b u (t).
     \label{eq:sistema-non-lineare}
 \end{equation}
 È possibile linearizzare la dinamica del sistema~\eqref{eq:sistema-non-lineare} in un intorno di un punto fisso
@@ -253,14 +266,9 @@ in serie di Taylor:
     \left.\frac{d \b a}{d \b u}\right|_{(\b 0, \b 0)} \b u + \mathcal O(\norm{(\b x, \b u)}^2).
 \end{equation*}
 $\b a(\b 0, \b 0)$ si annulla (perchè corrisponde a un punto fisso) e posso riscrivere
-gli altri due termini usando il prodotto righe per colonne, ottenendo la forma~\ref{eq:sistema-linearizzato}
-che rispetta la definizione~\ref{def:sistema-lineare-non-omogeneo} di sistema lineare
-non omogeneo.
+gli altri due termini in forma matriciale, riconducendomi alla forma~\eqref{def:sistema-lineare-non-omogeneo}
+della definizione~\ref{def:sistema-lineare-non-omogeneo}.
 
-\begin{equation}
-    \dot {\b x} = A\b x + B\b u.
-    \label{eq:sistema-linearizzato}
-\end{equation}
 Per chiarezza, le matrici $A$ e $B$ sono definite dalla~\eqref{eq:matrici-A-B}.
 \begin{equation}
     A_{ij} = \frac{df_i}{dx_j},\ B_{ij} = \frac{df_i}{du_j}.
@@ -269,6 +277,7 @@ Per chiarezza, le matrici $A$ e $B$ sono definite dalla~\eqref{eq:matrici-A-B}.
 \todo{controlla questa cosa qui perchè sono 99\% sicuro che sia giusta ma non ho controllato.}
 
 \subsection{Comportamento asintotico delle soluzioni}
+\label{subsec:comportamento-asintotico}
 Le soluzioni di un sistema lineare omogeneo possono avere solo uno di tre comportamenti asintotici:
 \begin{itemize}
     \item Convergere a zero,
@@ -331,5 +340,23 @@ sono date dalla~\eqref{eq:soluzioni-complesse}.
 \end{equation}
 La dimostrazione termina calcolando il limite per $t \to +\infty$
 della~\eqref{eq:soluzioni-complesse} nei tre casi considerati.
+\hfill \qedsymbol \paragraph{}
 
-\hfill \qedsymbol
+Per i sistemi a tempo discreto si ottengono condizioni diverse sugli autovalori
+che riporto nella proposizione~\ref{prop:comportamento-asintotico-discreto}, senza
+dimostrazione.
+\begin{prop}
+    Sia $A_d = e^{A\Delta t}$ la matrice associata a un sistema di equazioni differenziali omogeneo
+    a tempo discreto:
+    \begin{equation*}
+        \b x_{k+1} = A_d \b x_k.
+    \end{equation*}
+    Se $A_d$ è diagonalizzabile, il comportamento asintotico delle soluzioni è interamente
+    determinato dagli autovalori di $A_d$:
+    \begin{itemize}
+        \item Se tutti gli autovalori hanno modulo \textbf{minore di $1$}, allora $\norm{\b x_k} \to 0$ per $k \to +\infty$.%
+        \item Se almeno un autovalore ha modulo \textbf{maggiore di $1$}, allora $\norm{\b x_k} \to 0$ per $k \to +\infty$.%
+        \item Se tutti gli autovalori hanno \textbf{modulo uguale a $1$}, allora le soluzioni sono periodiche.
+    \end{itemize}
+    \label{prop:comportamento-asintotico-discreto}
+\end{prop}
