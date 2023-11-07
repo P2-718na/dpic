@@ -1,0 +1,41 @@
+\section{Controllabilità asintotica}
+Introduco la definizione di controllabilità asintotica, analoga alla
+definizione~\ref{def:controllabilità} ma per il tempo tendente all'infinito.
+\begin{definition}
+    Dato un problema di controllo, siano
+     $\b x_0, \b x_1 \in \mathcal V \subseteq \Sigma$ punti dello spazio delle fasi.
+    Uso la notazione $\xi(t) = \phi^t(\b x_0, \nu)$.
+    Se per ogni $t \in[0, +\infty[ \subseteq \mathcal T$
+    esiste una funzione di controllo $\nu \in  \mathcal U^{[0, +\infty[ \subseteq \mathcal T}$ tale che
+    \begin{align*}
+       \lim_{s \to +\infty} &\xi(s) = \b x_1,\\
+       &\xi(t) \in \mathcal V,
+    \end{align*}
+    allora si dice che $\b x_0$ può essere \textbf{controllato asintoticamente} verso
+    $\b x_1$ \textbf{senza lasciare} $\mathcal V$.
+    \label{def:x-controllabile-a-y}
+\end{definition}
+Se nella definizione~\ref{def:x-controllabile-a-y} $\mathcal V = \Sigma$,
+si dice solamente che
+$\b x_0$ \emph{può essere controllato asintoticamente} verso $\b x_1$.
+\begin{definition}
+    Dato un problema di controllo con $\b x_0 \in \Sigma$ si dice che
+    \begin{itemize}
+        \item Il problema è \textbf{localmente asintoticamente controllabile}
+        se per ogni intorno $\mathcal V$ di $\b x_0$ esiste un intorno
+        $\mathcal W \subseteq \mathcal V$ di $\b x_0$ tale che ogni $\b x \in \mathcal W$
+        può essere controllato asintoticamente a $\b x_0$ senza lasciare $\mathcal V$.
+
+        \item Il problema è \textbf{globalmente asintoticamente controllabile} se
+        è localmente asintoticamente controllabile con $\mathcal W = \Sigma$.
+    \end{itemize}
+    \label{def:controllabilità-asintotica}
+\end{definition}
+Nella definizione~\ref{def:controllabilità-asintotica} il termine "\emph{controllabile}"
+serve per sottolineare che si sta considerando un problema di controllo.
+Per sistemi senza controlli, si dice che il sistema è "\emph{asintoticamente stabile}", usando la
+stessa definizione.
+
+Osservo che si può dimostrare che, per un sistema lineare, la proprietà di
+essere controllabile asintoticamente coincide con l'avere tutti gli autovalori
+con parte reale negativa, come descritto nella sezione~\ref{subsec:comportamento-asintotico}.

@@ -1,0 +1,305 @@
+\section{Funzioni di controllo di Ljapunov}
+Per i sistemi non lineari esiste un criterio che permette di determinarne
+la controllabilità asintotica, chiamato \emph{metodo di Ljapunov}.
+L'idea è di trovare una funzione analoga all'energia $V(\b x)$
+che sia sempre decrescente nel tempo,
+così che il sistema tenda alla configurazione di minor energia.
+
+In questo capitolo devo lavorare con \emph{sistemi topologici},
+una classe più ristretta di problemi di controllo.
+\begin{definition}
+La quadrupla $\left( \Sigma, \mathcal T, \mathcal U, \phi \right)$ in cui:
+\begin{itemize}
+    \item $\Sigma$ è uno spazio delle fasi dotato di metrica
+    \item $\mathcal T$ è un insieme del tempo
+    \item $\mathcal U \subseteq \R^n$ è l'insieme dei controlli ammessi
+    \item $\phi$ è un applicazione
+    \begin{equation*}
+        \begin{array}{cccc}%
+            \phi: &D_\phi &\to &\Sigma \\
+            &\phi^t(\b x_0,\omega) &\mapsto &\b x(t)
+        \end{array}%
+    \end{equation*}
+    con $D_\phi$ dato da
+    \begin{equation*}
+        D_\phi = \left\{(t, \b x, \omega) | t \in \mathcal T, \b x \in \Sigma, \omega \in \mathcal U^{[0, t[ \subseteq \mathcal T} \right\}
+    \end{equation*}
+\end{itemize}
+definisce un \textbf{problema di controllo} se e solo se valgono le seguenti proprietà:
+\label{def:sistema-topologico}
+\end{definition}
+
+Per quanto riguarda questo testo è sufficiente pensare a un sistema topologico
+come un problema di controllo in cui la mappa di transizione è una funzione
+continua e in cui lo spazio delle fasi $\Sigma$ è dotato di topologia indotta
+da $\R^n$
+%todo cite sontag
+
+
+
+
+Enuncio la definizione di \emph{funzione di controllo di Ljapunov}.
+\begin{definition}
+    Dato un problema di controllo in cui $\b x^*$ è un punto fisso e
+    $\mathcal O$ è un intorno di $\b x^*$.
+    Una funzione continua
+    \begin{equation*}
+        V : \Sigma \to \R,
+    \end{equation*}
+    $V$ è detta \textbf{funzione locale di controllo di Ljapunov} se
+    e solo se valgono le seguenti proprietà:
+
+    \begin{itemize}
+        \item 1) $V$ è propria in $\b x^*$, ovvero l'insieme
+        \begin{equation*}
+            \left\{\b x \in \Sigma\ |\ V(\b x) \leq \epsilon \right\}
+        \end{equation*}
+        è un sottoinsieme compatto di $\mathcal O$ per ogni $\epsilon$ piccolo a piacere.
+        \item 2) $V$ è definita positiva in $\mathcal O$, ovvero $V(\b x^*) = 0$ e
+        $V(\b x) > 0$ per ogni $\b x \neq \b x^* \in \mathcal O$.
+        \item 3) Per ogni $\b x \neq \b x^* \in \mathcal O$
+        esiste un tempo $0 < t \in \mathcal T$ e un controllo $\omega \in \mathcal U^{[0,t[ \subseteq \mathcal T}$
+        tali che, detta $\xi(s) = \phi^s(\b x, \omega)$,
+        \begin{align*}
+            V(\xi(s)) &\leq V(\b x) \text{ per ogni } s \in [0,t[ \subseteq \mathcal T, \\
+            V(\xi(t)) &< V(\b x).
+        \end{align*}
+    \end{itemize}
+
+    \label{def:clf-local}
+\end{definition}
+
+\begin{definition}
+    Se nella definizione~\ref{def:clf-local} l'intorno $\mathcal O$ coincide
+    con tutto lo spazio delle fasi $\Sigma$ allora $V$ è una
+    \textbf{funzione di controllo di Ljapunov}.
+    \label{def:clf}
+\end{definition}
+
+Le definizioni~\ref{def:clf-local} e~\ref{def:clf} valgono anche per sistemi
+senza controlli; in questo caso $V$ è chiamata solamente "\emph{funzione (locale) di Ljapunov}".
+Il termine "(\emph{locale})" tra parentesi indica che l'affermazione è da intendersi valida
+sia che il termine "\emph{locale}" sia presente o meno.
+
+\begin{definition}
+    Sia $V$ una funzione (locale) di controllo di Ljapunov.
+    Dati $\b x, \b z \in \Sigma$, si dice che $\b z$ è \textbf{ben raggiungibile
+    da} $\b x$ se esiste un tempo $t > 0$ e un controllo $\omega \in \mathcal U^{[0,t[ \subseteq \mathcal T}$ ammesso per $\b x$
+    tale che per $\xi(s) = \phi^s(\b x, \omega)$ con $\xi(t) = \b z$, vale
+    \begin{align*}
+        V(\xi(s)) &\leq V(\b x) \text{ per ogni } s \in ]0,t[ \subseteq \mathcal T, \\
+        V(\xi(t)) &< V(\b x).
+    \end{align*}
+    \label{def:ben-raggiungibile}
+\end{definition}
+
+Enuncio il risultato principale che si ottiene dalle funzioni di Ljapunov.
+\begin{thm}
+    Dato un sistema topologico, se esiste una funzione (locale) di controllo di Ljapunov,
+    allora il problema è (localmente) asintoticamente controllabile.
+    \label{thm:ljapunov}
+\end{thm}
+
+\emph{Dimostrazione}.
+La dimostrazione si basa sulla costruzione di una strategia di
+controllo che porti il sistema verso $\b x^*$ in un tempo infinito.
+Per chiarezza, divido la dimostrazione in più passaggi; dimostro prima la versione locale
+del teorema e poi quella globale.
+\begin{steps}
+    \item Osservo che la proprietà (3) della definizione~\ref{def:clf-local}
+    garantisce che per ogni stato $\b y \in \mathcal O$ e $\b y \neq \b x^*$ esiste
+    almeno uno stato ben raggiungibile da $\b y$.
+    Inoltre vale la proprietà transitiva, ovvero, se $\b y$ è raggiungibile da $\b x$
+    e $\b z$ è raggiungibile da $\b y$, allora $\b z$ è raggiungibile da $\b x$.
+    Definisco
+    \begin{equation*}
+        B(\b x) = \inf\left\{ V(\b z)\ |\ \b z \text{ è ben raggiungibile da } \b x \right\}
+    \end{equation*}
+    e osservo che, per quanto appena detto, vale che $B(x) < V(x)$ per $x \neq \b x^*$.
+    Ora, grazie alla prorpietà (1) della definizione~\ref{def:clf-local}
+    posso scegliere un numero $\alpha_0$ tale che l'insieme
+    \begin{equation*}
+        \left\{ x\ |\ V(x) \leq \alpha_0 \right\} \subset \mathcal O
+    \end{equation*}
+    sia \emph{compatto}.
+    Dimostro che vale la seguente affermazione.
+
+    \begin{aff}
+        \begin{equation*}
+            V(\b x) < \alpha_0 \implies B(\b x) = 0.
+        \end{equation*}
+    \end{aff}
+
+    \emph{Dimostrazione}.
+    Procedo per assurdo.
+    Suppongo che esista un $\b x \neq \b x_0$ per cui $V(\b x) < \alpha_0$
+    e $B(\b x) = \alpha > 0$.
+    Per come ho scelto $\alpha_0$ deve valere $\b x \in \mathcal O$.
+    Considero la successione\footnote{L'esistenza
+    è garantita dalla proprietà transitiva della ben raggiungibilità e dal fatto che
+    ogni $z_n$ ha almneno un elemento che è ben raggiungibile.}
+    \begin{equation}
+        \{V(\b z_n)\}_n
+        \label{eq:successione-zn}
+    \end{equation}
+    decrescente dove gli $\b z_n$ sono tutti elementi ben raggiungibili da $\b x$.
+    La~\eqref{eq:successione-zn} è limitata da $V(\b z) = \alpha$.
+    Tutti gli $\b z_n$ fanno parte del compatto
+    \begin{equation*}
+        C = \left\{\b z \ |\ V(\b z) \leq V(\b x) \right\}
+    \end{equation*}
+    e dato che la~\eqref{eq:successione-zn} è monotona e limitata,
+    allora è anche convergente e posso fissarne il limite senza perdere
+    di generalità:
+    \begin{equation}
+        \lim_{\b z_n \to \b z} V(\b z_n) = V(\b z) = \alpha.
+        \label{eq:vzequalsalpha}
+    \end{equation}
+    Osservo che
+    \begin{equation*}
+        \alpha \neq 0 \implies z \neq \b x^*
+    \end{equation*}
+    e che
+    \begin{equation*}
+        \alpha < V(\b x) < \alpha_0 \implies \b z \in \mathcal O.
+    \end{equation*}
+    Quindi, deve esistere un $\b y$ che sia ben raggiungibile da $\b z$.
+    È importante osservare che, anche se ogni elemento della successione~\eqref{eq:successione-zn}
+    è ben raggiungibile da $\b x$, non ho nulla che mi garantisca che $\b z$ lo sia.
+    Fisso $\epsilon > 0$ tale che
+    \begin{equation}
+        V(\b z) < V(\b x) - \epsilon,\ \text{e} \ V(\b y) < V(\b z) - \epsilon
+        \label{eq:vy-less-vz}
+    \end{equation}
+    e prendo $\nu \in \mathcal U^{[0, t[ \subseteq \mathcal T}$ controllo ammesso
+    per $\b z$ tale che, detto $\zeta(s) = \phi^s(\b z, \nu)$, valgano
+    \begin{align*}
+        &\zeta(t) = \b y, \\
+        V(&\zeta(s)) \leq V(\b z), \ \forall s \in [0, t[ \subseteq \mathcal T.
+    \end{align*}
+    Mi trovo nella situazione descritta dalla figura~\ref{fig:ljapunov-dim-aff2}.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[clip,trim=2 2 2 2,width=.5\textwidth]{assets/ljapunov-dim-aff2}
+        \caption[hhahh]{hhjahhhh}%todo
+        \label{fig:ljapunov-dim-aff2}
+    \end{figure}
+
+    $V$ è uniformemente continua\footnote{Per ipotesi
+        $V$ e continua sul compatto $C$ quindi per il teorema di Heine-Cantor è
+        uniformemente continua su $C$.} sul compatto $C$ quindi, fissato $\epsilon >0$ esiste un $\delta > 0$
+    tale che, presi $\b a, \b b \in C$
+    \begin{equation}
+        d(\b a, \b b) < \delta \implies |V(\b a) - V(\b b)| < \epsilon.
+        \label{eq:v-uniformemente-continua}
+    \end{equation}
+
+    Considero la successione
+    \begin{equation*}
+        \{V(\b y_n)\}_n,\ \b y_n = \zeta_n(t)
+    \end{equation*}
+    con $\zeta_n(s) = \phi^s(\b z_n, \nu)$.
+
+    Visto che sto lavorando su uno spazio topologico vale\footnote{Per la continuità
+    della mappa di transizione} che, fissato $\epsilon > 0$, esiste $\delta > 0$ tale che,
+    per valori $n \geq N$ vale
+    \begin{equation}
+        d_\infty(\zeta_n, \zeta) < \delta \implies d(\b y_n, \b y) < \epsilon,
+        \label{eq:phi-continua}
+    \end{equation}
+    dove $d_\infty$ è la metrica per lo spazio dei controlli ammessi definita da
+    \begin{equation*}
+        d_{\infty}[\phi^t(\b x, \omega_1), \phi^t(\b x, \omega_2)] =
+        \sup \left\{ d[\phi^s(\b x, \omega_1), \phi^s(\b x, \omega_2)],\ s \in \mathcal T  \right\}.
+    \end{equation*}
+    Ora fisso $\epsilon > 0$ e considero la catena di implicazioni data
+    dalla~\eqref{eq:v-uniformemente-continua} e dalla~\eqref{eq:phi-continua}:
+    \begin{equation}
+        d_\infty(\zeta_n, \zeta) < \delta' \implies d(\b y_n, \b y) < \delta \implies |V(\b y_n) - V(\b y)| < \epsilon
+        \label{eq:implication-chain}
+    \end{equation}
+    da cui
+    \begin{equation}
+        \left| V[\zeta_N(s)] - V[\zeta(s)] \right| < \epsilon\ \forall s \in [0, t].
+        \label{eq:lesser-forall-t}
+    \end{equation}
+
+    Dimostro che $\b y_N$ è ben raggiungibile da $\b x$.
+    È sufficiente dimostrare che
+    \begin{equation*}
+        V[\zeta_N(s)] < V(\b x) \forall s \in [0, t].
+    \end{equation*}
+    Considero la~\eqref{eq:lesser-forall-t} e applico la definizione di modulo.
+    \begin{itemize}
+    \item Caso $V[\zeta(s)] < V[\zeta_N(s)]$.
+        \begin{align*}
+            V[\zeta_N(s)] - V[\zeta(s)] &< \epsilon \\
+            V[\zeta_N(s)] &< \epsilon + V[\zeta(s)] \\
+            V[\zeta_N(s)] &< \epsilon + V(\b z) \\
+            V[\zeta_N(s)] <& V(\b x) \numberthis\label{eq:modulo-caso-1}
+        \end{align*}
+        dove nell'ultimo passaggio ho applicato la~\eqref{eq:vy-less-vz}.
+    \item Caso $V[\zeta(s)] > V[\zeta_N(s)]$.
+        \begin{align*}
+            V(\b x) > V(\b z) > V[\zeta(s)] > V[\zeta_N(s)]. \numberthis\label{eq:modulo-caso-2}
+        \end{align*}
+    \end{itemize}
+    Chiamo $\omega$ la legge di controllo che porta $\b x$ a $\b z_N$.
+    Per la proprietà di composizione della mappa di transizione, posso concatenare
+    $\omega$ con $\nu$, in modo da ottenre una legge di controllo che porta $\b x$ a $\b y_N$.
+    Questo, unito al fatto che la~\eqref{eq:modulo-caso-1} e la~\eqref{eq:modulo-caso-2}
+    valgono per $s \in [0, t]$, è sufficiente a dimostrare che $\b y_N$ è ben raggiungibile da $\b x$.
+
+    In questo modo cado in assurdo visto che la~\eqref{eq:implication-chain}
+    unita alla~\eqref{eq:vy-less-vz} e alla~\eqref{eq:vzequalsalpha} implicano
+    che $V(\b y_n) < B(\b x)$, violando la tesi.
+    L'assurdo è dato dall'aver assunto che $\alpha = B(\b x) > 0$.
+    \hfill \qedsymbol \paragraph{}
+    L'andamento di $B(\b x)$ è mostrato in figura~\ref{fig:ljapunov-aff2}.
+
+    \begin{figure}[h]
+        \centering
+        \hfill
+        \includegraphics[width=\textwidth]{assets/ljapunov-aff2}
+        \caption[hhhh]{hhjhhhh}%todo
+        \label{fig:ljapunov-aff2}
+    \end{figure}
+
+
+
+
+    \begin{figure}[H]
+        \centering
+        \hfill
+        \includegraphics[width=\textwidth]{assets/ljapunov-aff1}
+        \label{fig:ljapunov-aff1}
+        \caption[hhhh]{hhjhhhh}%todo
+    \end{figure}
+
+
+
+
+
+
+    \item Assumo che $V$ sia una funzione di controllo di Lyapunov locale.
+    Scelgo $\alpha_0 > 0$ e definisco il compatto
+    \begin{equation*}
+        C_0 = \left\{\b x | V(\b x) \leq \alpha_0 \right\} \subset \mathcal O.
+    \end{equation*}
+    Sono autorizzato a fare questo dalla proprietà (1) della definizione~\ref{def:clf-local}.
+
+    \begin{aff}
+        Sia $\xi(t) = \phi^t(\b x_0, t)$ con $t \in \mathcal T$.
+        Se per $t \to +\infty$ vale
+        \begin{equation*}
+            V(\xi(t)) \to 0
+        \end{equation*}
+        allora
+        \begin{equation*}
+            \xi(t) \to \b x^*.
+        \end{equation*}
+    \end{aff}
+
+
+\end{steps}
+
