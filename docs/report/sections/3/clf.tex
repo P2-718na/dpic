@@ -4,12 +4,15 @@ la controllabilità asintotica, chiamato \emph{metodo di Ljapunov}.
 L'idea è di trovare una \emph{energia generalizzata} $V(\b x)$
 che sia sempre decrescente nel tempo,
 così che il sistema tenda a minimizzarla.
+La difficoltà nel risolvere un problema di controllo si riduce quindi
+nella ricerca di una funzione di Lyapunov.
 
 Per usare i risultati della teoria di Ljapunov è necessario lavorare
-in \emph{sistemi topologici}, una classe più ristretta di problemi di controllo.
+con \emph{sistemi topologici}, una classe più ristretta di problemi di controllo.
 Per quanto riguarda questo testo è sufficiente pensare a un sistema topologico
 come un problema di controllo in cui la mappa di transizione è una funzione
 continua.
+% Anche qui citare sontag
 
 \begin{definition}
     Un \textbf{sistema topologico} è un problema di controllo in
@@ -17,14 +20,14 @@ continua.
     dato $t \in \mathcal T$ e $\b x \in \Sigma$,
     vale la seguente proprietà:
 
-    Se $\omega$ è un controllo ammesso per $\b x$ e la successione
-    ${\b x_n}_n$ tende a $\b x$ allora deve esistere un intero
+    \emph{Se $\omega$ è un controllo ammesso per $\b x$ e la successione
+    ${\b x_n}$ tende a $\b x$ allora deve esistere un intero
     $N$ tale che, preso $n \geq N$ allora $\omega$ è ammesso per $x_n$
-    e il limite~\eqref{eq:def-sistema-topologico} converge uniformemente a $0$ per $s \in [0, t]$.
-    \begin{equation*}
+    e il limite~\eqref{eq:def-sistema-topologico} converge uniformemente a $0$ per $s \in [0, t]$.}
+    \begin{equation}
         \lim_{N \to +\infty} d[\phi^s(\b x_n, \omega), \phi^s(\b x, \omega)] = 0.
         \label{eq:def-sistema-topologico}
-    \end{equation*}
+    \end{equation}
 \end{definition}
 
 
@@ -37,7 +40,7 @@ Enuncio la definizione di \emph{funzione di controllo di Ljapunov}.
     \begin{equation*}
         V : \Sigma \to \R,
     \end{equation*}
-    $V$ è detta \textbf{funzione locale di controllo di Ljapunov} se
+    è detta \textbf{funzione locale di controllo di Ljapunov} se
     e solo se valgono le seguenti proprietà:
 
     \begin{itemize}
@@ -50,7 +53,7 @@ Enuncio la definizione di \emph{funzione di controllo di Ljapunov}.
         $V(\b x) > 0$ per ogni $\b x \neq \b x^* \in \mathcal O$.
         \item 3) Per ogni $\b x \neq \b x^* \in \mathcal O$
         esiste un tempo $0 < t \in \mathcal T$ e un controllo $\omega \in \mathcal U^{[0,t[ \subseteq \mathcal T}$
-        tali che, detta $\xi(s) = \phi^s(\b x, \omega)$,
+        tali che, detta $\xi(s) = \phi^s(\b x, \omega)$, vale
         \begin{align*}
             V(\xi(s)) &\leq V(\b x) \text{ per ogni } s \in [0,t[ \subseteq \mathcal T, \\
             V(\xi(t)) &< V(\b x).
@@ -66,23 +69,23 @@ Enuncio la definizione di \emph{funzione di controllo di Ljapunov}.
 \end{definition}
 
 Le definizioni~\ref{def:clf-local} e~\ref{def:clf} valgono anche per sistemi
-senza controlli; in questo caso $V$ è chiamata solamente "\emph{funzione (locale) di Ljapunov}".
-Il termine "(\emph{locale})" tra parentesi indica che l'affermazione è da intendersi valida
-sia che il termine "\emph{locale}" sia presente o meno.
+senza controlli; in questo caso $V$ è chiamata solamente \emph{funzione (locale) di Ljapunov}.
+Il termine (\emph{locale}) tra parentesi indica che l'affermazione è da intendersi valida
+sia che il termine \emph{locale} sia presente o meno.
 
 \begin{definition}
     Sia $V$ una funzione (locale) di controllo di Ljapunov.
     Dati $\b x, \b z \in \Sigma$, si dice che $\b z$ è \textbf{ben raggiungibile
     da} $\b x$ se esiste un tempo $t > 0$ e un controllo $\omega \in \mathcal U^{[0,t[ \subseteq \mathcal T}$ ammesso per $\b x$
-    tale che per $\xi(s) = \phi^s(\b x, \omega)$ con $\xi(t) = \b z$, vale
+    tale che per $\xi(s) = \phi^s(\b x, \omega)$ con $\xi(t) = \b z$, valgono
     \begin{align*}
-        V(\xi(s)) &\leq V(\b x) \text{ per ogni } s \in ]0,t[ \subseteq \mathcal T, \\
+        V(\xi(s)) &\leq V(\b x) \text{ per ogni } s \in ]0,t[ \subseteq \mathcal T,~\\
         V(\xi(t)) &< V(\b x).
     \end{align*}
     \label{def:ben-raggiungibile}
 \end{definition}
 
-Enuncio il risultato principale che si ottiene dalle funzioni di Ljapunov.
+Il risultato principale che si ottiene dalle funzioni di Ljapunov è racchiuso nel seguente teorema.
 \begin{thm}
     Dato un sistema topologico, se esiste una funzione (locale) di controllo di Ljapunov,
     allora il problema è (localmente) asintoticamente controllabile.
@@ -117,16 +120,18 @@ del teorema e poi quella globale.
     Procedo per assurdo.
     Se così non fosse, esisterebbe una sequenza di elementi di $\Sigma$
     \begin{equation*}
-    \{\b x_n\}_n
+    \{\b x_n\}
     \end{equation*}
-    tali che comunque preso $n$, $\b x_n \notin \mathcal W$ e
-    \begin{equation*}
-        V(\b x_n) \to 0 \text{ per } n \to +\infty.
-    \end{equation*}
+    tali che per ogni $n$
+    valgono
+    \begin{align*}
+        &\b x_n \notin \mathcal W, \\
+        &V(\b x_n) \to 0 \text{ per } n \to +\infty.
+    \end{align*}
     Senza perdere di generalità, assumo che tutti gli $\b x_n$
     siano contenuti in $K$, dato da
     \begin{equation*}
-        K = \bar{\mathcal W} \bigcap C
+        K = \bar{\mathcal W} \bigcap C,
     \end{equation*}
     dove $\bar{\mathcal W}$ indica il complementare di $\mathcal W$.
     La costruzione per la dimostrazione è mostrata in figura~\ref{fig:ljapunov-dim-aff1}.
@@ -143,11 +148,11 @@ del teorema e poi quella globale.
     \end{minipage}
 
     Per il teorema di Bolzano-Weierstrass, posso estrarre una
-    sottosuccessione di $\{\b x_n\}_n$ convergente in $K$
+    sottosuccessione di $\{\b x_n\}$ convergente in $K$
     \begin{equation*}
-    \{\b x_n\}_k \to \b x.
+    \{\b x_ {n_k}\} \to \b x.
     \end{equation*}
-    Ma per la continuità do $V$ vale
+    Quindi, per la continuità di $V$ vale
     \begin{equation*}
         V(\b x) = 0
     \end{equation*}
@@ -157,7 +162,7 @@ del teorema e poi quella globale.
         \b x = \b x^*.
     \end{equation*}
     Ma questo è un assurdo, visto che che $\b x \in K$
-    e $\b x^* \in \mathcal W \subset \bar K$, provando l'affermazione.
+    e $\b x^* \in \mathcal W \subset \bar K$, e prova l'affermazione.
 
     \hfill\openbox\paragraph{}
 
@@ -182,7 +187,7 @@ del teorema e poi quella globale.
     \begin{equation*}
         B(\b x) = \inf\left\{ V(\b z)\ |\ \b z \text{ è ben raggiungibile da } \b x \right\}
     \end{equation*}
-    e osservo che, per quanto appena detto, vale che $B(x) < V(x)$ per $x \neq \b x^*$.
+    e osservo che, per quanto appena detto, vale che $B(x) < V(x)$ per $\b x \neq \b x^*$.
     Dimostro la seguente affermazione.
 
     \begin{aff}
@@ -199,9 +204,9 @@ del teorema e poi quella globale.
     Per come ho scelto $\alpha_0$ deve valere $\b x \in \mathcal O$.
     Considero la successione\footnote{L'esistenza
     è garantita dalla proprietà transitiva della ben raggiungibilità e dal fatto che
-    ogni $z_n$ ha almneno un elemento che è ben raggiungibile.}
+    ogni $\b z_n$ ha almneno un elemento che è ben raggiungibile.}
     \begin{equation}
-        \{V(\b z_n)\}_n
+        \{V(\b z_n)\}
         \label{eq:successione-zn}
     \end{equation}
     decrescente dove gli $\b z_n$ sono tutti elementi ben raggiungibili da $\b x$.
@@ -219,7 +224,7 @@ del teorema e poi quella globale.
     \end{equation}
     Osservo che
     \begin{equation*}
-        \alpha \neq 0 \implies z \neq \b x^*
+        \alpha \neq 0 \implies \b z \neq \b x^*
     \end{equation*}
     e che
     \begin{equation*}
@@ -237,7 +242,7 @@ del teorema e poi quella globale.
     per $\b z$ tale che, detto $\zeta(s) = \phi^s(\b z, \nu)$, valgano
     \begin{align*}
         &\zeta(t) = \b y, \\
-        V(&\zeta(s)) \leq V(\b z), \ \forall s \in [0, t[ \subseteq \mathcal T.
+        &V[\zeta(s)] \leq V(\b z), \ \forall s \in [0, t[ \subseteq \mathcal T.
     \end{align*}
     La costruzione per la dimostrazione è mostrata in figura~\ref{fig:ljapunov-dim-aff2}.
 
@@ -245,7 +250,7 @@ del teorema e poi quella globale.
     \begin{minipage}{.8\textwidth}
         \begin{figure}[H]
             \centering
-            \includegraphics[width=.5\textwidth]{assets/ljapunov-dim-aff2}
+            \includegraphics[width=.7\textwidth]{assets/ljapunov-dim-aff2}
             \caption[Costruzione 2 per teorema di Ljapunov]{Costruzione per dimostrare
             l'affermazione 2.}%todo
             \label{fig:ljapunov-dim-aff2}
@@ -263,12 +268,11 @@ del teorema e poi quella globale.
 
     Considero la successione
     \begin{equation*}
-        \{V(\b y_n)\}_n,\ \b y_n = \zeta_n(t)
+        \{V(\b y_n)\}, \text{ con } \b y_n = \zeta_n(t)
     \end{equation*}
-    con $\zeta_n(s) = \phi^s(\b z_n, \nu)$.
+    dove $\zeta_n(s) = \phi^s(\b z_n, \nu)$.
 
-    Visto che sto lavorando su uno spazio topologico vale\footnote{Per la continuità
-    della mappa di transizione} che, fissato $\epsilon > 0$, esiste $\delta > 0$ tale che,
+    Visto che sto lavorando su uno spazio topologico vale che, fissato $\epsilon > 0$, esiste $\delta > 0$ tale che,
     per valori $n \geq N$ vale
     \begin{equation}
         d_\infty(\zeta_n, \zeta) < \delta \implies d(\b y_n, \b y) < \epsilon,
@@ -294,11 +298,11 @@ del teorema e poi quella globale.
     Dimostro che $\b y_N$ è ben raggiungibile da $\b x$.
     È sufficiente dimostrare che
     \begin{equation*}
-        V[\zeta_N(s)] < V(\b x) \forall s \in [0, t].
+        V[\zeta_N(s)] < V(\b x)\  \forall s \in [0, t].
     \end{equation*}
-    Considero la~\eqref{eq:lesser-forall-t} e applico la definizione di modulo.
+    Considero la~\eqref{eq:lesser-forall-t} e applico la definizione di modulo (studio entrambi i casi).
     \begin{itemize}
-        \item Caso $V[\zeta(s)] < V[\zeta_N(s)]$.
+        \item Caso $V[\zeta(s)] < V[\zeta_N(s)]$:
             \begin{align*}
                 V[\zeta_N(s)] - V[\zeta(s)] &< \epsilon \\
                 V[\zeta_N(s)] &< \epsilon + V[\zeta(s)] \\
@@ -306,14 +310,14 @@ del teorema e poi quella globale.
                 V[\zeta_N(s)] &< V(\b x) \numberthis\label{eq:modulo-caso-1}
             \end{align*}
             dove nell'ultimo passaggio ho applicato la~\eqref{eq:vy-less-vz}.
-        \item Caso $V[\zeta(s)] > V[\zeta_N(s)]$.
+        \item Caso $V[\zeta(s)] > V[\zeta_N(s)]$:
             \begin{align*}
                 V(\b x) > V(\b z) > V[\zeta(s)] > V[\zeta_N(s)]. \numberthis\label{eq:modulo-caso-2}
             \end{align*}
     \end{itemize}
     Chiamo $\omega$ la legge di controllo che porta $\b x$ a $\b z_N$.
     Per la proprietà di composizione della mappa di transizione, posso concatenare
-    $\omega$ con $\nu$, in modo da ottenre una legge di controllo che porta $\b x$ a $\b y_N$.
+    $\omega$ con $\nu$, in modo da ottenre una legge di controllo che porti $\b x$ a $\b y_N$.
     Questo, unito al fatto che la~\eqref{eq:modulo-caso-1} e la~\eqref{eq:modulo-caso-2}
     valgono per $s \in [0, t]$, è sufficiente a dimostrare che $\b y_N$ è ben raggiungibile da $\b x$.
 
@@ -344,7 +348,7 @@ del teorema e poi quella globale.
         Se $V(\b x) < \alpha_0$ con $\b x \neq \b x^*$ allora esiste
         una sequenza di stati
         \begin{equation*}
-        \{\b x_n\}_{n\geq0}
+        \{\b x_n\}
         \end{equation*}
         con $\b x_0 = \b x$, una sequenza di tempi
         \begin{equation*}
@@ -428,7 +432,7 @@ del teorema e poi quella globale.
     La sequenza che cerco è quindi data dalla concatenazione di
     $\omega_1$ e $\omega_0$ opportunamente traslati.
 
-    \hfill\\openbox\paragraph{}
+    \hfill\openbox\paragraph{}
 
     L'affermazione (3) mi permette di definire una legge di controllo
     $\omega$ su $[0, +\infty[ \subseteq \mathcal T$ ammessa per $\b x$
@@ -464,8 +468,8 @@ del teorema e poi quella globale.
     Quindi, per la~\eqref{eq:xi-to-xstar-2} esiste un controllo $\omega$
     su $\mathcal T$ tale che
     \begin{align*}
-        \phi^0(\b y, \omega) = \b y, \\
-        \phi^t(\b y, \omega) \to \b x^* \text{ per } t \to +\infty
+        &\phi^0(\b y, \omega) = \b y, \\
+        &\phi^t(\b y, \omega) \to \b x^* \text{ per } t \to +\infty
     \end{align*}
     e per la~\eqref{eq:def-alpha1} vale anche
     \begin{equation*}
@@ -484,7 +488,7 @@ del teorema e poi quella globale.
     senza perdere di generalità, in quanto l'unica proprietà che $\mathcal O$
     e $\alpha_0$ devono rispettare è che l'insieme $C$
     definito nella~\eqref{eq:alpha_0}
-    sia compatto e contenuto sin $\mathcal O$.
+    sia compatto e contenuto in $\mathcal O$.
     Quindi, se nel passaggio (4) prendo $\mathcal V = \Sigma$
     posso prendere $\alpha_1 = \beta + 1$ in modo che
     $\b y \in \mathcal{W}$ e che il sistema sia
@@ -492,7 +496,27 @@ del teorema e poi quella globale.
 
     \hfill\qedsymbol\paragraph{}
 
-
-
 \end{steps}
+
+Concludo questo capitolo dicendo che è possibile
+dimostrare la seguente proposizione.
+%todo cite sontag
+\begin{prop}
+    Sia dato uno spazio topologico in cui è 
+    definita una funzione $V : \Sigma \to \R$ continua.
+    Sia $\mathcal O \subseteq \Sigma$
+    un insieme aperto per cui la restrizione di
+    $V$ su $\mathcal O$ sia differenziabile con 
+    continuità e valgano le proprietà (1) e (2) 
+    della definizione~\ref{def:clf-local}.
+    Allora, una condizione sufficiente perchè $V$
+    sia una funzione di controllo di Ljapunov locale è che per ogni $\b x \neq \b x_0 \in \mathcal O$
+    esista un controllo $\omega$ tale che
+    \begin{equation*}
+        \frac{dV(\phi^t(\b x, \omega))}{dt} < 0.
+    \end{equation*}
+    Se questa proprietà vale per $\mathcal O = \Sigma$, $V$ è una funzione di controllo di Ljapunov globale. 
+\end{prop}
+
+
 
