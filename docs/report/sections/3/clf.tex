@@ -339,49 +339,96 @@ del teorema e poi quella globale.
 
     \item Dimostro che vale la seguente affermazione
 
-        \begin{aff}
-            Se $V(\b x) < \alpha_0$ con $\b x \neq \b x^*$ allora esiste
-            una sequenza di stati
-            \begin{equation*}
-            \{\b x_n\}_{n\geq0}
-            \end{equation*}
-            con $\b x_0 = 0$, una sequenza di tempi
-            \begin{equation*}
-            t_n \in \mathcal T
-            \end{equation*}
-            e una sequenza di controlli
-            \begin{equation*}
-                \omega_n \in \mathcal U^{[0, t_n[ \in \mathcal T}
-            \end{equation*}
-            tale che valgano le seguenti proprietà
-            \begin{itemize}
-                \item $\omega_n$ è ammesso per $\b x_n$.
-                \item $\phi^{t_n}(\b x_n, \omega_n) = \b x_{n+1}$
-                \item Con $\xi_n(t) = \phi^t(\b x_n, \omega_n)$ vale $V[\xi_n(t)] \leq \frac 1 {2^n} V(\b x), \ \forall t \in [0, t_n]$
-            \end{itemize}
-        \end{aff}
-
-
-
-    \item Assumo che $V$ sia una funzione di controllo di Lyapunov locale.
-    Scelgo $\alpha_0 > 0$ e definisco il compatto
-    \begin{equation*}
-        C_0 = \left\{\b x | V(\b x) \leq \alpha_0 \right\} \subset \mathcal O.
-    \end{equation*}
-    Sono autorizzato a fare questo dalla proprietà (1) della definizione~\ref{def:clf-local}.
-
     \begin{aff}
-        Sia $\xi(t) = \phi^t(\b x_0, t)$ con $t \in \mathcal T$.
-        Se per $t \to +\infty$ vale
+        Se $V(\b x) < \alpha_0$ con $\b x \neq \b x^*$ allora esiste
+        una sequenza di stati
         \begin{equation*}
-            V(\xi(t)) \to 0
+        \{\b x_n\}_{n\geq0}
         \end{equation*}
-        allora
+        con $\b x_0 = \b x$, una sequenza di tempi
         \begin{equation*}
-            \xi(t) \to \b x^*.
+        t_n \in \mathcal T
         \end{equation*}
+        e una sequenza di controlli
+        \begin{equation*}
+            \omega_n \in \mathcal U^{[0, t_n[ \in \mathcal T}
+        \end{equation*}
+        tale che valgano le seguenti proprietà
+        \begin{itemize}
+            \item $\omega_n$ è ammesso per $\b x_n$.
+            \item $\phi^{t_n}(\b x_n, \omega_n) = \b x_{n+1}$
+            \item Con $\xi_n(t) = \phi^t(\b x_n, \omega_n)$ vale $V[\xi_n(t)] \leq \frac 1 {2^n} V(\b x), \ \forall t \in [0, t_n]$
+        \end{itemize}
     \end{aff}
+    \emph{Dimostrazione}.
+    Procedo per induzione.
+    Voglio dimostrare che  per ogni $\b x \in \Sigma$ tale che
+    \begin{equation*}
+        0 < V(\b x) < \alpha_0
+    \end{equation*}
+    esiste un certo tempo $t > 1$ e un controllo $\omega$
+    di lunghezza $t$ ammesso per $\b x$ tale che
+    \begin{align*}
+        V[\xi(s)] &\leq V(\b x) \text{ con } s \in [0, t], \\
+        V[\xi(t)] &< \frac 1 2 V(\b x).
+    \end{align*}
+    Per continuità di $V$ in $\b x^*$, esiste un $\epsilon > 0$ per cui
+    \begin{equation}
+        d(\b z, \b x^*) < \epsilon \implies V(\b z) < \frac 1 2 V(\b x).
+        \label{eq:dzxstar}
+    \end{equation}
+    Sia $\omega_0 \in \mathcal U^{[0, 1[}$ il controllo nullo,
+    tale che
+    \begin{equation*}
+        \phi^s(\b x^*, \omega_0) = \b x^*.
+    \end{equation*}
+    Visto che sto lavorando in uno spazio topologico
+    esiste un $\delta > 0$ tale che, fissato $\epsilon > 0$ e
+    dato $\zeta(s) = \phi^s(\b y, \omega_0)$,
+    \begin{equation*}
+        d(\b y, \b x^*) < \delta \implies d(\zeta(s), \b x^*) < \epsilon
+    \end{equation*}
+    e $\omega_0$ è ammesso per $\b y$ per $s \in \mathcal T$.
 
+    Per la~\eqref{eq:dzxstar} posso scegliere $\epsilon$ in modo che
+    \begin{equation*}
+        V[\zeta(s)] < \frac 1 2 V(\b x)
+    \end{equation*}
+    valga per $s \in [0, 1]$.
+    Per l'affermazione (1) esiste $\delta_0 > 0$ tale che
+    \begin{equation}
+        V(\b y) < \delta_0 \implies d(\b y, \b x^*) < \delta.
+        \label{eq:vylessdelta0}
+    \end{equation}
+    Per l'affermazione (2), vale $B(\b x) = 0$.
+    Quindi esiste un controllo $\omega_1$ e un tempo $t_1$ tale
+    che, dato $\xi_1 = \phi^{t_1}(\b x, \omega_1)$, vale
+    \begin{align*}
+        V[\xi_1(s)] &\leq V(\b x), \text{ con } s \in [0, t_1],\\
+        V[\xi_1(t_1)] &< \delta_0
+    \end{align*}
+    e, per la~\eqref{eq:vylessdelta0}, vale anche
+    \begin{equation*}
+        d[\xi_1(t_1), \b x^*] < \delta.
+    \end{equation*}
+    La costruzione per la dimostrazione è mostrata in figura~\ref{fig:ljapunov-dim-aff3}.
+
+    \hfill
+    \begin{minipage}{.8\textwidth}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.6\textwidth]{assets/ljapunov-dim-aff3}
+            \caption[Costruzione 3 per teorema di Ljapunov]{Costruzione per dimostrare
+            l'affermazione 3.}%todo
+            \label{fig:ljapunov-dim-aff3}
+        \end{figure}
+    \end{minipage}
+
+    La sequenza che cerco è quindi data dalla concatenazione di
+    $\omega_1$ e $\omega_0$ opportunamente traslati.
+
+    \hfill\qed\paragraph{}
+    \item last
 
 \end{steps}
 

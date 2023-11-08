@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-11-08T12:03:11.543Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="vnyHUfim020qgiE5sfZo" version="22.0.3" type="device">
+<mxfile host="Electron" modified="2023-11-08T13:28:25.780Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="lReWXM72TimTUel5laFp" version="22.0.3" type="device">
   <diagram id="eOFOYFhU0GsHmSKvHhCn" name="Pagina-1">
-    <mxGraphModel dx="702" dy="1685" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
+    <mxGraphModel dx="955" dy="1871" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -75,8 +75,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="Bt-oEbJeruquEmox--3e-49" value="$$y$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="432.5" y="110" width="60" height="30" as="geometry" />
+        <mxCell id="Bt-oEbJeruquEmox--3e-49" value="$$y = \xi_1(t_1)$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="404.5" y="115" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Bt-oEbJeruquEmox--3e-52" value="$$V(x)$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#1A1A1A;" vertex="1" parent="1">
           <mxGeometry x="665.5" y="49" width="60" height="30" as="geometry" />
@@ -126,8 +126,11 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="Bt-oEbJeruquEmox--3e-69" value="$$\xi_1(t_1)$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="492.5" y="80" width="60" height="30" as="geometry" />
+        <mxCell id="Bt-oEbJeruquEmox--3e-70" value="$$\omega_0$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="530" y="130" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Bt-oEbJeruquEmox--3e-72" value="$$\omega_1$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="480" y="67" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
