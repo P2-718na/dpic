@@ -159,7 +159,7 @@ del teorema e poi quella globale.
     Ma questo è un assurdo, visto che che $\b x \in K$
     e $\b x^* \in \mathcal W \subset \bar K$, provando l'affermazione.
 
-    \hfill\qedsymbol\paragraph{}
+    \hfill\openbox\paragraph{}
 
     Una conseguenza utile dell'affermazione (1) è che se
     $\xi(t) = \phi^t(\b x, \omega)$ con $t \in [0, +\infty[$ tale che
@@ -167,9 +167,10 @@ del teorema e poi quella globale.
         V[\xi(t)] \to 0 \text{ per } t \to +\infty
     \end{equation*}
     allora deve essere
-    \begin{equation*}
+    \begin{equation}
         \xi(t) \to \b x^*.
-    \end{equation*}
+        \label{eq:xi-to-xstar}
+    \end{equation}
 
 
     \item Osservo che la proprietà (3) della definizione~\ref{def:clf-local}
@@ -321,7 +322,7 @@ del teorema e poi quella globale.
     che $V(\b y_n) < B(\b x)$, violando la tesi.
     L'assurdo è dato dall'aver assunto che $\alpha = B(\b x) > 0$.
 
-    \hfill \qedsymbol \paragraph{}
+    \hfill \openbox \paragraph{}
 
     L'andamento di $B(\b x)$ è mostrato in figura~\ref{fig:ljapunov-aff2}.
 
@@ -427,8 +428,71 @@ del teorema e poi quella globale.
     La sequenza che cerco è quindi data dalla concatenazione di
     $\omega_1$ e $\omega_0$ opportunamente traslati.
 
-    \hfill\qed\paragraph{}
-    \item last
+    \hfill\\openbox\paragraph{}
+
+    L'affermazione (3) mi permette di definire una legge di controllo
+    $\omega$ su $[0, +\infty[ \subseteq \mathcal T$ ammessa per $\b x$
+    data dalla concatenazione degli $\omega_n$.
+    Detta quindi $\xi(t) = \phi^t(\b x, \omega)$ vale
+    \begin{equation*}
+        V[\xi(t)] \to 0 \text{ per } t \to +\infty
+    \end{equation*}
+    e per la~\eqref{eq:xi-to-xstar} vale
+    \begin{equation}
+        \xi(t) \to \b x^*.
+        \label{eq:xi-to-xstar-2}
+    \end{equation}
+
+    \item Dimostro che il sistema è localmente asintoticamente
+    controllabile.
+    Prendo $\mathcal V$ un intorno di $\b x^*$, prendo $\alpha_1$ tale che
+    \begin{equation}
+     \{\b y\ |\ V(\b y) < \alpha_1 \} \subseteq \mathcal V
+        \label{eq:def-alpha1}
+    \end{equation}
+    e definisco
+    \begin{equation*}
+        \alpha = \min\{\alpha_0, \alpha_1\}.
+    \end{equation*}
+    Nella definizione di localmente asintoticamente controllabile prendo
+    \begin{equation*}
+            \mathcal W = \{\b y\ |\ V(\b y) < \alpha\}.
+    \end{equation*}
+
+    L'affermazione (3) è valida per ogni $\b y \neq \b x^* \in \mathcal W$
+    dato che $V(\b y) < \alpha_0 \leq \alpha$.
+    Quindi, per la~\eqref{eq:xi-to-xstar-2} esiste un controllo $\omega$
+    su $\mathcal T$ tale che
+    \begin{align*}
+        \phi^0(\b y, \omega) = \b y, \\
+        \phi^t(\b y, \omega) \to \b x^* \text{ per } t \to +\infty
+    \end{align*}
+    e per la~\eqref{eq:def-alpha1} vale anche
+    \begin{equation*}
+        \phi^t(\b y, \omega) \in \mathcal V, \ t \in [0, +\infty[ \subseteq \mathcal T.
+    \end{equation*}
+    quindi il sistema è localmente asintoticamente controllabile.
+
+    \hfill\qedsymbol\paragraph{}
+
+    \item Dimostro che il sistema è asintoticamente controllabile.
+    Assumo che $V$ sia una funzione di controllo di Ljapunov globale
+    e prendo $\b y \in \Sigma$.
+    Sia $\beta = V(\b y)$.
+    Ora osservo che nella dimostrazione fatta fino ad ora posso prendere
+    $\mathcal O = \Sigma$ e $\alpha_0 = \beta + 1$
+    senza perdere di generalità, in quanto l'unica proprietà che $\mathcal O$
+    e $\alpha_0$ devono rispettare è che l'insieme $C$
+    definito nella~\eqref{eq:alpha_0}
+    sia compatto e contenuto sin $\mathcal O$.
+    Quindi, se nel passaggio (4) prendo $\mathcal V = \Sigma$
+    posso prendere $\alpha_1 = \beta + 1$ in modo che
+    $\b y \in \mathcal{W}$ e che il sistema sia
+    asintoticamente controllabile a $\b x^*$.
+
+    \hfill\qedsymbol\paragraph{}
+
+
 
 \end{steps}
 
