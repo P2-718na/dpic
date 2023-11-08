@@ -1,45 +1,36 @@
 \section{Funzioni di controllo di Ljapunov}
 Per i sistemi non lineari esiste un criterio che permette di determinarne
 la controllabilità asintotica, chiamato \emph{metodo di Ljapunov}.
-L'idea è di trovare una funzione analoga all'energia $V(\b x)$
+L'idea è di trovare una \emph{energia generalizzata} $V(\b x)$
 che sia sempre decrescente nel tempo,
-così che il sistema tenda alla configurazione di minor energia.
+così che il sistema tenda a minimizzarla.
 
-In questo capitolo devo lavorare con \emph{sistemi topologici},
-una classe più ristretta di problemi di controllo.
-\begin{definition}
-La quadrupla $\left( \Sigma, \mathcal T, \mathcal U, \phi \right)$ in cui:
-\begin{itemize}
-    \item $\Sigma$ è uno spazio delle fasi dotato di metrica
-    \item $\mathcal T$ è un insieme del tempo
-    \item $\mathcal U \subseteq \R^n$ è l'insieme dei controlli ammessi
-    \item $\phi$ è un applicazione
-    \begin{equation*}
-        \begin{array}{cccc}%
-            \phi: &D_\phi &\to &\Sigma \\
-            &\phi^t(\b x_0,\omega) &\mapsto &\b x(t)
-        \end{array}%
-    \end{equation*}
-    con $D_\phi$ dato da
-    \begin{equation*}
-        D_\phi = \left\{(t, \b x, \omega) | t \in \mathcal T, \b x \in \Sigma, \omega \in \mathcal U^{[0, t[ \subseteq \mathcal T} \right\}
-    \end{equation*}
-\end{itemize}
-definisce un \textbf{problema di controllo} se e solo se valgono le seguenti proprietà:
-\label{def:sistema-topologico}
-\end{definition}
-
+Per usare i risultati della teoria di Ljapunov è necessario lavorare
+in \emph{sistemi topologici}, una classe più ristretta di problemi di controllo.
 Per quanto riguarda questo testo è sufficiente pensare a un sistema topologico
 come un problema di controllo in cui la mappa di transizione è una funzione
-continua e in cui lo spazio delle fasi $\Sigma$ è dotato di topologia indotta
-da $\R^n$
-%todo cite sontag
+continua.
 
+\begin{definition}
+    Un \textbf{sistema topologico} è un problema di controllo in
+    cui lo spazio delle fasi $\Sigma$ è dotato di metrica e,
+    dato $t \in \mathcal T$ e $\b x \in \Sigma$,
+    vale la seguente proprietà:
 
+    Se $\omega$ è un controllo ammesso per $\b x$ e la successione
+    ${\b x_n}_n$ tende a $\b x$ allora deve esistere un intero
+    $N$ tale che, preso $n \geq N$ allora $\omega$ è ammesso per $x_n$
+    e il limite~\eqref{eq:def-sistema-topologico} converge uniformemente a $0$ per $s \in [0, t]$.
+    \begin{equation*}
+        \lim_{N \to +\infty} d[\phi^s(\b x_n, \omega), \phi^s(\b x, \omega)] = 0.
+        \label{eq:def-sistema-topologico}
+    \end{equation*}
+\end{definition}
 
 
 Enuncio la definizione di \emph{funzione di controllo di Ljapunov}.
 \begin{definition}
+    \label{def:clf-local}
     Dato un problema di controllo in cui $\b x^*$ è un punto fisso e
     $\mathcal O$ è un intorno di $\b x^*$.
     Una funzione continua
@@ -65,8 +56,6 @@ Enuncio la definizione di \emph{funzione di controllo di Ljapunov}.
             V(\xi(t)) &< V(\b x).
         \end{align*}
     \end{itemize}
-
-    \label{def:clf-local}
 \end{definition}
 
 \begin{definition}
@@ -106,6 +95,83 @@ controllo che porti il sistema verso $\b x^*$ in un tempo infinito.
 Per chiarezza, divido la dimostrazione in più passaggi; dimostro prima la versione locale
 del teorema e poi quella globale.
 \begin{steps}
+    \item Grazie alla prorpietà (1) della definizione~\ref{def:clf-local}
+    posso scegliere un numero $\alpha_0$ tale che l'insieme
+    \begin{equation}
+        C = \left\{ x\ |\ V(x) \leq \alpha_0 \right\} \subset \mathcal O
+        \label{eq:alpha_0}
+    \end{equation}
+    sia \emph{compatto}.
+
+    Dimostro la seguente affermazione
+
+    \begin{aff}
+        Per ogni intorno aperto $\mathcal W$ di $\b x^*$ esiste
+        un $\beta > 0$ tale che
+        \begin{equation*}
+            \{\b x\ |\ V(\b x) \leq \beta\} \subset \mathcal W.
+        \end{equation*}
+    \end{aff}
+
+    \emph{Dimostrazione}.
+    Procedo per assurdo.
+    Se così non fosse, esisterebbe una sequenza di elementi di $\Sigma$
+    \begin{equation*}
+    \{\b x_n\}_n
+    \end{equation*}
+    tali che comunque preso $n$, $\b x_n \notin \mathcal W$ e
+    \begin{equation*}
+        V(\b x_n) \to 0 \text{ per } n \to +\infty.
+    \end{equation*}
+    Senza perdere di generalità, assumo che tutti gli $\b x_n$
+    siano contenuti in $K$, dato da
+    \begin{equation*}
+        K = \bar{\mathcal W} \bigcap C
+    \end{equation*}
+    dove $\bar{\mathcal W}$ indica il complementare di $\mathcal W$.
+    La costruzione per la dimostrazione è mostrata in figura~\ref{fig:ljapunov-dim-aff1}.
+
+    \hfill
+    \begin{minipage}{.8\textwidth}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{assets/ljapunov-dim-aff1}
+            \caption[Costruzione 1 per teorema di Ljapunov]{Costruzione per dimostrare
+            l'affermazione 1.}
+            \label{fig:ljapunov-dim-aff1}
+        \end{figure}
+    \end{minipage}
+
+    Per il teorema di Bolzano-Weierstrass, posso estrarre una
+    sottosuccessione di $\{\b x_n\}_n$ convergente in $K$
+    \begin{equation*}
+    \{\b x_n\}_k \to \b x.
+    \end{equation*}
+    Ma per la continuità do $V$ vale
+    \begin{equation*}
+        V(\b x) = 0
+    \end{equation*}
+    e dalla proprietà (2) della definizione~\ref{def:clf-local}
+    segue che
+    \begin{equation*}
+        \b x = \b x^*.
+    \end{equation*}
+    Ma questo è un assurdo, visto che che $\b x \in K$
+    e $\b x^* \in \mathcal W \subset \bar K$, provando l'affermazione.
+
+    \hfill\qedsymbol\paragraph{}
+
+    Una conseguenza utile dell'affermazione (1) è che se
+    $\xi(t) = \phi^t(\b x, \omega)$ con $t \in [0, +\infty[$ tale che
+    \begin{equation*}
+        V[\xi(t)] \to 0 \text{ per } t \to +\infty
+    \end{equation*}
+    allora deve essere
+    \begin{equation*}
+        \xi(t) \to \b x^*.
+    \end{equation*}
+
+
     \item Osservo che la proprietà (3) della definizione~\ref{def:clf-local}
     garantisce che per ogni stato $\b y \in \mathcal O$ e $\b y \neq \b x^*$ esiste
     almeno uno stato ben raggiungibile da $\b y$.
@@ -116,18 +182,13 @@ del teorema e poi quella globale.
         B(\b x) = \inf\left\{ V(\b z)\ |\ \b z \text{ è ben raggiungibile da } \b x \right\}
     \end{equation*}
     e osservo che, per quanto appena detto, vale che $B(x) < V(x)$ per $x \neq \b x^*$.
-    Ora, grazie alla prorpietà (1) della definizione~\ref{def:clf-local}
-    posso scegliere un numero $\alpha_0$ tale che l'insieme
-    \begin{equation*}
-        \left\{ x\ |\ V(x) \leq \alpha_0 \right\} \subset \mathcal O
-    \end{equation*}
-    sia \emph{compatto}.
-    Dimostro che vale la seguente affermazione.
+    Dimostro la seguente affermazione.
 
     \begin{aff}
         \begin{equation*}
-            V(\b x) < \alpha_0 \implies B(\b x) = 0.
+            V(\b x) < \alpha_0 \implies B(\b x) = 0,
         \end{equation*}
+        dove $\alpha_0$ definisce un insieme compatto, secondo la~\eqref{eq:alpha_0}.
     \end{aff}
 
     \emph{Dimostrazione}.
@@ -177,13 +238,18 @@ del teorema e poi quella globale.
         &\zeta(t) = \b y, \\
         V(&\zeta(s)) \leq V(\b z), \ \forall s \in [0, t[ \subseteq \mathcal T.
     \end{align*}
-    Mi trovo nella situazione descritta dalla figura~\ref{fig:ljapunov-dim-aff2}.
-    \begin{figure}[H]
-        \centering
-        \includegraphics[clip,trim=2 2 2 2,width=.5\textwidth]{assets/ljapunov-dim-aff2}
-        \caption[hhahh]{hhjahhhh}%todo
-        \label{fig:ljapunov-dim-aff2}
-    \end{figure}
+    La costruzione per la dimostrazione è mostrata in figura~\ref{fig:ljapunov-dim-aff2}.
+
+    \hfill
+    \begin{minipage}{.8\textwidth}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.5\textwidth]{assets/ljapunov-dim-aff2}
+            \caption[Costruzione 2 per teorema di Ljapunov]{Costruzione per dimostrare
+            l'affermazione 2.}%todo
+            \label{fig:ljapunov-dim-aff2}
+        \end{figure}
+    \end{minipage}
 
     $V$ è uniformemente continua\footnote{Per ipotesi
         $V$ e continua sul compatto $C$ quindi per il teorema di Heine-Cantor è
@@ -231,18 +297,18 @@ del teorema e poi quella globale.
     \end{equation*}
     Considero la~\eqref{eq:lesser-forall-t} e applico la definizione di modulo.
     \begin{itemize}
-    \item Caso $V[\zeta(s)] < V[\zeta_N(s)]$.
-        \begin{align*}
-            V[\zeta_N(s)] - V[\zeta(s)] &< \epsilon \\
-            V[\zeta_N(s)] &< \epsilon + V[\zeta(s)] \\
-            V[\zeta_N(s)] &< \epsilon + V(\b z) \\
-            V[\zeta_N(s)] <& V(\b x) \numberthis\label{eq:modulo-caso-1}
-        \end{align*}
-        dove nell'ultimo passaggio ho applicato la~\eqref{eq:vy-less-vz}.
-    \item Caso $V[\zeta(s)] > V[\zeta_N(s)]$.
-        \begin{align*}
-            V(\b x) > V(\b z) > V[\zeta(s)] > V[\zeta_N(s)]. \numberthis\label{eq:modulo-caso-2}
-        \end{align*}
+        \item Caso $V[\zeta(s)] < V[\zeta_N(s)]$.
+            \begin{align*}
+                V[\zeta_N(s)] - V[\zeta(s)] &< \epsilon \\
+                V[\zeta_N(s)] &< \epsilon + V[\zeta(s)] \\
+                V[\zeta_N(s)] &< \epsilon + V(\b z) \\
+                V[\zeta_N(s)] &< V(\b x) \numberthis\label{eq:modulo-caso-1}
+            \end{align*}
+            dove nell'ultimo passaggio ho applicato la~\eqref{eq:vy-less-vz}.
+        \item Caso $V[\zeta(s)] > V[\zeta_N(s)]$.
+            \begin{align*}
+                V(\b x) > V(\b z) > V[\zeta(s)] > V[\zeta_N(s)]. \numberthis\label{eq:modulo-caso-2}
+            \end{align*}
     \end{itemize}
     Chiamo $\omega$ la legge di controllo che porta $\b x$ a $\b z_N$.
     Per la proprietà di composizione della mappa di transizione, posso concatenare
@@ -254,30 +320,46 @@ del teorema e poi quella globale.
     unita alla~\eqref{eq:vy-less-vz} e alla~\eqref{eq:vzequalsalpha} implicano
     che $V(\b y_n) < B(\b x)$, violando la tesi.
     L'assurdo è dato dall'aver assunto che $\alpha = B(\b x) > 0$.
+
     \hfill \qedsymbol \paragraph{}
+
     L'andamento di $B(\b x)$ è mostrato in figura~\ref{fig:ljapunov-aff2}.
 
-    \begin{figure}[h]
-        \centering
-        \hfill
-        \includegraphics[width=\textwidth]{assets/ljapunov-aff2}
-        \caption[hhhh]{hhjhhhh}%todo
-        \label{fig:ljapunov-aff2}
-    \end{figure}
+    \hfill
+    \begin{minipage}{.8\textwidth}
+        \begin{figure}[H]
+                \centering
+                \includegraphics[width=\textwidth]{assets/ljapunov-aff2}
+                \caption[Andamento di $B(\b x)$]{Andamento di $B(x)$ per uno
+                spazio delle fasi monodimensionale. La funzione è a tratti e
+                si annulla dentro al compatto più grande contenente $x^*$.}
+                \label{fig:ljapunov-aff2}
+        \end{figure}
+    \end{minipage}
 
+    \item Dimostro che vale la seguente affermazione
 
-
-
-    \begin{figure}[H]
-        \centering
-        \hfill
-        \includegraphics[width=\textwidth]{assets/ljapunov-aff1}
-        \label{fig:ljapunov-aff1}
-        \caption[hhhh]{hhjhhhh}%todo
-    \end{figure}
-
-
-
+        \begin{aff}
+            Se $V(\b x) < \alpha_0$ con $\b x \neq \b x^*$ allora esiste
+            una sequenza di stati
+            \begin{equation*}
+            \{\b x_n\}_{n\geq0}
+            \end{equation*}
+            con $\b x_0 = 0$, una sequenza di tempi
+            \begin{equation*}
+            t_n \in \mathcal T
+            \end{equation*}
+            e una sequenza di controlli
+            \begin{equation*}
+                \omega_n \in \mathcal U^{[0, t_n[ \in \mathcal T}
+            \end{equation*}
+            tale che valgano le seguenti proprietà
+            \begin{itemize}
+                \item $\omega_n$ è ammesso per $\b x_n$.
+                \item $\phi^{t_n}(\b x_n, \omega_n) = \b x_{n+1}$
+                \item Con $\xi_n(t) = \phi^t(\b x_n, \omega_n)$ vale $V[\xi_n(t)] \leq \frac 1 {2^n} V(\b x), \ \forall t \in [0, t_n]$
+            \end{itemize}
+        \end{aff}
 
 
 
