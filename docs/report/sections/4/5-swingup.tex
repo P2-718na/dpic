@@ -1,14 +1,9 @@
 \section{Strategia di swing-up}
-Per lo swing-up, uso il metodo di Lyapunov così come descritto in [Astrom Furuta swinging up a pendulum by energy control].
+Per lo swing-up, uso il metodo di Ljapunov.
+%così come descritto in [Astrom Furuta swinging up a pendulum by energy control].
 %todo ref
-Quello che voglio fare è:
-
-\begin{enumerate}
-    \item Studiare l'effetto del controllo sull'energia del solo pendolo
-    %
-    \item Trovare una CLF per il pendolo che permetta lo swing-up.
-\end{enumerate}
-%todo glossary clf
+Ricavo l'energia del solo pendolo e la uso per cercare una funzione
+di controllo di Ljapunov.
 
 \subsection{Energia del pendolo}
 \label{subsec:energia-pendolo}
@@ -31,8 +26,8 @@ dove compare la Lagrangiana $\mathcal L$ del solo pendolo e a secondo membro com
 e posso usare le due equazioni \eqref{eq:moto-pendolo} e \eqref{eq:energia-pendolo} per calcolare la variazione di energia istantanea che produce l'accelerazione $a$ lungo la traiettoria del moto. Calcolo:
 \begin{equation}
     \begin{aligned}
-        \partiald t E
-        &= \partiald t \left(\frac 1 2 I \dot \theta ^2 + mgL \cos \theta  \right) \\
+        \totald t E
+        &= \totald t \left(\frac 1 2 I \dot \theta ^2 + mgL \cos \theta  \right) \\
         &= I \dot \theta \ddot \theta - mgL \sin \theta \cdot \dot \theta \\
         &= -maL \cos \theta \cdot \dot \theta
         .
@@ -67,7 +62,7 @@ in quanto piccole variazioni dell'energia creano discontinuità nel controllo.
     \label{fig:energy-control}
 \end{figure}
 
-\subsection{Funzione di Lyapunov e CLF}
+\subsection{Funzione di controllo di Ljapunov}
 \paragraph{Si può fare di meglio,} impiegando una CLF per ricavare una strategia di controllo. Questo permette sia di avere una strategia di controllo smooth, sia di dimostrare rigorosamente che il sistema raggiungerà l'equilibrio cercato, grazie ai teoremi ??\todo{qui dovrò citare teoremi scritti prima su controllabilità con lyapunov}.
 Devo trovare una strategia di controllo $a$ e una funzione di Lyapunov $V$ che rispettino le condizioni di [riferimento alla definizione di funzione di lyapunov \todo{teoria}].
 Per cercare $a$ mi ispiro alle considerazioni fatte a fine paragrafo \ref{subsec:energia-pendolo}. La funzione che si presta di più è la tangente tangente iperbolica, per via dell'effetto soglia:
@@ -101,7 +96,7 @@ Ora, se definisco $V$ come:
 È facile dimostrare che ho trovato una CLF. Infatti, se calcolo la detivata di $V$ e sostituisco l'espressione di $a$ appena definita:
 \begin{equation}
     \begin{aligned}
-        \partiald t V &= \partiald t \left( \frac 1 2 \dot E^2\right) \\
+        \totald t V &= \totald t \left( \frac 1 2 \dot E^2\right) \\
         &=  E \dot E \\
         &=  E (-maL \dot \theta \cos \theta) \\
         &= -mLE\dot \theta \cos \theta \cdot a_{\max} \tanh(E \dot \theta \cos \theta).
