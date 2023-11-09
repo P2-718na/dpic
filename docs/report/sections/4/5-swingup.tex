@@ -57,19 +57,18 @@ Calcolo la derivata
     &=  E (-mal \dot \theta \cos \theta) \numberthis\label{eq:dvdt}.
 \end{align*}
 La scelta più semplice è definire $a$ come funzione a tratti:
-\begin{equation}
+\begin{equation*}
     a = \left\{
     \begin{aligned}
          &a_{\max}\sign{\dot \theta \cos \theta} &\text{ se } E < 0 \\
          -&a_{\max}\sign{\dot \theta \cos \theta} &\text{ se } E > 0 \\
-         &0 &\text{altrimenti}
+         &0 &\text{ altrimenti}
     \end{aligned}
     \right.
-    \label{eq:bang-bang}
-\end{equation}
-con $a_\max$ l'accelerazione massima possibile per il sistema. 
+\end{equation*}
+con $a_{\max}$ l'accelerazione massima possibile per il sistema.
 La figura~\ref{fig:energy-control} mostra che questa strategia porta il sistema a
-zero. 
+zero.
 
 \begin{figure}
     \centering
@@ -106,6 +105,24 @@ Uso la~\eqref{eq:dvdt}:
     &= -Eml \dot \theta \cos \theta \cdot a_{\max} \tanh(E \dot \theta \cos \theta). \numberthis\label{eq:a-ljapunov}
 \end{align*}
 ed è immediato verificare che la~\eqref{eq:a-ljapunov} è sempre negativa.
+La~\eqref{eq:control-strategy-tanh} è rappresentata in figura~\ref{fig:energy-control-better}.
+
+\begin{figure}[b]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{assets/energy-control3}
+        \caption{aaaaa}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{assets/energy-control4}
+        \caption{bbbbb}
+    \end{subfigure}
+    \caption{Schema del sistema.} %todo
+    \label{fig:energy-control-better}
+\end{figure}
 
 Concludo osservando che la strategia che ho mostrato in questo paragrafo
 non tiene conto della posizione del carrello sulla rotaia.

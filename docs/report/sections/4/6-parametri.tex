@@ -73,7 +73,13 @@ l'andamento descritto in figura \ref{fig:cogging} ed è predominante quando $\om
 piccola.
 L'approccio che ho usato per ridurne l'effetto è descritto nel paragrafo ?? \todo{anche qui paragrafo}.
 
-\begin{figure}[hb]
+%fixme i have no idea what this does but i used it so that the figure next doesn't span across
+the whole page.
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
+\begin{figure}[t]
     \centering
     \includegraphics{assets/cogging-torque}
     \caption[Cogging torque]{Cogging toque del motore.}
