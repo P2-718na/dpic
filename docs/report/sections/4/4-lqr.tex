@@ -95,16 +95,15 @@ In $\b x = 0$ la matrice hessiana dell'energia cinetica è
 semidefinita positiva, mentre l'hessiana del potenziale è
 semidefinita negativa.
 Quindi l'hessiana di $T - V$ è semidefinita positiva e
-la posso usare come costo al posto della matrice $Q$,
+la posso usare come matrice di costo $Q$,
 così da dare alla quantità
 da minimizzare il significato di energia mediata sul tempo.
 Tuttavia, visto che le equazioni del moto non dipendono da $q$,
-sono costretto ad introdurre un \emph{potenziale fittizio}
-$q_{11} > 0$ per far sì che il sistema tenda allora
+sono costretto ad introdurre un potenziale fittizio
+$q_{11} > 0$ per far sì che il sistema tenda allo
 stato dove $q = 0$.
 $R$ va scelto in base alla forza massima che può sopportare
-il motore.
-Per ora fisso $R = (r_{11})$ con $r_{11} > 0$.
+il motore; per ora fisso $R = (r_{11})$ con $r_{11} > 0$.
 \todo{O qui o nella sezione risultati, ci sta di mostrare come varia la soluzione in funzione di R. Vedere se influisce solo sul gain del motore...}
 
 Svolgendo il calcolo trovo
@@ -124,7 +123,7 @@ Svolgendo il calcolo trovo
 %todo molto importante controlla che le equazioni del moto sul notebook
 %siano corrette
 
-La strategia di controllo è data quindi da
+La strategia di controllo è data da
 \begin{equation*}
     f = K\b x
 \end{equation*}
