@@ -1,67 +1,101 @@
 \section{Modello del sistema}
-Nel paragrafo precedente ho detto che l'unica interazione possibile tra il sistema
-e l'esterno è l'applicazione di una forza sul carrello.
-Nella pratica, questo significa che è presente un motore vincolato al carrello
-in qualche modo, come mostrato in figura~\ref{fig:pic-real}.
-Mentre la natura del vincolo non è interessante, dobbiamo invece prestare
-particolare attenzione al tipo di motore utilizzato.
-Un motore esercita una forza che dipende sia da un segnale di controllo esterno,
-sia dallo stato interno dello stesso.
-È quindi conveniente separare lo studio del sistema in due:
-pendolo-carrello e motore.
+Il sistema consiste in un pendolo rigido, libero di ruotare e vincolato a muoversi lungo una rotaia rettilinea tramite un carrello.
+L'unico controllo che ho sul sistema è
+una forza applicata sul carrello lungo la direzione della rotaia,
+così come è mostrato in figura~\ref{fig:pic}.
+Io sono interessato
+ad applicare questo studio nel mondo reale, quindi devo tenere
+in considerazione che la forza è generata da un motore in risposta
+a un segnale di input.
+Il motore che prendo in considerazione è un motore elettrico
+spazzolato. Visto che il motore è un sistema dinamico in sé,
+è conveniente modellarlo separatamente rispetto al sistema
+carrello-pendolo.
+In figura~\ref{fig:pic-real} è
+mostrato uno schema del sistema reale.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{assets/pic}
+        \caption{Schema ideale del sistema. La forza di controllo esterna
+        agisce direttamente sul carrello, nella direzione dello scorrimento.}
+        \label{fig:pic}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{assets/pic-real}
+        \caption{Schema reale del sistema. La forza di controllo viene
+        generata da un motore e trasferita al carrello con una cinghia.}
+        \label{fig:pic-real}
+    \end{subfigure}
+    \caption{Schema del sistema ideale e reale. Nelle figure sono mostrate le variabili
+    utilizzate.}
+\end{figure}
+
+
 
 \subsection{Pendolo e carrello}
-È immediato ricavare le equazioni del moto usando l'approccio Lagrangiano.
-Inizio fissando alcuni parametri che possono essere calcolati o misurati
-sperimentalmente; sono riportati in tabella~\ref{tab:parametri}.
-Posso quindi scrivere l'espressione per l'energia cinetica $T$
-e potenziale $V$ del sistema:
-
-\begin{equation*}
-    \begin{aligned}
-        T &= \frac 1 2 M  \dot q^2 + \frac 1 2 m v_{cm}^2 + \frac 1 2 (J - lm^2)\dot \theta^2 \\ %todo
+Riporto i parametri e le variabili d'interesse per il sistema in 
+tabella~\ref{tab:parametri} e ricavo le equazioni del moto
+usando l'approccio Lagrangiano.
+Energia cinetica e potenziale sono
+\begin{align*}
+        T &= \frac 1 2 M  \dot q^2 + \frac 1 2 m v_{cm}^2 + \frac 1 2 (I - lm^2)\dot \theta^2, \\ %todo
         V &= mgL \cos\theta
-    \end{aligned}
-    \hspace{20pt} \text{con } q \in \R, \theta \in ]-\pi, +\pi]
-    \label{eq:energy}
-\end{equation*}
-dove $v_{cm}$ è la velocità del centro di massa del pendolo, data da:
+\end{align*}
+dove $v_{cm}$ è la velocità del centro di massa del pendolo, data da
 \begin{equation*}
     v^2_{cm} = (\dot x + l \dot \theta \cos \theta)^2 + (+ l \dot \theta \sin \theta)^2.
 \end{equation*}
-La Lagrangiana $\mathcal L$ è:
+
+
+
+
+%todo here
+Scrivo la Lagrangiana del sistema
 \begin{equation*}
     \mathcal L = T - V
 \end{equation*}
-e posso impostare le equazioni di eulero
-\begin{equation*}
-    \begin{aligned}
-        \frac{\partial^2}{\partial t \partial \dot q} \mathcal L - \partiald q \mathcal L &= f \\
-        \frac{\partial^2}{\partial t \partial \dot \theta} \mathcal L  - \partiald \theta \mathcal L &= 0
-    \end{aligned}
-    \label{eq:eulero}
-\end{equation*}
-da cui ricavo le equazioni del moto del sistema:
+e imposto le equazioni di Eulero-Lagrange:
+
 \begin{equation}
-    \begin{aligned}
-        \ddot x &= \frac {-lm \ddot \theta \cos \theta + lm \dot \theta^2 \sin \theta + f} {m + M} \\
-        \ddot \theta &= \frac {lm (g\sin \theta - \cos \theta }{J} \ddot x.
-    \end{aligned}
+        \left\{
+        \begin{aligned}
+            \totald t \partiald{\dot q} {\mathcal L} - \partiald q {\mathcal L} &= f \\
+            \totald t \partiald{\dot \theta} {\mathcal L}  - \partiald \theta {\mathcal L} &= 0
+        \end{aligned}
+        \right.
+        \label{eq:eulero-lagrange-pendolo}
+\end{equation}
+in cui trascuro gli attriti tra carrello e rotaia e tra
+pendolo e perno.
+Dal sistema~\eqref{eq:eulero-lagrange-pendolo} ricavo le equazioni del moto:
+\begin{equation}
+        \left\{
+        \begin{aligned}
+            \ddot x &= \frac {-lm \ddot \theta \cos \theta + lm \dot \theta^2 \sin \theta + f} {m + M} \\
+            \ddot \theta &= \frac {lm (g\sin \theta - \cos \theta) }{I} \ddot x
+        \end{aligned}
+    \right.
+    _.
     \label{eq:moto-sistema}
 \end{equation}
-In questo modello ho trascurato gli attriti tra il carrello e la rotaia e tra
-il pendolo e il perno.
-
-Per concludere devo studiare i punti di equilibrio del sistema.
-L'unica variabile che compare nel potenziale è $\theta$, quindi il calcolo è
-immediato.
+Concludo studiando i punti di equilibrio del sistema.
+L'unica variabile che compare nel potenziale è $\theta$; impongo
 \begin{equation*}
-    \left. \frac \partial {\partial \theta}\right |_{V=V_{eq}} V =  0 \implies V_{eq} = \{0, \pi\}.
+    \left. \frac \partial {\partial \theta}\right |_{V=V_{eq}} V =  0
 \end{equation*}
-È immediato anche studiarne al stabilità:
+da cui
+\begin{equation*}
+     V_{eq} = \{0, \pi\}.
+\end{equation*}
+La stabilità è data da considerazioni fisiche
 \begin{align*}
-    \theta = 0 \mapsto \text{instabile} \\
-    \theta = \pi \mapsto \text{stabile}.
+    \theta &= 0  \text{ è instabile}, \\
+    \theta &= \pi  \text{ è stabile}.
 \end{align*}
 
 \bgroup
@@ -88,7 +122,7 @@ immediato.
         \hline
         $q$ & Posizione del carrello rispetto all'origine. \\
         \hline
-        $\theta$ & Angolo del pendolo rispetto alla verticale. \\
+        $\theta \in ]-\pi, +\pi]$ & Angolo del pendolo rispetto alla verticale. \\
         \hline
         $f$ & Forza agente sul carrello. \\
         \noalign{\hrule height 2pt}
@@ -100,9 +134,39 @@ immediato.
 
 \subsection{Motore}
 \todo{fix reference}
-\ref{https://homepages.laas.fr/lzaccari/seminars/DCmotors.pdf}
-Per questa applicazione è sufficiente usare un motore DC a spazzole. Il motore è attivato applicando una differenza di potenziale $U$ tra le due armature e il verso di rotazione dipende dal segno della differenza di potenziale. Variando $U$ si ottiene grossolanamente un controllo sulla velocità di rotazione. Io voglio controllare la forza che il motore esercita sul carrello e devo quindi trovare la relazione tra differenza di potenziale e coppia $\tau$.
-Fisso alcuni parametri relativi al motore, riportati in tabella \ref{tab:parametri-motore}.
+%{https://homepages.laas.fr/lzaccari/seminars/DCmotors.pdf}
+Lavoro con un motore \textsc{DC} spazzolato.
+Riporto i parametri e le variabili d'interesse per il motore in tabella~\ref{tab:parametri-motore}.
+Si può ricavare che valgono le equazioni
+\begin{subequations}
+    \begin{empheq}[left=\empheqlbrace]{align}
+            u &= L_a \dot J + R_a J + K_e \omega \label{eq:motore-1} \\
+            \tau &= K_m J \label{eq:motore-2}
+    \end{empheq}
+    _.
+\end{subequations}
+
+Voglio ricavare la forza esercitata dal motore in funzione di $u$.
+Dalla~\eqref{eq:motore-2} ricavo
+\begin{equation}
+        \dot J = \totald t \left( \frac \tau {K_m}\right) = \frac{\dot \tau}{K_m}
+        \label{eq:jdot}
+\end{equation}
+e inserendo la~\eqref{eq:jdot} nella~\eqref{eq:motore-1} ottengo
+\begin{equation}
+        u = \frac {L_a} {K_m} \dot\tau + \frac{R_a}{K_m}  \tau + K_e \omega.
+        \label{eq:u-motore}
+\end{equation}
+Considero la~\ref{eq:u-motore} in regime stazionario\footnote{
+Spiegherò il motivo di questa scelta nel paragrafo~\ref{sec:sistema-reale}.
+} ($\dot \tau = 0$).
+Dato che $\tau \propto f$ e $\omega \propto \dot q$ ottengo
+\begin{equation*}
+    u = A f + B \dot q.
+    \label{eq:caratteristica-motore}
+\end{equation*}
+Il segnale di controllo del motore
+dipende quindi solo da due parametri $A$ e $B$ determinabili sperimentalmente.
 
 \bgroup
 \renewcommand{\tabularxcolumn}[1]{>{\arraybackslash}m{#1}}
@@ -115,11 +179,21 @@ Fisso alcuni parametri relativi al motore, riportati in tabella \ref{tab:paramet
         \rowcolor{Black}%
         \multicolumn{1}{=c}{\rowstyle{\bfseries\sffamily \color{White}} Parametro/Variabile} & \multicolumn{1}{+c}{ Descrizione} \\
         \hline
+        $L_a$ & Induttanza delle armature. \\
+        \hline
+        $R_a$ & Resistenza delle armature. \\
+        \hline
+        $K_e$ & Costante elettrica del motore. \\
+        \hline
+        $K_m$ & Costante meccanica del motore. \\
+        \hline
         $u$ & \ddp tra le armature. \\
         \hline
         $J$ & Corrente che scorre nelle armature. \\
         \hline
         $\tau$ & Coppia esercitata dal motore. \\
+        \hline
+        $\omega$ & Velocità angolare del motore. \\
         \hline
         $f$ & Forza agente sul carrello. \\
         \hline
@@ -130,31 +204,3 @@ Fisso alcuni parametri relativi al motore, riportati in tabella \ref{tab:paramet
     \label{tab:parametri-motore} %todo qui manca la descrizion2e di un tot di parametri.i
 \end{table}
 \egroup
-
-Un motore DC è regolato dalle equazioni: \todo{qui devo ritrovare il pdf che spiega tutto bene e decidere se fare io i disegni o se citare semplicemente altri paper}
-\begin{equation*}
-    \left\{
-    \begin{aligned}
-        u &= L_a \dot J + R_a J + K_e \omega \\
-        \tau &= K_m J
-    \end{aligned}
-    \right.
-    .
-\end{equation*}
-
-La coppia è proporzionale alla corrente che scorre nel motore. Si possono realizzare diversi circuiti di alimentazione che controllano direttamente la corrente ma il sistema che ho realizzato nella sezione \ref{sec:sistema-reale} può solo controllare il voltaggio. In più, il sistema non ha un sensore per misurare la corrente che passa nel motore.
-Per trovare una soluzione al mio problema inizio risolvendo il sistema per $U$:
-\begin{equation*}
-    \begin{aligned}
-        u &= L_a \partiald t \left(\frac \tau {K_m}\right) + R_a \frac \tau {K_m} + K_e \omega \\
-        &= \frac {L_a} {K_m} \dot\tau + \frac{R_a}{K_m}  \tau + K_e \omega.
-    \end{aligned}
-\end{equation*}
-In linea di principio questo è tutto quello che mi serve per controllare il motore, tuttavia, il termine che contiene $\dot \tau$ ha un coefficiente che non è facile da misurare con gli strumenti che ho a disposizione. Scelgo quindi di trascurare questo termine. Questa scelta è giustificata dal fatto che il segnale di controllo $\tau$ cambia solamente ogni $\Delta t$ secondi e posso scegliere $\Delta t$ in modo che sia maggiore del tempo del transiente dovuto a $\Delta \tau$.
-
-Ricordando che $\tau$ e $\omega$ sono proporzionali a $f$ e $\dot q$, trovo che questo modello dipende solo da due parametri determinabili sperimentalmente, $A$ e $B$:
-\begin{equation}
-    u = A f + B \dot q.
-    \label{eq:caratteristica-motore}
-\end{equation}
-La determinazione di questi parametri è descritta nel paragrafo \ref{subsec:parametri-motore}.
