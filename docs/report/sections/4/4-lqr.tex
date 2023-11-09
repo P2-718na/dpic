@@ -1,111 +1,131 @@
 \section{Strategia di stabilizzazione}
 \label{sec:strategia-stabilizzazione}
-Per stabilizzare il sistema uso il Linear Quadratic Regulator, così come ho descritto nel capitolo \ref{sec:linear-control}. Ho già ricavato le equazioni del moto \eqref{eq:moto-sistema} e per poter usare LQR devo solamente linearizzarle attorno al punto $\theta = 0$. La risoluzione dell'equazione di Riccati (??) \todo{qui ci dovrò linkare equazione che avrò scritto nei capitoli sopra} è fatta numericamente usando Mathematica.
-
-Devo però tenere a mente due considerazioni:
-\begin{itemize}
-    \item Non ho nulla che mi garantisca che il sistema linearizzato si comporti come il sistema non lineare. Dovrò quindi verificare a posteriori se il risultato che otterrò funzionerà o meno. \todo{in realtà, lo strogatz dice che se ci sono termini al primo ordine, allora ho la garanzia che il sistema si comporti così vicino al punto di equilibrio. Se ci fossero solo termini al secondo ordine, non potrei linearizzare il sistema...}
-
-    \item Le equazioni che ho trovato descrivono un sistema a tempo continuo. Nel sistema reale, sia i sensori che il motore hanno un certo tempo di risposta $\Delta t$. Dovrò quindi trasformare il mio modello da tempo continuo a tempo discreto.
-\end{itemize}
+Per stabilizzare il sistema uso il regolatore lineare quadratico
+descritto nel paragrafo~\ref{sec:controllo-ottimale},
+applicato alle equazioni del moto~\eqref{eq:moto-sistema}
+linearizzate attorno al punto di equilibrio $\theta = 0$.
 
 \subsection{Linearizzazione delle equazioni}
-Considero le equazioni \eqref{eq:moto-sistema}. Scelgo di linearizzarle usando il metodo della Jacobiana descritto in [Strogatz]. Le risolvo per $\ddot \theta$ e $\ddot q$:
+Risolvo le equazioni~\eqref{eq:moto-sistema} per $\ddot q$ e $\ddot \theta$:
+\begin{subequations}
+    \begin{empheq}[left=\empheqlbrace,right=_.]{align}
+        \ddot q &= \frac{
+            lm\sin\theta \cdot \left(I\dot \theta^2-glm\cos\theta\right)+If
+        } {
+            I(m+M) - (lm\cos\theta)^2
+        } \label{eq:moto-carrello-q}\\
+        \ddot \theta &= \frac{
+            lm\left[\sin\theta \cdot (lm\dot\theta^2 \cos\theta - gm - gM) + f\cos\theta  \right]
+        }{
+            (lm\cos\theta)^2 - I(m+M)
+        } \label{eq:moto-carrello-theta}
+    \end{empheq}
+    \label{eq:moto-carrello-totale}
+\end{subequations}
+\todo{Ricontrolla equazioni e nomi parametri}
+Il sistema~\eqref{eq:moto-carrello-totale} ha due gradi di libertà,
+quindi lo spazio delle fasi è $4$-dimensionale.
+Applico la sostituzione
 \begin{equation*}
     \left\{
     \begin{aligned}
-        \ddot q &= &\frac{2m\sin(\theta(t))\left(3g\cos(\theta(t))-2l\theta'(t)^2\right)-8u(t)} {3m\cos(2\theta(t))-5m-8M} \\
-        %
-        \ddot \theta &= &\frac{3\sin(\theta(t))\left(lm\theta'(t)^2\cos(\theta(t))-2g(m+M)\right)+6u(t)\cos(\theta(t))}{l\left(3m\cos^2(\theta(t))-4(m+M)\right)}
+        \dot q &\mapsto v_q \\
+        \ddot q &\mapsto \dot v_q \\
+        \dot \theta &\mapsto v_\theta \\
+        \ddot \theta &\mapsto \dot v_\theta
     \end{aligned}
     \right.
+    _.
 \end{equation*}
-\todo{Ricontrolla equazioni e nomi parametri}
-Ora riduco l'ordine del sistema applicando la sostituzione:
-\begin{align}
-    \dot q &\mapsto v_q \\
-    \ddot q &\mapsto \dot v_q \\
-    \dot \theta &\mapsto v_\theta \\
-    \ddot \theta &\mapsto \dot v_\theta.
-\end{align}
-
-L'equazione del moto $\dot {\b x}(t)$ del sistema è quindi una funzione di cinque variabili:
+Gli elementi dello spazio delle fasi sono i vettori colonna
+\begin{equation*}
+    \b x = (q, v_q, \theta, v_\theta)^{\T}
+\end{equation*}
+e l'equazione del moto è nella forma~\ref{eq:sistema-non-lineare}:
 \begin{equation*}
     \dot {\b x}(t) = \left(
     \begin{aligned}
-        v_q \\
-        \dot v_q \\
-        v_\theta \\
-        \dot v_\theta
+        &v_q \\
+        &\dot v_q = \text{ equazione~\ref{eq:moto-carrello-q}}\\
+        &v_\theta \\
+        &\dot v_\theta  = \text{ equazione~\ref{eq:moto-carrello-theta}}
     \end{aligned}
-    \right) = F(v_q, \dot v_q, v_\theta, \dot v_\theta, f).
+    \right) = F(\b x, f).
 \end{equation*}
-Procedo calcolando la matrice Jacobiana di F attorno al punto di equilibrio. Ricordo che ho scelto le variabili del mio sistema in modo che questo coincida con $\b x = 0$.
-\begin{equation*}
-    \begin{aligned}
-        J_F(0)_{ij} &= \partialdd {x_j}{\b x = 0} F_i(\b x) \\
-        &= \left(\begin{array}{ccccc}0&1&0&0&0\\0&0&-\frac{3gm}{m+4M}&0&\frac{4}{m+4M}\\0&0&0&1&0\\0&0&\frac{6g(m+M)}{l(m+4M)}&0&-\frac{6}{lm+4lM}\\\end{array}\right) .
-        %
-    \end{aligned}
-\end{equation*}
-\todo{anche qui controlla equazione}
-L'equazione del moto è data da:
-\begin{equation*}
-    \dot {\b x} \approx J_F(0) \left( \begin{aligned}
-                                          &q \\
-                                          &v_q \\
-                                          &\theta \\
-                                          &v_\theta \\
-                                          &f
-    \end{aligned}  \right)
-\end{equation*}
-e posso usare le proprietà del prodotto righe per colonne per separare $J_F(0)$ in due matrici $A$ e $B$ e ricondurmi all'equazione ?? \todo{qui dovrò fare riferimento all'equazione che descrive il sistema}
-\begin{equation*}
-    \begin{aligned}
-        \dot {\b x} &= A\b x + Bf \\
-        &= \left(\begin{array}{cccc}0&1&0&0\\0&0&-\frac{3gm}{m+4M}&0\\0&0&0&1\\0&0&\frac{6g(m+M)}{l(m+4M)}&0\\\end{array}\right) \b x + \left(\begin{array}{c}0\\\frac{4}{m+4M}\\0\\\frac{-6}{lm+4lM}\end{array}\right)f.
-    \end{aligned}
-\end{equation*}
-\todo{qui ci vanno calcoli sulla controllabilità del sistema}.
 
-\subsection{Coefficienti per l'ottimizzazione}
-Per risolvere il problema di controllo ottimale, devo fissare i coefficienti della funzione costo.
-Questi coefficienti possono essere scelti arbitrariamente ed è naturale prendere $Q$ uguale alla matrice metrica del sistema, in modo da dare un significato fisico alla quantità che vogliamo minimizzare (l'integrale dell'energia sul tempo). $R$ va scelto in base a quanto "scattante" deve essere il motore. \todo{O qui o nella sezione risultati, ci sta di mostrare come varia la soluzione in funzione di R. Vedere se influisce solo sul gain del motore...}.
+Applico la~\ref{eq:formula-linearizzazione} e ottengo la forma linearizzata
+del sistema
+\begin{equation*}
+        \dot {\b x} = A\b x + Bf \\
+\end{equation*}
+con
 \begin{equation*}
     A = \left(
-    \begin{array}{cccc}
-        a_{11} & a_{12} & a_{13} & a_{14} \\
-        a_{21} & a_{22} & a_{23} & a_{24} \\
-        a_{31} & a_{32} & a_{33} & a_{34} \\
-        a_{41} & a_{42} & a_{43} & a_{44}
-    \end{array}
-    \right).
+            \begin{array}{cccc}
+                0&1&0&0\\
+                0&0&\frac{g(lm)^2}{d}&0\\
+                0&0&0&1\\
+                0&0&\frac{glm(m+M)}{-d}&0\\
+            \end{array}
+        \right),\
+    B = \left(\begin{array}{c}0\\\frac{I}{-d}\\0\\\frac{lm}{d}\end{array}\right)f.
 \end{equation*}
+dove $d = (lm)^2-I(m+M)$.
+\todo{ricontrolla numeri.}
+
+Concludo osservando che il sistema è controllabile.
+Infatti, applicando la definizione~\ref{def:matrice-controllabilità}
+si ottiene
 \begin{equation*}
+    \mathcal C = \left(
+        \begin{array}{cccc}
+            0&\frac J {-d}&0&\frac{lm} d\\
+            \frac J {-d}&0&\frac{lm} d&0\\
+            0&\frac{g(lm)^3}{d^2}&0&\frac{g(lm)^2(m+M)}{-d^2}\\
+            \frac{g(lm)^3}{d^2}&0&\frac{g(lm)^2(m+M)}{-d^2}&0\\
+        \end{array}
+        \right)
+\end{equation*}
+che ha rango massimo quando $l, m \neq 0$.
+
+%todo here
+\subsection{Sviluppo del controllo ottimale}
+Fisso i coefficienti della funzione costo.
+In $\b x = 0$ la matrice hessiana dell'energia cinetica è
+semidefinita positiva, mentre l'hessiana del potenziale è
+semidefinita negativa.
+Quindi l'hessiana di $T - V$ è semidefinita positiva e
+la posso usare come costo al posto della matrice $Q$,
+così da dare alla quantità
+da minimizzare il significato di energia mediata sul tempo.
+Tuttavia, visto che le equazioni del moto non dipendono da $q$,
+sono costretto ad introdurre un \emph{potenziale fittizio}
+$q_{11} > 0$ per far sì che il sistema tenda allora
+stato dove $q = 0$.
+$R$ va scelto in base alla forza massima che può sopportare
+il motore.
+Per ora fisso $R = (r_{11})$ con $r_{11} > 0$.
+\todo{O qui o nella sezione risultati, ci sta di mostrare come varia la soluzione in funzione di R. Vedere se influisce solo sul gain del motore...}
+
+Svolgendo il calcolo trovo
+\begin{equation*}
+    Q = \left(
+    \begin{array}{cccc}
+        q_{11} & 0 & 0 & 0 \\
+        0 & m+M & 0 & lm \\
+        0 & 0 & glm & 0 \\
+        0 & lm & 0 & J
+    \end{array}
+    \right), \
     R = \left(
     r_{11}
     \right).
 \end{equation*}
+%todo molto importante controlla che le equazioni del moto sul notebook
+%siano corrette
 
-%todo
-\todo{calcolo}
-Qui ci va il calcolo della matrice metrica e devo mostrare cosa sono i coefficienti di $A$.
-
-
-\subsection{Gain del controller}
 La strategia di controllo è data quindi da
 \begin{equation*}
-    f = -K\b x
+    f = K\b x
 \end{equation*}
-dove $K$ è una matrice data da:
-\begin{equation*}
-    K = \left(
-    \begin{array}{c}
-        0 \\
-        0 \\
-        0 \\
-        0
-    \end{array}
-    \right).
-\end{equation*}
-Qui non saprei se scrivere altro... In realtà K dovrebbe saltare fuori nei risultati, visto che dipende da R che è arbitrario... Magari posso calcolare un po' di K diversi in funzione di R e vedere cosa salta fuori direttamente in questa sezione.
+dove $K$ è dato dalla~\eqref{eq:riccati-K}.

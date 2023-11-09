@@ -262,11 +262,12 @@ Considero un sistema dinamico caratterizzato da un campo vettoriale del tipo
 È possibile linearizzare la dinamica del sistema~\eqref{eq:sistema-non-lineare} in un intorno di un punto fisso
 $(\bar{\b x}, \bar{\b u})$ (che, per semplicità, prendo uguale a $(\b 0, \b 0)$) espandendo
 in serie di Taylor:
-\begin{equation*}
+\begin{equation}
     \b a(\b x, \b u) \approx \b a(\b 0, \b 0) +
     \left.\frac{d \b a}{d \b x}\right|_{(\b 0, \b 0)} \b x +
     \left.\frac{d \b a}{d \b u}\right|_{(\b 0, \b 0)} \b u + \mathcal O(\norm{(\b x, \b u)}^2).
-\end{equation*}
+    \label{eq:formula-linearizzazione}
+\end{equation}
 $\b a(\b 0, \b 0)$ si annulla (perchè corrisponde a un punto fisso) e posso riscrivere
 gli altri due termini in forma matriciale, riconducendomi alla forma~\eqref{def:sistema-lineare-non-omogeneo}
 della definizione~\ref{def:sistema-lineare-non-omogeneo}.
