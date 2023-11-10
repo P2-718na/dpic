@@ -185,7 +185,7 @@ partendo da qualsiasi condizione iniziale $\b x_0$ e quindi il sistema è contro
 
 La dimostrazione che ho appena presentato è estendibile facilmente anche a
 sistemi a tempo discreto.
-Preciso inoltre che per la proposizione~\ref{prop:condizione-controllabilità} in realtà
+Preciso inoltre che per la \autoref{prop:condizione-controllabilità} in realtà
 vale una doppia implicazione (ovvero, un sistema è controllabile \emph{se e solo se}
 la sua matrice di controllabilità ha rango massimo).
 Questo risultato non è rilevante per quanto riguarda questo testo, quindi la dimostrazione
@@ -199,7 +199,7 @@ L'esempio~\ref{ex:controllabilità} mostra due casi estremamente semplificati
 di sistemi rispettivamente controllabili e non controllaibli.
 \begin{example}
     Considero un punto materiale in assenza di forze vincolato a muoversi su una retta.
-    Lo spazio delle fasi è rappresentato in figura~\ref{fig:ex-pianocartesiano}.
+    Lo spazio delle fasi è rappresentato in \autoref{fig:ex-pianocartesiano}.
     L'equazione del moto è
     \begin{equation*}
         (\dot y, \ddot y)^\T = B\b u.
@@ -210,7 +210,7 @@ di sistemi rispettivamente controllabili e non controllaibli.
         B = (1, 1)^{\T}
     \end{equation*}
     allora $\b u$ si riduce ad uno scalare e
-    mi trovo nel caso della figura~\ref{fig:ex-uncontrollable}: non posso
+    mi trovo nel caso della \autoref{fig:ex-uncontrollable}: non posso
     controllare separatamente posizione e velocità del punto e la sua traiettoria
     è confinata ad una retta dello spazio delle fasi.
     Se prendo invece
@@ -223,7 +223,7 @@ di sistemi rispettivamente controllabili e non controllaibli.
         \right)
     \end{equation*}
     allora $\b u$ dipende da due parametri: $\b u = (u_1, u_2)^T$ e mi trovo
-    nel caso della figura~\ref{fig:ex-controllable}: il sistema
+    nel caso della \autoref{fig:ex-controllable}: il sistema
     è controllabile. $\b u = (1, 0)$ controlla solamente la posizione del punto
     e $\b u = (0, 1)$ ne controlla solo l'accelerazione.
     Posso verificare che solo nel secondo caso la matrice di controllabilità
@@ -291,7 +291,7 @@ Ho detto nella sezione~\ref{subsec:comportamento-asintotico} che la stabilità
 di un sistema lineare è determinata dagli autovalori della matrice associata.
 Il concetto di controllabilità di un sistema lineare si traduce nella possibilità
 di cambiare gli autovalori associati al sistema in modo arbitrario.
-Questo è dovuto al teorema~\ref{thm:eigenvalue-placement} che enuncio di seguito.
+Questo è dovuto al \autoref{thm:eigenvalue-placement} che enuncio di seguito.
 
 \begin{thm}[Scelta degli autovalori]
 

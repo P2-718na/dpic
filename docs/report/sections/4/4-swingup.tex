@@ -49,7 +49,7 @@ e cerco una strategia di controllo $a$ per cui
 \begin{equation*}
     \frac{dV}{dt}(\b x) < 0 \text{ con } \b x \neq \b 0,
 \end{equation*}
-secondo la proposizione~\ref{prop:condizione-sufficiente-ljapunov}.
+secondo la \autoref{prop:condizione-sufficiente-ljapunov}.
 Calcolo la derivata
 \begin{align*}
     \frac{dV}{dt} &= \totald t \left( \frac 1 2 \dot E^2\right) \\
@@ -68,7 +68,7 @@ La scelta più semplice è definire $a$ come funzione a tratti:
     \label{eq:bang-bang}
 \end{equation}
 con $a_{\max}$ l'accelerazione massima possibile per il sistema.
-La figura~\ref{fig:energy-control} mostra che questa strategia porta il sistema a
+La \autoref{fig:energy-control} mostra che questa strategia porta il sistema a
 zero.
 
 \begin{figure}
@@ -130,7 +130,7 @@ Uso la~\eqref{eq:dvdt}:
     &= -Eml \dot \theta \cos \theta \cdot a_{\max} \tanh(E \dot \theta \cos \theta). \numberthis\label{eq:a-ljapunov}
 \end{align*}
 ed è immediato verificare che la~\eqref{eq:a-ljapunov} è sempre negativa.
-La~\eqref{eq:control-strategy-tanh} è rappresentata in figura~\ref{fig:energy-control-better}.
+La~\eqref{eq:control-strategy-tanh} è rappresentata in \autoref{fig:energy-control-better}.
 
 Concludo osservando che la strategia che ho mostrato in questo paragrafo
 non tiene conto della posizione del carrello sulla rotaia.

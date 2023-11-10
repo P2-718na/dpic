@@ -41,19 +41,19 @@ Gli elementi dello spazio delle fasi sono i vettori colonna
 \begin{equation*}
     \b x = (q, v_q, \theta, v_\theta)^{\T}
 \end{equation*}
-e l'equazione del moto è nella forma~\ref{eq:sistema-non-lineare}:
+e l'equazione del moto è nella forma~\eqref{eq:sistema-non-lineare}:
 \begin{equation*}
     \dot {\b x}(t) = \left(
     \begin{aligned}
         &v_q \\
-        &\dot v_q = \text{ equazione~\ref{eq:moto-carrello-q}}\\
+        &\dot v_q = \text{ equazione~\eqref{eq:moto-carrello-q}}\\
         &v_\theta \\
-        &\dot v_\theta  = \text{ equazione~\ref{eq:moto-carrello-theta}}
+        &\dot v_\theta  = \text{ equazione~\eqref{eq:moto-carrello-theta}}
     \end{aligned}
     \right) = F(\b x, f).
 \end{equation*}
 
-Applico la~\ref{eq:formula-linearizzazione} e ottengo la forma linearizzata
+Applico la~\eqref{eq:formula-linearizzazione} e ottengo la forma linearizzata
 del sistema
 \begin{equation*}
         \dot {\b x} = A\b x + Bf \\
@@ -74,7 +74,7 @@ dove $d = (lm)^2-I(m+M)$.
 \todo{ricontrolla numeri.}
 
 Concludo osservando che il sistema è controllabile.
-Infatti, applicando la definizione~\ref{def:matrice-controllabilità}
+Infatti, applicando la \autoref{def:matrice-controllabilità}
 ottengo
 \begin{equation*}
     \mathcal C = \left(
