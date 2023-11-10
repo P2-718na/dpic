@@ -1,83 +1,77 @@
-\section{Stima dei parametri del sistema nel mondo reale}
-Non tutti i parametri descritti in tabella \ref{tab:parametri} sono calcolabili facilmente. In particolare, mi sono sconosciuti:
-\begin{itemize}
-    \item I parametri del motore.
-    \item Il momento d'inerzia del pendolo.
-\end{itemize}
-In questa sezione userò i dati raccolti dal sistema reale per ottenere una stima di questi parametri.
-Anche qui, mi conviene separare lo studio del pendolo dallo studio del motore.
+\section{Stima dei parametri del sistema}
+La maggior parte dei parametri possono essere misurati direttamente.
+Per i parametri del motore ed il momento d'inerzia del pendolo
+devo svolgere dei calcoli, che riporto in questo paragrafo.
 
-\subsection{Parametri del pendolo}
-La massa del pendolo si può misurare direttamente con una bilancia.
-Anche la posizione del centro di massa è facile da trovare, bilanciando
-il pendolo su un supporto e misurando la distanza tra questo e l'estremità.
-Il momento d'inerzia è difficile da calcolare direttamente, visto che il
-pendolo che ho usato è stato realizzato tramite la stampa 3d e, di conseguenza,
-è estremamente disomogeneo all'interno; si può ricavare misurando
-il periodo $\tau_{osc}$ di oscillazione del pendolo.
+\subsection{Momento d'inerzia del pendolo}
+Il pendolo che ho usato per l'esperimento è stato realizzato con la stampa-3D,
+quindi non posso calcolarne il momento d'inerzia $I$ con una semplice integrazione
+(il materiale è estremamente disomogeneo all'interno).
+Posso stimare $I$ conoscendo il periodo delle piccole oscillazioni $\tau_{osc}$.
+
 L'equazione del moto, nel regime delle piccole oscillazioni, è:
-\begin{equation*}
-    J \ddot \theta = mgL \sin \theta \approx mgL \theta
-\end{equation*}
+\begin{align*}
+    I \ddot \theta &= mgl \sin \theta \\
+        &\approx mgl \theta
+\end{align*}
 da cui
-\begin{align}
-    \omega &= \sqrt{\frac {m g L} J},\\
-    \tau_{osc} &= \frac{2\pi}\omega = 2\pi \sqrt{\frac J {mgL}}.
-    \label{eq:tau-osc}
-\end{align}
-La~\eqref{eq:tau-osc} permette di ricavare $J$ e fornisce una scala
-di tempo per il sistema.
+\begin{align*}
+         \omega &= \frac{2\pi}{\tau_{osc}} = \sqrt{\frac {m g l} I},\\
+         \tau_{osc} &=2\pi \sqrt{\frac I {mgl}}. \numberthis\label{eq:tau-osc}
+\end{align*}
+La~\eqref{eq:tau-osc} permette di ricavare $I$.
 
 
 \subsection{Parametri del motore}
 \label{subsec:parametri-motore}
-Per determinare i parametri del motore, osservo come si comporta il sistema del solo
-carrello, quando applico una \ddp $u$ costante ai capi del motore.
+Per determinare i parametri del motore osservo il comportamento del solo
+carrello quando applico un segnale $u$ costante al motore.
 L'equazione che regola il comportamento del motore è la \eqref{eq:caratteristica-motore}.
-Se scollego il pendolo dal carrello, l'espressione per la forza $f$
-esercitata dal motore è data dalla legge di Newton:
+L'espressione per la forza $f$
+esercitata dal motore è data dalla legge di Newton
 \begin{equation}
     f = M \ddot q.
     \label{eq:newton-motore}
 \end{equation}
-Ora considero la sostituzione
-\begin{equation}
+Inserisco la~\eqref{eq:newton-motore} nella~\eqref{eq:caratteristica-motore}
+e applico la sostituzione
+\begin{equation*}
+    \left\{
     \begin{aligned}
-    \dot q \mapsto v \\
-    \ddot q \mapsto \dot v
+        \dot q \mapsto v \\
+        \ddot q \mapsto \dot v
     \end{aligned}
+    \right.
+    _.
     \label{eq:sostituzione-motore}
-\end{equation}
-e inserendo \eqref{eq:newton-motore} e\eqref{eq:sostituzione-motore} dentro a \eqref{eq:caratteristica-motore}
-ottengo l'equazione di una legge esponenziale:
+\end{equation*}
+Ottengo
 \begin{equation*}
     \dot v = \frac{u - B v} {Am}.
 \end{equation*}
-Fisso la condizione iniziale $v(0) = 0$ e ottengo la soluzione:
+Fisso la condizione iniziale $v(0) = 0$ e ottengo
 \begin{equation}
     v(t) = \frac u B \left(1 - e^{-\frac B {Am} t}\right).
     \label{eq:equazione-fit-motore}
 \end{equation}
 I parametri $A$ e $B$ sono costanti quindi, variando $u$, mi aspetto di trovare
-una famiglia di curve con cui fittare la \eqref{eq:equazione-fit-motore}.
+una famiglia di curve con cui svolgere un \emph{fit} per la~\eqref{eq:equazione-fit-motore}.
 
-In questa trattazione ho trascurato l'attrito tra carrello e rotaia.
-Visto che il carrello scorre sulla rotaia attraverso dei cuscinetti,
-l'attrito si può approssimare come costante.
-Nel paragrafo ?? \todo{ref sezione risultati} mostrerò che in effetti questo attrito
-è trascurabile.
-\todo {traduci?}
-Non è trascurabile invece il \emph{cogging torque} $\tau_c$ del motore,
-dovuto all'interazione tra i magneti permanenti e le armature. $\tau_c$ ha
-l'andamento descritto in figura \ref{fig:cogging} ed è predominante quando $\omega$ è
+Restano da considerare gli attriti.
+Il carrello scorre sopra a dei cuscinetti,
+quindi posso considerare l'attrito carrello-rotaia come costante.
+Fa parte degli attriti anche la \emph{coppia d'impuntamento} $\tau_c$ del motore,
+dovuta all'interazione tra i magneti permanenti e le armature. $\tau_c$ ha
+l'andamento descritto in \autoref{fig:cogging} ed è predominante quando $\omega$ è
 piccola.
-L'approccio che ho usato per ridurne l'effetto è descritto nel paragrafo ?? \todo{anche qui paragrafo}.
+Posso correggere entrambi gli attriti aggiungendo un offset a $u$.
+
 
 %fixme i have no idea what this does but i used it so that the figure next doesn't span across
-the whole page.
-\makeatletter
-\setlength{\@fptop}{0pt}
-\makeatother
+%the whole page.
+%\makeatletter
+%\setlength{\@fptop}{0pt}
+%\makeatother
 
 \begin{figure}[t]
     \centering
