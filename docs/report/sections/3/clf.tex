@@ -62,13 +62,13 @@ Enuncio la definizione di \emph{funzione di controllo di Ljapunov}.
 \end{definition}
 
 \begin{definition}
-    Se nella definizione~\ref{def:clf-local} l'intorno $\mathcal O$ coincide
+    Se nella \autoref{def:clf-local} l'intorno $\mathcal O$ coincide
     con tutto lo spazio delle fasi $\Sigma$ allora $V$ è una
     \textbf{funzione di controllo di Ljapunov}.
     \label{def:clf}
 \end{definition}
 
-Le definizioni~\ref{def:clf-local} e~\ref{def:clf} valgono anche per sistemi
+Le Definizioni~\ref{def:clf-local} e~\ref{def:clf} valgono anche per sistemi
 senza controlli; in questo caso $V$ è chiamata solamente \emph{funzione (locale) di Ljapunov}.
 Il termine (\emph{locale}) tra parentesi indica che l'affermazione è da intendersi valida
 sia che il termine \emph{locale} sia presente o meno.
@@ -98,7 +98,7 @@ controllo che porti il sistema verso $\b x^*$ in un tempo infinito.
 Per chiarezza, divido la dimostrazione in più passaggi; dimostro prima la versione locale
 del teorema e poi quella globale.
 \begin{steps}
-    \item Grazie alla prorpietà (1) della definizione~\ref{def:clf-local}
+    \item Grazie alla prorpietà (1) della \autoref{def:clf-local}
     posso scegliere un numero $\alpha_0$ tale che l'insieme
     \begin{equation}
         C = \left\{ x\ |\ V(x) \leq \alpha_0 \right\} \subset \mathcal O
@@ -134,7 +134,7 @@ del teorema e poi quella globale.
         K = \bar{\mathcal W} \bigcap C,
     \end{equation*}
     dove $\bar{\mathcal W}$ indica il complementare di $\mathcal W$.
-    La costruzione per la dimostrazione è mostrata in figura~\ref{fig:ljapunov-dim-aff1}.
+    La costruzione per la dimostrazione è mostrata in \autoref{fig:ljapunov-dim-aff1}.
 
     \hfill
     \begin{minipage}{.8\textwidth}
@@ -156,7 +156,7 @@ del teorema e poi quella globale.
     \begin{equation*}
         V(\b x) = 0
     \end{equation*}
-    e dalla proprietà (2) della definizione~\ref{def:clf-local}
+    e dalla proprietà (2) della \autoref{def:clf-local}
     segue che
     \begin{equation*}
         \b x = \b x^*.
@@ -178,7 +178,7 @@ del teorema e poi quella globale.
     \end{equation}
 
 
-    \item Osservo che la proprietà (3) della definizione~\ref{def:clf-local}
+    \item Osservo che la proprietà (3) della \autoref{def:clf-local}
     garantisce che per ogni stato $\b y \in \mathcal O$ e $\b y \neq \b x^*$ esiste
     almeno uno stato ben raggiungibile da $\b y$.
     Inoltre vale la proprietà transitiva, ovvero, se $\b y$ è raggiungibile da $\b x$
@@ -244,7 +244,7 @@ del teorema e poi quella globale.
         &\zeta(t) = \b y, \\
         &V[\zeta(s)] \leq V(\b z), \ \forall s \in [0, t[ \subseteq \mathcal T.
     \end{align*}
-    La costruzione per la dimostrazione è mostrata in figura~\ref{fig:ljapunov-dim-aff2}.
+    La costruzione per la dimostrazione è mostrata in \autoref{fig:ljapunov-dim-aff2}.
 
     \hfill
     \begin{minipage}{.8\textwidth}

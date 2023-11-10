@@ -29,14 +29,14 @@ Posso formulare un problema di controllo ottimale definendo una funzione costo.
     \end{equation}
     con $\b x = \b x(s)$ e $\b u = \b u(s)$.
     La strategia di controllo $\b u = K\b x$ con $K \in \M_{n\times m}(\R)$ scelta in modo da
-    minimizzare la funzione costo~\ref{eq:lqr-cost} per $t \to +\infty$ è
+    minimizzare la funzione costo~\eqref{eq:lqr-cost} per $t \to +\infty$ è
     detta \textbf{regolatore lineare quadratico (\textsc{LQR}}).
     \label{def:lqr}
 \end{definition}
-Le matrici $Q$ ed $R$ nella definizione~\ref{def:lqr} rappresentano rispettivamenge
+Le matrici $Q$ ed $R$ nella \autoref{def:lqr} rappresentano rispettivamenge
 il costo della deviazione dello stato del sistema da $\b 0$ e il costo dell'attuazione del
 controllo.
-Nella sezione~\ref{subsec:derivazione-riccati} mostrerò che la soluzione per $K$ è
+Nel paragrafo~\ref{subsec:derivazione-riccati} mostrerò che la soluzione per $K$ è
 \begin{equation}
     K = R^{-1}BP
     \label{eq:riccati-K}

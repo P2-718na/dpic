@@ -63,7 +63,7 @@ In generale, l'obiettivo che ci si pone è trovare una funzione di controllo $\o
 (o $\b u$ per i sistemi lineari) che alteri l'evoluzione dello stato del sistema $\b x$ a piacimento.
 Nel paragrafo~\ref{subsec:condizioni-controllabilità} troverò una condizione sufficiente
 alla realizzazione di questo scopo.
-Prima di proseguire preciso che anche se nella definizione~\ref{def:problema-di-controllo}
+Prima di proseguire preciso che anche se nella \autoref{def:problema-di-controllo}
 ho preso $\omega$ funzione del tempo,
 in questo testo assumerò che conoscere lo stato del sistema $\b x$
 a un certo istante di tempo $t$ sia sufficiente a determinare la funzione di controllo
@@ -79,7 +79,7 @@ Intuitivamente, la nozione di controllabilità riguarda la possibilità di porta
 in uno stato arbitrario, partendo da una qualsiasi condizione iniziale.
 Ne enuncio la definizione.
 \begin{definition}
-    Un problema di controllo descritto dall'equazione del moto~\ref{eq:sistema-non-lineare}
+    Un problema di controllo descritto dall'equazione del moto~\eqref{eq:sistema-non-lineare}
     è detto \textbf{controllabile} se per qualsiasi $t \in \mathcal T$ e per qualsiasi $\b x_0, \b x_1 \in \Sigma$
     esiste una funzione di controllo $\omega \in  \mathcal U^{[0, t[ \subseteq \mathcal T}$ tale che
     \begin{equation*}
@@ -99,7 +99,7 @@ la controllabilità dipende solamente dalla \emph{matrice di controllabilità} d
     è detta \textbf{matrice di controllabilità} del sistema.
     \label{def:matrice-controllabilità}
 \end{definition}
-Nella definizione~\ref{def:matrice-controllabilità}, la matrice $\mathcal C$ è
+Nella \autoref{def:matrice-controllabilità}, la matrice $\mathcal C$ è
 da intendere come accostamento delle matrici $n \times m$ date dal prodotto delle
 potenze di $A$ per $B$.
 Dimostro ora una proposizione che fornisce una condizione sufficiente per
@@ -113,7 +113,7 @@ la controllabilità di un sistema lineare a tempo continuo.
 \emph{Dimostrazione.}
 Vale l'ipotesi $\rank(\mathcal C) = n$.
 La dimostrazione si basa sulla costruzione di una strategia di controllo $\b u(t)$
-che soddisfi la definizione~\ref{def:controllabilità} di controllabilità.
+che soddisfi la \autoref{def:controllabilità} di controllabilità.
 Per chiarezza, divido la dimostrazione in più passaggi.
 \begin{steps}
     \item Definisco il \emph{Gramiano di controllabilità} del sistema
@@ -166,7 +166,7 @@ Per chiarezza, divido la dimostrazione in più passaggi.
         \b u(s) = B^\T e^{-A^\T s} \Wc^{-1} e^{-At} (\b x_1 - \b x_0) \in \mathcal U^{[0, t[}
     \end{equation*}
     con $\b x_0 = \b x(0)$ e $\b x_1$ è lo stato del sistema che voglio raggiungere al tempo $t$.
-    Applico la~\ref{eq:soluzione-lineare-non-omogeneo}:
+    Applico la~\eqref{eq:soluzione-lineare-non-omogeneo}:
     \begin{align*}
         \b x(t) &= \b x_0+ \int_0^t e^{A(t-s)} B \b u(s)\ ds \\
                 &= \b x_0 + (\b x_1 - \b x_0) \int_0^t e^{A(t-s)} B B^\T e^{-A^\T s} \Wc^{-1} e^{-At}\ ds \\

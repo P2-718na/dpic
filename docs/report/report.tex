@@ -20,6 +20,10 @@
 \usepackage{floatrow}
 \usepackage{empheq}
 
+\addto\extrasitalian{%
+    \def\subsectionautorefname{paragrafo}%
+    \def\sectionautorefname{paragrafo}%
+}
 
 \newcommand*{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}

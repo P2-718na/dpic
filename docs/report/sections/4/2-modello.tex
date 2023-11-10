@@ -2,7 +2,7 @@
 Il sistema consiste in un pendolo rigido, libero di ruotare e vincolato a muoversi lungo una rotaia rettilinea tramite un carrello.
 L'unico controllo che ho sul sistema è
 una forza applicata sul carrello lungo la direzione della rotaia,
-così come è mostrato in figura~\ref{fig:pic}.
+così come è mostrato in \autoref{fig:pic}.
 Io sono interessato
 ad applicare questo studio nel mondo reale, quindi devo tenere
 in considerazione che la forza è generata da un motore in risposta
@@ -10,7 +10,7 @@ a un segnale di input; in particolare, uso un motore elettrico a corrente contin
 spazzolato. Visto che il motore è un sistema dinamico in sé,
 è conveniente modellarlo separatamente rispetto al sistema
 carrello-pendolo.
-In figura~\ref{fig:pic-real} è
+In \autoref{fig:pic-real} è
 mostrato uno schema del sistema reale.
 
 \begin{figure}[h]
@@ -38,7 +38,7 @@ mostrato uno schema del sistema reale.
 
 \subsection{Pendolo e carrello}
 Riporto i parametri e le variabili d'interesse per il sistema in 
-tabella~\ref{tab:parametri} e ricavo le equazioni del moto
+\autoref{tab:parametri} e ricavo le equazioni del moto
 usando l'approccio Lagrangiano.
 Energia cinetica e potenziale sono
 \begin{align*}
@@ -136,7 +136,7 @@ La stabilità è data da considerazioni fisiche
 \todo{fix reference}
 %{https://homepages.laas.fr/lzaccari/seminars/DCmotors.pdf}
 Lavoro con un motore \textsc{DC} spazzolato.
-Riporto i parametri e le variabili d'interesse per il motore in tabella~\ref{tab:parametri-motore}.
+Riporto i parametri e le variabili d'interesse per il motore in \autoref{tab:parametri-motore}.
 Si può ricavare che valgono le equazioni
 \begin{subequations}
     \begin{empheq}[left=\empheqlbrace,right=_.]{align}
@@ -156,7 +156,7 @@ e inserendo la~\eqref{eq:jdot} nella~\eqref{eq:motore-1} ottengo
         u = \frac {L_a} {K_m} \dot\tau + \frac{R_a}{K_m}  \tau + K_e \omega.
         \label{eq:u-motore}
 \end{equation}
-Considero la~\ref{eq:u-motore} in regime stazionario\footnote{
+Considero la~\eqref{eq:u-motore} in regime stazionario\footnote{
 Spiegherò il motivo di questa scelta nel paragrafo~\ref{sec:sistema-reale}.
 } ($\dot \tau = 0$).
 Dato che $\tau \propto f$ e $\omega \propto \dot q$ ottengo
