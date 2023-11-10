@@ -43,8 +43,7 @@
         \listoffigures      % Or \listoffigures*
         \cleartorecto
         \listoftables       % Or \listoftables*
-        \cleartorecto
-        \printglossary[title=Glossario, toctitle=Glossario]
+        %\cleartorecto
 
        \part*{Teoria del controllo: il pendolo invertito su rotaia}
       %  \addcontentsline{toc}{chapter}{\titolo}
@@ -65,7 +64,10 @@
 
     %        \include{sections/appendixA}
 
-
+    \backmatter
     %\bibliographystyle{unsrt} % We choose the "plain" reference style
     %\bibliography{dpicRefs}
+    \cleartorecto
+    \include{sections/conclusioni}
+    %\printglossary[title=Glossario, toctitle=Glossario]
 \end{document}
