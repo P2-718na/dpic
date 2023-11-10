@@ -1,4 +1,4 @@
-\section{L'esperimento nel mondo reale}
+\section{Il sistema nel mondo reale}
 \label{sec:sistema-reale}
 Il sistema che ho costruito è mostrato in \autoref{fig:foto-sistema}.
 
@@ -7,11 +7,14 @@ Il sistema che ho costruito è mostrato in \autoref{fig:foto-sistema}.
     \includegraphics[width=\textwidth]{assets/foto-pendolo}
     %todo
     %todo
-    \caption[Foto dell'esperimento]{aaaaaa}
+    \caption[Foto del sistema]{Foto del sistema che ho costruito.
+    Le componenti sono descritte nei
+    paragrafi~\ref{subsec:componenti-elettroniche} e~\ref{subsec:componenti-meccaniche}.}
     \label{fig:foto-sistema}
 \end{figure}
 
 \subsection{Componenti elettroniche}
+\label{subsec:componenti-elettroniche}
 Riporto di seguito le componenti elettroniche rilevanti del sistema.
 \begin{itemize}
     \item Due encoder ottici rotativi modello \emph{LPD3806} misurano l'angolo
@@ -33,17 +36,21 @@ Riporto di seguito le componenti elettroniche rilevanti del sistema.
     e agli encoder.
 \end{itemize}
 
-Un encoder rotativo funziona inviando un segnale elettrico ogni volta che
-viene rilevata una rotazione di una frazione di angolo.
+Un encoder rotativo opera inviando un segnale elettrico ogni volta che
+viene rilevata una rotazione di una certa frazione di angolo.
 Per misurare l'angolo è quindi necessario contare il numero di impulsi
 ricevuti.
 I microcontrollori \emph{ESP-32} hanno un processore a \emph{due core}.
-Ho scelto di usare questi così da poter usare un core in ciascuno solo per
+Questo mi permette di usare un core in ciascuno solo per
 contare gli impulsi.
 L'altro core si occupa, in un caso, di inviare dati all'altro microcontrollore
 e, nell'altro, di ricevere dati e di inviare il segnale di controllo al motore.
 
+Osservo che nel sistema non è presente un sensore di corrente in ingresso al motore.
+Questo è il motivo della scelta fatta nel paragrafo~\ref{subsec:modello-motore}.
+
 \subsection{Componenti meccaniche}
+\label{subsec:componenti-meccaniche}
 Ho usato prevalentemente componenti standard di \emph{OpenBuilds},
 assieme a supporti realizzati con la stampa-3D.
 Riporto di seguito le componenti meccaniche rilevanti del sistema.

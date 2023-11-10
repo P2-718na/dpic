@@ -57,14 +57,14 @@ Fisso la condizione iniziale $v(0) = 0$ e ottengo
 I parametri $A$ e $B$ sono costanti quindi, variando $u$, mi aspetto di trovare
 una famiglia di curve con cui svolgere un \emph{fit} per la~\eqref{eq:equazione-fit-motore}.
 
-Restano da considerare gli attriti.
+Restano da modellare gli attriti.
 Il carrello scorre sopra a dei cuscinetti,
 quindi posso considerare l'attrito carrello-rotaia come costante.
 Fa parte degli attriti anche la \emph{coppia d'impuntamento} $\tau_c$ del motore,
 dovuta all'interazione tra i magneti permanenti e le armature. $\tau_c$ ha
 l'andamento descritto in \autoref{fig:cogging} ed è predominante quando $\omega$ è
 piccola.
-Posso correggere entrambi gli attriti aggiungendo un offset a $u$.
+Correggo entrambi gli attriti aggiungendo un offset a $u$.
 
 
 %fixme i have no idea what this does but i used it so that the figure next doesn't span across
@@ -73,7 +73,7 @@ Posso correggere entrambi gli attriti aggiungendo un offset a $u$.
 %\setlength{\@fptop}{0pt}
 %\makeatother
 
-\begin{figure}[t]
+\begin{figure}[H]
     \centering
     \includegraphics{assets/cogging-torque}
     \caption[Cogging torque]{Cogging toque del motore.}

@@ -68,19 +68,19 @@ con
                 0&0&\frac{glm(m+M)}{-d}&0\\
             \end{array}
         \right),\
-    B = \left(\begin{array}{c}0\\\frac{I}{-d}\\0\\\frac{lm}{d}\end{array}\right)f.
+    B = \left(\begin{array}{c}0\\\frac{I}{-d}\\0\\\frac{lm}{d}\end{array}\right)f,
 \end{equation*}
 dove $d = (lm)^2-I(m+M)$.
 \todo{ricontrolla numeri.}
 
 Concludo osservando che il sistema è controllabile.
 Infatti, applicando la definizione~\ref{def:matrice-controllabilità}
-si ottiene
+ottengo
 \begin{equation*}
     \mathcal C = \left(
         \begin{array}{cccc}
-            0&\frac J {-d}&0&\frac{lm} d\\
-            \frac J {-d}&0&\frac{lm} d&0\\
+            0&\frac I {-d}&0&\frac{lm} d\\
+            \frac I {-d}&0&\frac{lm} d&0\\
             0&\frac{g(lm)^3}{d^2}&0&\frac{g(lm)^2(m+M)}{-d^2}\\
             \frac{g(lm)^3}{d^2}&0&\frac{g(lm)^2(m+M)}{-d^2}&0\\
         \end{array}
@@ -94,8 +94,6 @@ Fisso i coefficienti della funzione costo.
 In $\b x = 0$ la matrice Hessiana dell'energia cinetica è
 semidefinita positiva, mentre l'Hessiana del potenziale è
 semidefinita negativa.
-Quindi l'hessiana di $T - V$ è semidefinita positiva e
-la posso usare come matrice di costo $Q$,
 Quindi l'Hessiana di $T - V$ è semidefinita positiva e
 la posso usare come matrice di costo $Q$,
 così da dare alla quantità

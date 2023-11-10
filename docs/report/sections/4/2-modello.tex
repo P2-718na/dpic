@@ -6,8 +6,7 @@ così come è mostrato in figura~\ref{fig:pic}.
 Io sono interessato
 ad applicare questo studio nel mondo reale, quindi devo tenere
 in considerazione che la forza è generata da un motore in risposta
-a un segnale di input.
-Il motore che prendo in considerazione è un motore elettrico
+a un segnale di input; in particolare, uso un motore elettrico a corrente continua
 spazzolato. Visto che il motore è un sistema dinamico in sé,
 è conveniente modellarlo separatamente rispetto al sistema
 carrello-pendolo.
@@ -133,6 +132,7 @@ La stabilità è data da considerazioni fisiche
 \egroup
 
 \subsection{Motore}
+\label{subsec:modello-motore}
 \todo{fix reference}
 %{https://homepages.laas.fr/lzaccari/seminars/DCmotors.pdf}
 Lavoro con un motore \textsc{DC} spazzolato.
@@ -186,7 +186,7 @@ dipende quindi solo da due parametri $A$ e $B$ determinabili sperimentalmente.
         \hline
         $K_m$ & Costante meccanica del motore. \\
         \hline
-        $u$ & \ddp tra le armature. \\
+        $u$ & Differenza di potenziale tra le armature. \\
         \hline
         $J$ & Corrente che scorre nelle armature. \\
         \hline

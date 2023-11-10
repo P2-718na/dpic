@@ -57,7 +57,7 @@ Calcolo la derivata
     &=  E (-mal \dot \theta \cos \theta) \numberthis\label{eq:dvdt}.
 \end{align*}
 La scelta più semplice è definire $a$ come funzione a tratti:
-\begin{equation*}
+\begin{equation}
     a = \left\{
     \begin{aligned}
          &a_{\max}\sign{\dot \theta \cos \theta} &\text{ se } E < 0 \\
@@ -65,7 +65,8 @@ La scelta più semplice è definire $a$ come funzione a tratti:
          &0 &\text{ altrimenti}
     \end{aligned}
     \right.
-\end{equation*}
+    \label{eq:bang-bang}
+\end{equation}
 con $a_{\max}$ l'accelerazione massima possibile per il sistema.
 La figura~\ref{fig:energy-control} mostra che questa strategia porta il sistema a
 zero.
@@ -75,16 +76,42 @@ zero.
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{assets/energy-control1}
-        \caption{aaaaa}
+        \caption{$\cos\theta < 0$}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{assets/energy-control2}
-        \caption{bbbbb}
+        \caption{$\cos\theta > 0$}
     \end{subfigure}
-    \caption{Schema del sistema.} %todo
+    \caption[Swing-up con funzione segno]{Strategia di swing-up con funzione segno.
+    Nel grafico, il colore indica l'intensità dell'accelerazione $a$: il bianco
+    corrisponde a un accelerazione verso destra e il nero ad un accelerazione verso sinistra.
+    In modulo, l'accelerazione è sempre uguale. L'effetto del controllo, rappresentato dalle frecce, è
+    di portare il sistema nella configurazione in cui $E = 0$.} %todo
     \label{fig:energy-control}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{assets/energy-control3}
+        \caption{$\cos\theta < 0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{assets/energy-control4}
+        \caption{$\cos\theta > 0$}
+    \end{subfigure}
+    \caption[Swing-up con tangente iperbolica]{Strategia di di swing-up con
+    tangente iperbolica.
+    Nel grafico, il colore indica l'intensità dell'accelerazione $a$: più è tendente al bianco, più è forte l'accelerazione verso destra e viceversa per il nero.
+    L'effetto del controllo, rappresentato dalle frecce, è
+    di portare il sistema nella configurazione in cui $E = 0$. I colori
+    mostrano come questa strategia di controllo sia meno brusca della \eqref{eq:bang-bang}.} %todo
+    \label{fig:energy-control-better}
 \end{figure}
 
 La funzione segno nella~\eqref{eq:bang-bang} la rende difficile da studiare
@@ -104,23 +131,6 @@ Uso la~\eqref{eq:dvdt}:
 \end{align*}
 ed è immediato verificare che la~\eqref{eq:a-ljapunov} è sempre negativa.
 La~\eqref{eq:control-strategy-tanh} è rappresentata in figura~\ref{fig:energy-control-better}.
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{assets/energy-control3}
-        \caption{aaaaa}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{assets/energy-control4}
-        \caption{bbbbb}
-    \end{subfigure}
-    \caption{Schema del sistema.} %todo
-    \label{fig:energy-control-better}
-\end{figure}
 
 Concludo osservando che la strategia che ho mostrato in questo paragrafo
 non tiene conto della posizione del carrello sulla rotaia.
