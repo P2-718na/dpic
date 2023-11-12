@@ -5,8 +5,8 @@
 
 
 // Constants 
-#define RPWM_OUT 32
-#define LPWM_OUT 33
+#define RPWM_OUT 33
+#define LPWM_OUT 32
 #define RPWM_CHANNEL 0
 #define LPWM_CHANNEL 1
 
