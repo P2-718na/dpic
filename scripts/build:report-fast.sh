@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #incomplete build without bibtex
-for i in {1..5}
+for i in {1..6}
 do
   mkdir -p ./docs/report/build/sections/$i
 done;
