@@ -223,6 +223,17 @@ $\theta(0) \leq 1$.
 
 
 \subsection{Comportamento in seguito a una perturbazione}
+Il sistema, stabilizzato a $\b 0$, è resistente alle perturbazioni.
+In \autoref{fig:swag1} e \autoref{fig:swag2} ho riportato il
+comportamento del sistema dopo una perturbazione (un colpo con
+una bacchetta).
+Ho riportato anche il comportamento previsto dal mio modello,
+entro una certa incertezza.
+L'incertezza che ho usato è valore indicativo
+che tiene conto dell'errore sulle condizioni iniziali e
+dell'errore dovuto al rumore dei sensori.
+L'andamento del sistema reale è riprodotto
+dal modello in modo soddisfacente.
 
 
 
@@ -231,19 +242,23 @@ $\theta(0) \leq 1$.
     \begin{subfigure}[]{\textwidth}
         \centering
         \includegraphics[width=\textwidth]{assets/x-plot}
-        \caption{$\b x_0 = (0, 0, .8, 0)^\T$}
     \end{subfigure}
-
+    \\[5ex]
     \begin{subfigure}[]{\textwidth}
         \centering
         \includegraphics[width=\textwidth]{assets/v-plot}
-        \caption{$\b x_0~=~(0, 0, .9, 0)^\T$}
     \end{subfigure}
 
-    \caption[swag]{
-        swag
+    \caption[Resistenza alle perturbazioni: posizione e velocità]{
+        Andamento reale di posizione e velocità del carrello,
+        paragonate alla traiettoria prevista dal modello.
+        La posizione raggiunge lo zero più lentamente di quanto previsto,
+        mentre la velocità è riprodotta abbastanza fedelmente.
+        Il rumore nelle misure di velocità sembra avere una natura periodica
+        e probabilmente è causato da un allineamento non perfetto dell'encoder
+        ottico.
     }
-    \label{fig:swag}
+    \label{fig:swag1}
 \end{figure}
 
 
@@ -252,17 +267,21 @@ $\theta(0) \leq 1$.
     \begin{subfigure}[]{\textwidth}
         \centering
         \includegraphics[width=\textwidth]{assets/a-plot}
-        \caption{$\b x_0 = (0, 0, .8, 0)^\T$}
     \end{subfigure}
-
+    \\[5ex]
     \begin{subfigure}[]{\textwidth}
         \centering
         \includegraphics[width=\textwidth]{assets/w-plot}
-        \caption{$\b x_0~=~(0, 0, .9, 0)^\T$}
     \end{subfigure}
 
-    \caption[swag]{
-        swag
+    \caption[Resistenza alle perturbazioni: angolo e velocità angolare]{
+        Andamento reale di angolo e velocità angolare del pendolo,
+        paragonate alla traiettoria prevista dal modello.
+        Il modello riproduce fedelmente l'andamento di entrambe.
+        Il rumore che si osserva quando il sistema è vicino a $0$
+        è dovuto al fatto che il motore non riesce a operare in modo
+        regolare a basse potenze ed esegue invece dei piccoli
+        scatti per mantenere il controllo.
     }
-    \label{fig:swag}
+    \label{fig:swag2}
 \end{figure}
