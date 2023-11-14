@@ -10,13 +10,13 @@ void State::init() {
 float State::optimalControl() {
  // return 1;
  // SIngle pendulum
-  return (3.63*x + 2.77*v + 9.89*a1 + 1.18*w1);
+  return (6.63*x + 6.77*v + 12.89*a1 + 1.5*w1);
   return -(1.8*x + 2.9*v - 30*a1 - 0.97*w1 + 80.5*a2 + 8.00*w2)*.1;
 }
 
 bool State::controllable() {
   //return x <.6 && x >.01;
-  return (a1 > -.8  && a1 < .8 && x < .37 && x > -.37);
+  return (a1 > -.6  && a1 < .6 && x < .35 && x > -.35 && abs(w1) < 6 && abs(v) < 2);
   return (a1 > -.8  && a1 < .8 && x < .35 && x > -.35 && a2 > -.5  && a2 < .5);
 }
 
@@ -25,23 +25,22 @@ void State::updateControl() {
   if (!controllable()) {
     currentControl = 0;
 
-    constexpr float aMax = 10;
-    cosnt float ctrl = tanh(
-        cos(a1) * w1 (
-                      0.0243628 * (-1 + cos(a1)) +
-                      0.00018 * w1*w1
-                      )
-    )
+    constexpr float aMax = 18;
+    const float E = .0243628 * (cos(a1) - 1) + .00018 * w1*w1;
 
-    if (abs(a1) > 1 && x < .3 && x > -.3 && abs(v) < 2) {
+    const float ctrl = aMax * tanh(
+        (E -.010) * w1 * cos(a1)
+    );
+
+    if (abs(a1) > 2 && x < .3 && x > -.3) {
       currentControl = ctrl;
     }
 
     return;
   }
 
-  Serial.print(millis());
-  Serial.println("+");
+  //Serial.print(millis());
+  //Serial.println("+");
   currentControl = optimalControl();
 }
 
@@ -73,13 +72,13 @@ void State::updateMotor() {
 
 void State::print() {
   Serial.print("( ");
-  Serial.print(x);
+  Serial.print(x*10);
   Serial.print(", ");
-  Serial.print(v);
+  Serial.print(v*10);
   Serial.print(", ");
-  Serial.print(a1);
+  Serial.print(a1*10);
   Serial.print(", ");
-  Serial.print(w1);
+  Serial.print(w1*10);
   Serial.print(", ");
   Serial.print(a2);
   Serial.print(", ");
