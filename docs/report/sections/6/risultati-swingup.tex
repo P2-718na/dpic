@@ -42,8 +42,7 @@ l'intervallo di controllabilità prima della fine della rotaia.
 Ho risolto questo problema adottando alcuni accorgimenti.
 \begin{itemize}
     \item A parità di accelerazione, il motore trasferisce più
-    energia al pendolo quando $|\theta| \approx \pi$, come costrato
-    in \autoref{fig:dvdt}.
+    energia al pendolo quando $|\theta| \approx \pi$\footnotemark.
     Ho quindi fissato un intervallo per $|\theta| < \theta_{\min} $ in cui il
     controllo è azzerato.
 
@@ -56,6 +55,9 @@ Ho risolto questo problema adottando alcuni accorgimenti.
     così da ridurre lo spazio che il carrello deve percorrere prima
     di tornare verso $q = 0$.
 \end{itemize}
+
+\footnotetext{Per convincersene, è sufficiente studiare l'andamento
+della~\eqref{eq:dvdt} per un valore abritrario di $\dot \theta \neq 0$.}
 I parametri finali che ho usato per il sistema reale sono riportati
 in \autoref{tab:parametri-swingup}
 
@@ -76,9 +78,9 @@ L'osservazione di uno dei due comportamenti dipende
 dalla forza massima che il motore riesce ad esercitare sul carrello.
 Se la forza è abbastanza alta, si osserva il comportamento~(1),
 altrimenti il comportamento~(2).
-In \autoref{fig:swingup-real-one} e \autoref{fig:swingup-real-multiple}
-è riportato l'andamento del sistema nei due casi.
 
+Riporto in \autoref{fig:swingup-real-one} solamente i dati relativi al comportamento~(1), in quanto sono
+sufficienti per mostrare la logica seguita dall'equazione~\eqref{eq:control-strategy-tanh}.
 Una descrizione più dettagliata di tutti i possibili casi è disponibile in
 %todo cite paper swingup
 
@@ -100,7 +102,7 @@ sia sui parametri del motore, sia sugli attriti dei cuscinetti,
     \\[5ex]
     \begin{subfigure}[]{\textwidth}
         \centering
-        \includegraphics[width=.75\textwidth]{assets/polar-swingup-real}
+        \includegraphics[width=.8\textwidth]{assets/polar-swingup-energy}
         \caption{Energia del pendolo in funzione di angolo e
         velocità angolare quadratica.
         La velocità angolare elevata al quadrato è riportata sull'asse
@@ -113,5 +115,7 @@ sia sui parametri del motore, sia sugli attriti dei cuscinetti,
     }
     \label{fig:swingup-real-one}
 \end{figure}
+
+
 \todo{add proper figure description}
 
