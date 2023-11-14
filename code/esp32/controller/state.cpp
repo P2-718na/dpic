@@ -1,4 +1,5 @@
 #include "state.h"
+#include "math.h"
 
 State::State() : printInterval(Interval(25)), controlInterval(Interval(5)), currentControl(0) {}
 
@@ -24,8 +25,16 @@ void State::updateControl() {
   if (!controllable()) {
     currentControl = 0;
 
-    if (abs(a1) > 2.8 && x < .3 && x > -.3 && abs(v) < .6 ) {
-      currentControl = w1/3;
+    constexpr float aMax = 10;
+    cosnt float ctrl = tanh(
+        cos(a1) * w1 (
+                      0.0243628 * (-1 + cos(a1)) +
+                      0.00018 * w1*w1
+                      )
+    )
+
+    if (abs(a1) > 1 && x < .3 && x > -.3 && abs(v) < 2) {
+      currentControl = ctrl;
     }
 
     return;
