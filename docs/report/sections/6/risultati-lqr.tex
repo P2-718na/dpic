@@ -1,21 +1,33 @@
 \section{Risultati della stabilizzazione}
+Il sistema riesce a rimanere in prossimità del punto $\b x = \b 0$.
+Il sistema stabilizzato è mostrato in \autoref{fig:sistema-stabilizzato}.
 
-\todo{scrivi qualcosa qui, tipo i coefficienti usati}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=\textwidth]{assets/pendolo-up}}
+    \caption[Pendolo stabilizzato]{Foto del pendolo stabilizzato nella
+    posizione di equilibrio $\b x = \b 0$.}
+    \label{fig:foto-sistema}
+\end{figure}
 
 
 \subsection{Ottimalità del controllo}
 Una volta fissate le matrici nella~\eqref{eq:q-r-matrices},
 il regolatore lineare quadratico è ottimale secondo la
 definizione~\ref{def:lqr}.
-Nella \autoref{fig:ottimalità} mostro che, se scelgo degli autovalori
+Nella \autoref{fig:ottimalità} mostro che, scegliendo autovalori
 stabili arbitrari, ottengo sempre un costo finale maggiore.
 Nella \autoref{fig:non-ottimalità} mostro che LQR non è
 ottimale rispetto ad una funzione costo definita in modo diverso.
 
-I valori numerici dei parametri che ho usato
-\todo{non è vero. metti una tabella qua.}
-sono riportati in \autoref{tab:parametri-numerici-sistema};
-gli autovalori ottimali del sistema $A - BK_{LQR}$ (arrotondati alla terza cifra significativa) sono
+In questa sezione ho usato la funzione costo~\eqref{eq:lqr-cost} con le matrici
+$Q$ ed $R$ definite nella~\eqref{eq:q-r-matrices}. 
+Ho fissato i parametri $q_{11}$ e $r_11$ a
+\begin{equation*}
+    q_{11} = 1,\  r_{11} = 1;
+\end{equation*}
+con questa scelta gli autovalori ottimali del sistema $A - BK_{LQR}$ (arrotondati alla terza cifra significativa) sono
 \begin{equation}
     \left.
         \begin{aligned}
@@ -47,8 +59,12 @@ gli autovalori ottimali del sistema $A - BK_{LQR}$ (arrotondati alla terza cifra
 
     \caption[Confronto tra LQR e controlli non ottimali]{
         Confronto tra LQR e strategie di controllo non ottimali.
+        I grafici rappresentano, in ordine: l'integranda della funzione costo
+        in funzione del tempo, la forza subita dal carrello in funzione del tempo
+        e la posizione del carrello lungo la rotaia in funzione del tempo.
+        Le condizioni iniziali sono $\b x(0) = (0, 0, .2, 0)^\T$. 
         $f_1$ è scelta in modo che gli autovalori del sistema
-        corrispondano agli~\eqref{eq:lqr-eigenvalues} senza parte
+        corrispondano a quelli nella~\eqref{eq:lqr-eigenvalues} senza parte
         immaginaria. $f_2$ invece è scelta in modo che il
         sistema abbia autovalori stabili casuali. Entrambe le
         strategie portano ad un costo finale maggiore della strategia
@@ -79,6 +95,8 @@ gli autovalori ottimali del sistema $A - BK_{LQR}$ (arrotondati alla terza cifra
 
     \caption[Confronto tra LQR e un controllo più rapido]{
         Confronto tra LQR e una strategia di controllo differente.
+        I grafici hanno lo stesso significato di quelli in \autoref{fig:ottimalità}
+        e le condizioni iniziali delle simulazioni sono le stesse.
         In questo caso particolare, $f_{fast}$ raggiunge $\b 0$ in minor
         tempo rispetto a $f_{LQR}$ che, quindi, non è ottimale rispetto
         al tempo impiegato per raggiungere l'equilibrio.
@@ -119,23 +137,28 @@ il comportamento del sistema quando le condizioni iniziali sono
 vicine a $\theta = \theta_{\max}$.
 Illustro questo fatto in \autoref{fig:occasional-blowup}.
 
-Attraverso le simulazioni ho osservato che l'unica variabile
-significativa per la controllabilità è $\theta$.
-Posso stimare ugualmente un valore massimo per le altre
-variabili considerando l'energia che il sistema ha nello stato
+Per stimare un valore massimo per $\dot \theta$, calcolo l'energia del
+sistema nella configurazione
 \begin{equation*}
     \b x = (0, 0, \theta_{\max}, 0)
 \end{equation*}
-e stimando che, perchè il sistema sia controllabile,
-l'energia debba essere minore di questo valore.
+e stimo che, perchè il sistema sia controllabile,
+il contributo dell'energia dato da $\dot \theta$ debba essere
+minore di questo valore.
+Detta $E(\b x)$ l'energia di una specifica configurazione, risolvo l'equazione
+\begin{equation*}
+    E[(0, 0, 1, 0)^\T] = E[(0, 0, \pi, \dot \theta_{\max})^\T]
+\end{equation*}
+per $\dot \theta_{\max}$ e trovo
+\begin{equation*}
+    \dot \theta_{\max} \approx 14 s^{-1}.
+\end{equation*}
 
-\todo{qui tocca mettere anche tutto il resto}.
-
-Il sistema reale si comporta in modo simile.
+Il sistema reale si comporta in modo simile alle simulazioni.
 In \autoref{fig:real-theta-limit} sono mostrati alcuni set di dati
 con condizioni iniziali date da valori crescenti di $\theta(0)$.
 Partendo da fermo, il sistema riesce a raggiungere l'equilibrio quando
-$\theta(0) \leq 1$.
+$\theta(0) \leq 1$. 
 
 \begin{figure}
     \vskip 0pt
@@ -159,7 +182,8 @@ $\theta(0) \leq 1$.
         per condizioni iniziali vicine a $\theta = \theta_{\max}$.
         Le due simulazioni nelle Figure~\ref{fig:does-not-blowup} e~\ref{fig:does-blowup}
         hanno entrambe come condizione iniziale $\b x = (0, 0, 1, 0)$ ma
-        hanno diversi coefficienti $r_{11}$ per la funzione costo.
+        hanno diversi coefficienti $r_{11}$ per la funzione costo. Questo
+        dà origine a comportamenti differenti.
     }
     \label{fig:occasional-blowup}
 \end{figure}
@@ -208,10 +232,12 @@ $\theta(0) \leq 1$.
 
 
     \caption[Limite della validità della linearizzazione]{
-        Prove per verificare il limite angolare
+        Prove sperimentali per verificare il limite angolare
         della validità del modello.
         I grafici a sinistra mostrano i dati di angolo e velocità angolare del pendolo,
         quelli a destra i dati di posizione e velocità del carrello.
+        I grafici lungo una stessa riga sono riferiti alla stessa esecuzione
+        dell'esperimento.
         Sotto i singoli grafici sono
         riportate le condizioni iniziali.
         I grafici sono costruiti in modo da rappresentare l'intervallo
@@ -224,20 +250,27 @@ $\theta(0) \leq 1$.
     \label{fig:real-theta-limit}
 \end{figure}
 
-
+%todo cambia motore spazzolato in motore a spazzole
 \subsection{Comportamento in seguito a una perturbazione}
 Il sistema, stabilizzato a $\b 0$, è resistente alle perturbazioni.
 In \autoref{fig:swag1} e \autoref{fig:swag2} ho riportato il
 comportamento del sistema dopo una perturbazione (un colpo con
 una bacchetta).
 Ho riportato anche il comportamento previsto dal mio modello,
-entro una certa incertezza.
-L'incertezza che ho usato è valore indicativo
-che tiene conto dell'errore sulle condizioni iniziali e
-dell'errore dovuto al rumore dei sensori.
-\todo{Magari spiega}
-L'andamento del sistema reale è riprodotto
-dal modello in modo soddisfacente.
+considerando una certa incertezza.
+L'incertezza che ho usato è valore indicativo ottenuto sommando l'incertezza
+dovuta alle condizioni iniziali all'incertezza data dall'ultima cifra significativa
+delle misure.
+Ho stimato l'incertezza relativa alle condizioni iniziali nel modo seguente.
+\begin{enumerate}
+    \item Prendo il primo punto sperimentale immediatamente dopo la perturbazione iniziale.
+    \item Simulo il sistema usando quel punto come condizioni iniziali.
+    \item Ripeto per i successivi nove punti (traslando
+    le soluzioni in modo opportuno).
+    \item Per ogni grandezza considerata, per ogni tempo, mi aspetto di ottenere
+    misure \emph{contenute tra il massimo di tutte le simulazioni e il minimo di 
+    tutte le simulazioni in quel tempo}.
+\end{enumerate}
 
 
 
@@ -254,12 +287,13 @@ dal modello in modo soddisfacente.
     \end{subfigure}
 
     \caption[Resistenza alle perturbazioni: posizione e velocità]{
-        Andamento reale di posizione e velocità del carrello,
+        Andamento reale di posizione e velocità del carrello
+        a seguito di una piccola perturbazione iniziale,
         paragonate alla traiettoria prevista dal modello.
         La posizione raggiunge lo zero più lentamente di quanto previsto,
         mentre la velocità è riprodotta abbastanza fedelmente.
-        Il rumore nelle misure di velocità sembra avere una natura periodica
-        e probabilmente è causato da un allineamento non perfetto dell'encoder
+        Il rumore nelle misure di velocità sembra avere una natura periodica.
+        Probabilmente è causato da un allineamento non perfetto dell'encoder
         ottico.
     }
     \label{fig:swag1}
@@ -284,7 +318,7 @@ dal modello in modo soddisfacente.
         Il modello riproduce fedelmente l'andamento di entrambe.
         Il rumore che si osserva quando il sistema è vicino a $0$
         è dovuto al fatto che il motore non riesce a operare in modo
-        regolare a basse potenze ed esegue invece dei piccoli
+        continuo a basse potenze, ma esegue dei piccoli
         scatti per mantenere il controllo.
     }
     \label{fig:swag2}
