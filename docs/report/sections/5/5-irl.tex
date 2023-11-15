@@ -1,11 +1,14 @@
 \section{Descrizione del sistema}
 \label{sec:sistema-reale}
-Il sistema che ho costruito è mostrato in \autoref{fig:foto-sistema}.
+Il sistema è mostrato in \autoref{fig:foto-sistema}.
+Per costruirlo ho usato componenti meccaniche ed elettroniche
+disponibili commercialmente. Tutti i supporti di colore blu sono stati
+realizzati con la stampa-3D. Segue una lista dettagliata di tutte le componenti.
+
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{assets/foto-pendolo}
-    %todo
+    \fbox{\includegraphics[width=\textwidth]{assets/pendolo-down}}
     %todo
     \caption[Foto del sistema]{Foto del sistema che ho costruito.
     Le componenti sono descritte nei
@@ -13,70 +16,108 @@ Il sistema che ho costruito è mostrato in \autoref{fig:foto-sistema}.
     \label{fig:foto-sistema}
 \end{figure}
 
-\subsection{Componenti elettroniche}
-\label{subsec:componenti-elettroniche}
-Riporto di seguito le componenti elettroniche rilevanti del sistema.
-\begin{itemize}
-    \item Due encoder ottici rotativi modello \emph{LPD3806} misurano l'angolo
-    del pendolo e la posizione del carrello.
-    Gli encoder sono incrementali, quindi devono essere azzerati manualmente
-    ogni volta che si avvia l'esperimento.
-
-    \item Un microcontrollore \emph{ESP-32} è collegato al primo encoder.
-
-    \item Un secondo microcontrollore \emph{ESP-32} è collegato al
-    secondo encoder e al resto delle componenti.
-
-    \item Il motore è controllato da un circuito a \emph{H-Bridge}
-    modello \emph{BTS7960}.
-
-    \item Un alimentatore da $12V$ fornisce energia al motore.
-
-    \item Due alimentatori da $5V$ forniscono energia ai microcontrollori
-    e agli encoder.
-\end{itemize}
-
-Un encoder rotativo opera inviando un segnale elettrico ogni volta che
-viene rilevata una rotazione di una certa frazione di angolo.
-Per misurare l'angolo è quindi necessario contare il numero di impulsi
-ricevuti.
-I microcontrollori \emph{ESP-32} hanno un processore a \emph{due core}.
-Questo mi permette di usare un core in ciascuno solo per
-contare gli impulsi.
-L'altro core si occupa, in un caso, di inviare dati all'altro microcontrollore
-e, nell'altro, di ricevere dati e di inviare il segnale di controllo al motore.
-
-Osservo che nel sistema non è presente un sensore di corrente in ingresso al motore.
-Questo è il motivo della scelta fatta nel paragrafo~\ref{subsec:modello-motore}.
 
 \subsection{Componenti meccaniche}
 \label{subsec:componenti-meccaniche}
 Ho usato prevalentemente componenti standard di \emph{OpenBuilds},
+%todo cite openbuilds.
 assieme a supporti realizzati con la stampa-3D.
-Riporto di seguito le componenti meccaniche rilevanti del sistema.
-\begin{itemize}
-    \item La rotaia è un profilato in alluminio \emph{V-Slot} lungo $1m$.
+Tutte le componenti sono montate su una base di legno.
 
-    \item Il carrello scorre sulla rotaia, supportato da ruote \emph{Mini-V}.
-    La forma delle ruote combacia con la forma del profilato, garantendo
-    un movimento lineare senza vibrazioni e con basso attrito.
+Il design meccanico è dettato dalla necessità di avere un vincolo
+lineare per il carrello,
+in modo da ridurre il più possibile tutti gli effetti non modellabili.
+Il vincolo è dato da una rotaia, realizzata con un profilato in alluminio
+\emph{V-Slot} lungo $1m$. Il carrello scorre sulla rotaia, supportato da
+ruote \emph{Mini-V}. La forma delle ruote combacia con la forma del profilato, garantendo un movimento lineare, senza vibrazioni e con basso attrito.
+Il dettaglio del carrello è riportato in \autoref{fig:dettaglio-carrello}.
 
-    \item Il carrello è collegato al motore tramite una cinghia dentata \emph{GT-2}.
-    La cinghia è di gomma com un cuore di metallo, non deformabile.
+\begin{figure}
+    \centering
+    \fbox{\includegraphics[width=.5\textwidth]{docs/report/assets/dettaglio-carrello}}
+    %todo
+    \caption[todo]{tood}
+    \label{fig:dettaglio-carrello}
+\end{figure}
 
-    \item Il motore è un modello \emph{XD-3420} spazzolato a corrente continua
-    con tensione nominale di $12V$.
+Il carrello è collegato al motore tramite una cinghia dentata \emph{GT-2}.
+La cinghia è di gomma con un cuore di metallo, in modo da resistere
+alle deformazioni. La cinghia è mantenuta in tensione dal motore e da un
+encoder rotativo, come mostrato in \autoref{fig:dettaglio-motore} e 
+\autoref{fig:dettaglio-encoder}. Il motore è un modello \emph{XD-3420}
+spazzolato, a corrente continua e con tensione nominale di $12V$.
 
-    \item Due supporti ai lati della rotaia reggono il motore e il primo
-    encoder rotativo.
-    Motore ed encoder fungono da perni per la cinghia.
+Sul carrello è montato un secondo encoder rotativo,
+che funge da perno per il pendolo. Il cavo collegato al secondo encoder è lasciato pendere ed il suo effetto sul sistema è trascurato.
 
-    \item Sul carrello è montato il secondo encoder rotativo,
-    che funge da perno per il pendolo.
+\begin{figure}[h]
+    \centering
+    \fbox{\includegraphics[width=.8\textwidth]{docs/report/assets/particolare-motore}}
+    %todo
+    \caption[todo]{tood}
+    \label{fig:dettaglio-motore}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \fbox{\includegraphics[width=.8\textwidth]{docs/report/assets/angle-sensor}}
+    %todo
+    \caption[todo]{tood}
+    \label{fig:dettaglio-encoder}
+\end{figure}
 
-    \item Il cavo collegato al secondo encoder è lasciato pendere.
-    Il suo effetto sul sistema è trascurabile.
 
-    \item Tutto è montato su una base di legno.
+\subsection{Componenti elettroniche}
+\label{subsec:componenti-elettroniche}
 
-\end{itemize}
+I sensori a cui il sistema ha accesso sono due encoder ottici\footnotemark rotativi,
+modello \emph{LPD3806}. Il primo (\autoref{fig:dettaglio-carrello}) misura langolo del pendolo,
+il secondo (\autoref{fig:dettaglio-encoder}la posizione del carrello.
+Gli encoder sono incrementali, quindi devono essere azzerati manualmente
+ogni volta che si avvia l'esperimento.
+
+\footnotetext{
+    Un encoder ottico rotativo è formato da un disco opaco su cui sono
+    presenti delle fessure radiali. Una fotocellula è posta ai lati del disco
+    e invia un impulso elettrico ogni volta che rileva una fessura. Una
+    seconda fotocellula opera allo stesso modo, ma è posizionata in modo che il
+    suo segnale sia sfasato rispetto alla prima. Confrontando i segnali delle due
+    fotocellule, è possibile ricavare la direzione di rotazione.
+}
+
+I dati dei sensori sono letti da due microcontrollori \emph{ESP-32}.
+%todo reference pls
+I due microcontrollori comunicano usando la tecnologia \emph{ESP-NOW}.
+%todo anche qui refenrece
+Gli \emph{ESP-32} sono dotati di un microprocessore dual-core. Questo mi
+permette di riservare un core in ciascun microcontrollore solamente per contare
+gli impulsi ricevuti dal rispettivo encoder. Il secondo core è usato, in un caso,
+per comunicare i dati all'altro microcontrollore e, nell'altro, per ricevere i dati
+e inviare il segnale di controllo al motore. I due microcontrollori sono mostrati
+in \autoref{fig:dettaglio-controller} e in \autoref{fig:dettaglio-encoder}.
+
+\begin{figure}[h]
+    \centering
+    \fbox{\includegraphics[width=.8\textwidth]{docs/report/assets/particolare-controller}}
+    %todo
+    \caption[todo]{tood}
+    \label{fig:dettaglio-controller}
+\end{figure}
+
+Il motore è alimentato da un alimentatore da $12V$ (\autoref{fig:dettaglio-motore}).
+La corrente passa in un circuito a \emph{H-Bridge}, modello \emph{BTS7960},
+che permette di cambiare potenza e direzione di rotazione del motore.
+La potenza del motore è regolata da un microcontrollore, collegato all'\emph{H-Bridge}, tramite \emph{PWM}\footnotemark. I due microcontrollori sono alimentati da due alimentatori esterni da $5V$. Internamente il sengale \emph{PWM} è rappresentato da un
+numero a $8$-bit; il range di valori ammessi per $u$ è quindi $[0, 255] \subset N$.
+
+\footnotetext{
+    \emph{PWM} sta per \emph{Pulse Width Modulation}. La tecnica consiste
+    nell'inviare al motore una corrente sotto forma di onda quadra.
+    L'onda può avere valori di $0V$ o $12V$ e, variando la percentuale di tempo
+    che l'onda passa a $12V$, si può variare la potenza del motore.
+    Nel mio caso la frequenza dell'onda si è rilevata poco influente sul
+    risultato; io ho fissato la frequenza a $500Hz$.
+}
+
+Nel sistema non è presente un sensore di corrente in ingresso al motore.
+Questo è il motivo per cui nel paragrafo~\ref{subsec:modello-motore} ho limitato
+il mio studio al regime stazionario.
