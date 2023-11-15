@@ -12,9 +12,9 @@ paragrafo~\ref{subsec:parametri-motore}.
 \renewcommand\arraystretch{1.5}
 \begin{table}[t]
     \centering
-    \begin{tabularx}{.5\textwidth}{| gc | c |}
+\begin{tabular}{| gc | c | }
         \noalign{\hrule height 2pt}
-
+        %todo°ò.-
         \rowcolor{Black}%
         \multicolumn{1}{=c}{\rowstyle{\bfseries\sffamily \color{White}} Parametro} & \multicolumn{1}{+c}{ Valore} \\
         \hline
@@ -26,13 +26,14 @@ paragrafo~\ref{subsec:parametri-motore}.
         \hline
         $l$ & $11.8cm$ \\
         \hline
-        $I$ & $0.36g\sfrac g {m^2}$ \\
+        $I$ & $0.36\sfrac g {m^2}$ \\
         \hline
-        $q_{11}$ & $0.36g\sfrac g {m^2}$ \\
+        $A$ & $28.5 N^{-1}$ \\
         \hline
-        $r_{11}$ & $0.36g\sfrac g {m^2}$ \\
+        $B$ & $120 \sfrac s m$ \\
+        \hline
         \noalign{\hrule height 2pt}
-    \end{tabularx}
+    \end{tabular}
     \caption{Descrizione di parametri e variabili del motore.}
     \label{tab:parametri-numerici} %todo qui manca la descrizion2e di un tot di parametri.i
 \end{table}
@@ -97,7 +98,7 @@ della pendenza della retta
 Il risultato del fit è riportato in \autoref{fig:motor-offset}; il valore
 numerico di $B$ è
 \begin{equation*}
-    B = 120 m^{-1}.
+    B = 120 \sfrac s m.
 \end{equation*}
 
 \begin{figure}[H]

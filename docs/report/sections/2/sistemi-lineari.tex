@@ -57,6 +57,8 @@ Ora uso le definizioni appena enunciate per introdurre il concetto di
     \label{def:sistema-dinamico}
 \end{definition}
 
+%todo 
+%non ha senso fare questa distinzione
 A seconda di come è costruito il flusso di fase, un sistema dinamico
 può essere categorizzato come \emph{lineare} o \emph{non lineare}.
 Inoltre, a seconda della scelta di $\mathcal T$, il sistema è detto
@@ -241,10 +243,13 @@ la soluzione prende la forma
     \b x_{k+1} = A_d \b x_k + B_d \b u_k
 \end{equation*}
 analoga alla~\eqref{eq:mapping-sistema}, con
-\begin{align*}
-    A_d &= e^{A\Delta t} \\
-    B_d &= \int_0^{\Delta t}e^{As} B\ ds.
-\end{align*}
+\begin{equation}
+    \begin{aligned}
+        A_d &= e^{A\Delta t} \\
+        B_d &= \int_0^{\Delta t}e^{As} B\ ds.
+    \end{aligned}
+    \label{eq:bdequalsint}
+\end{equation}
 %todo cite PII: S0098-1354(99)00007-1
 
 Nel corso di questo testo, userò il termine generale \emph{"sistema"} per indicare
