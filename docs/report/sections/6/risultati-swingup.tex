@@ -138,26 +138,49 @@ sia sui parametri del motore, sia sugli attriti dei cuscinetti,
     \centering
     \begin{subfigure}[]{\textwidth}
         \centering
-        \includegraphics[width=.75\textwidth]{assets/polar-swingup-real}
-        \caption{Posizione del carrello e angolo del pendolo.
-        La posizione è riportata sull'asse radiale. In questo
-        caso particolare, il moto è
-        completamente contenuto nella regione $q > 0$
+        \includegraphics[width=.6\textwidth]{assets/polar-swingup-real}
+        \caption{Posizione del carrello in funzione di angolo del pendolo.
+        Il grafico è disegnato in coordinate polari ed è analogo
+        al grafico in \autoref{fig:swingup-overflow}.
+        Il moto inizia con un impulso esterno che sposta il pendolo
+        verso sinistra (A). Il sistema risponde spostando il carrello verso
+        destra (B). Il controllo è disattivato per $2 < \theta < .6$
+        e rimane disattivato fino a $\theta = .2$, per via della velocità troppo
+        elevata. Per $\theta < .2$ si attiva LQR e l'angolo e la posizione
+        vengono riportati immediatamente a zero.
         }
+        \label{fig:spazio-fasi-sistema-polare}
     \end{subfigure}
     \\[5ex]
     \begin{subfigure}[]{\textwidth}
         \centering
-        \includegraphics[width=.8\textwidth]{assets/polar-swingup-energy}
-        \caption{Energia del pendolo in funzione di angolo e
-        velocità angolare quadratica.
-        La velocità angolare elevata al quadrato è riportata sull'asse
-        radiale.
+        \includegraphics[width=.7\textwidth]{assets/polar-swingup-energy}
+        \caption{
+            Spazio delle fasi del solo pendolo, disegnato in coordinate polari.
+            La coordinata radiale rappresenta il quadrato della velocità angolare
+            del pendolo; la coordinata angolare ne rappresenta l'angolo.
+            In questo spazio delle fasi, le curve a energia costante sono dei
+            cardioidi. In figura, assieme ai dati sperimentali, sono
+            mostrate le curve per $E=0$ e $E=\Delta E$, con un incertezza del
+            $10\%$. Dalla figura si vede come l'effetto della strategia di swing-up
+            è di posizionare il sistema nella traiettoria corrispondente 
+            all'energia desiderata.
+            Per $\theta < 2$ l'attrito sposta il sistema su traiettorie di
+            energia decrescente e per $\theta < .6$ si attiva LQR che porta
+            immediatamente l'energia a zero.
+            
+            %todo footnote per cardioidi
+            %todo(non qui) footnote per equazione riccati
         }
+        \label{fig:spazio-fasi-pendolo-polare}
     \end{subfigure}
 
     \caption[Dati di una procedura di swing-up]{
-        SSSS
+        Dati relativi ad una procedura di swing-up. Il grafico
+        \ref{fig:spazio-fasi-sistema-polare} rappresenta un sottospazio dello
+        spazio delle fasi dell'intero sistema. Il grafico
+        \ref{fig:spazio-fasi-pendolo-polare} rappresenta lo spazio delle fasi del
+        solo pendolo.
     }
     \label{fig:swingup-real-one}
 \end{figure}
