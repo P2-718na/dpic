@@ -5,12 +5,10 @@ parametri, esclusi quelli relativi al motore. Per
 determinare questi ultimi, ho seguito il procedimento spiegato nel
 paragrafo~\ref{subsec:parametri-motore}.
 
-
-%todo
 \bgroup
 \renewcommand{\tabularxcolumn}[1]{>{\arraybackslash}m{#1}}
 \renewcommand\arraystretch{1.5}
-\begin{table}[t]
+\begin{table}[H]
     \centering
 \begin{tabular}{| gc | c | }
         \noalign{\hrule height 2pt}
@@ -34,7 +32,7 @@ paragrafo~\ref{subsec:parametri-motore}.
         \hline
         \noalign{\hrule height 2pt}
     \end{tabular}
-    \caption{Descrizione di parametri e variabili del motore.}
+    \caption{Parametri numerici del sistema.}
     \label{tab:parametri-numerici} %todo qui manca la descrizion2e di un tot di parametri.i
 \end{table}
 \egroup
@@ -77,7 +75,7 @@ una famiglia di curve con cui svolgere un \emph{fit} per la~\eqref{eq:equazione-
 
 In \autoref{fig:motor-vmax-fit} ho riportato i dati delle velocità in funzione di
 $u$ e del tempo $t$. Chiamo $v_\infty(u)$ il limite della
-curva~\eqref{{eq:equazione-fit-motore}} per $t \to +\infty$. I valori di
+curva~\eqref{eq:equazione-fit-motore} per $t \to +\infty$. I valori di
 $v_\infty(u)$ sono ottenuti da una media delle velocità oltre un certo tempo.
 Nella \autoref{fig:motor-vmax-fit} una linea verticale delimita i punti su cui è
 stata eseguita la media e a sinistra sono riportati i valori numerici delle $v_\infty(u)$.
@@ -85,7 +83,13 @@ stata eseguita la media e a sinistra sono riportati i valori numerici delle $v_\
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{docs/report/assets/motor-vmax-fit}
-    \caption[Cogging torque]{Cogging toque del motore.}
+    \caption[Dati per stimare i parametri del motore]{Dati usati
+    per stimare i parametri del motore. A sinistra sono riportati i valori
+    a cui tende la velocità del carrello per un certo segnale di input al
+    motore, calcolati come la media dei punti dopo il tempo $t = .15s$.
+    Il valore di $u$ per ogni serie di dati è riportato in legenda, espresso
+    in $(PWM)$. Vale $1 (PWM) = \sfrac {12}{255}V$.
+    }
     \label{fig:motor-vmax-fit}
 \end{figure}
 
@@ -104,10 +108,13 @@ numerico di $B$ è
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{docs/report/assets/motor-offset}
-    \caption[todo]{todo}
+    \caption[Fit lineare delle velocità asintotiche del carrello]{
+    Fit lineare delle $v_{\infty}(u)$. Le velocità negative e quelle positive
+    giacciono su due che hanno stessa pendenza ma diversa intercetta.
+    La discrepanza è dovuta all'attrito tra carrello e rotaia.
+    }
     \label{fig:motor-offset}
 \end{figure}
-
 
 Infine ricavo $A$ da un fit esponenziale sulla famiglia di curve~\eqref{eq:equazione-fit-motore}. Il risultato è riportato in \autoref{fig:motor-expo-fit}; il valore
 numerico di $A$ è
@@ -129,10 +136,9 @@ Fa parte degli attriti anche la \emph{coppia d'impuntamento} $\tau_c$ del motore
 dovuta all'interazione tra i magneti permanenti e le armature. $\tau_c$ ha
 l'andamento descritto in \autoref{fig:cogging} ed è predominante quando $\omega$ è
 piccola.
-Correggo entrambi gli attriti aggiungendo un offset a $u$, dato dall'intercetta
-della~\eqref{eq:vinfmuq}.
+Correggo entrambi gli attriti aggiungendo un offset $u_{\min} $ a $u$, dato dall'intercetta della~\eqref{eq:vinfmuq}.
 
-
+ 
 %fixme i have no idea what this does but i used it so that the figure next doesn't span across
 %the whole page.
 %\makeatletter
