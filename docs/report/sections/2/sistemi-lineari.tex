@@ -19,7 +19,7 @@ fatto che, in generale, per definire lo stato di un sistema meccanico è
 necessario conoscere sia il valore delle coordinate generalizzate
 che delle rispettive velocità generalizzate associate.
 È possibile definire uno spazio delle fasi che abbia dimensione dispari
-oppure che sia un insieme dispcreto~\cite{Turchetti_1998}, ma ciò non è utile per quanto riguarda
+oppure che sia un insieme discreto~\cite{Turchetti_1998}, ma ciò non è utile per quanto riguarda
 questo testo.
 
 \begin{definition}
@@ -149,12 +149,12 @@ dove l'esponenziale di matrice è definito da
     %\label{eq:exp-matrice}
 \end{equation*}
 
-Per dimostrare che la~\eqref{eq:soluzione-lineare} è soluzione è
+Per dimostrare che la~\eqref{eq:soluzione-lineare} è soluzione, è
 sufficiente sostituirla nella~\eqref{eq:sistema-lineare} e verificare che
 si ottiene un'identità.
 Inoltre, il \autoref{thm:esistenza-unicità} garantisce che,
 fissate le condizioni iniziali, la
-soluzione è unica~\cite{De_Marco_1999}.
+soluzione sia unica~\cite{De_Marco_1999}.
 
 \begin{thm}[Esistenza e unicità della soluzione]
     Siano:
@@ -183,7 +183,7 @@ La soluzione~\eqref{eq:soluzione-lineare}
 corrisponde al flusso di fase associato al sistema dinamico che ha come campo vettoriale
 associato $\b a(\b x) = A\b x$.
 Infatti, considerando la proprietà~\eqref{eq:campo-vettoriale} e prendendo
-$\phi^t(\b x) = e^{At} \b x$ trovo
+$\phi^t(\b x) = e^{At} \b x$, trovo
 \begin{equation*}
         \left. \frac d{dt} \right|_{t=0} e^{At} \b x_0 = A \b x.
 \end{equation*}
@@ -264,7 +264,7 @@ in serie di Taylor:
     \left.\frac{d \b a}{d \b u}\right|_{(\b 0, \b 0)} \b u + \mathcal O(\norm{(\b x, \b u)}^2).
     \label{eq:formula-linearizzazione}
 \end{equation}
-$\b a(\b 0, \b 0)$ si annulla (perchè corrisponde a un punto fisso) e posso riscrivere
+$\b a(\b 0, \b 0)$ si annulla (perché corrisponde a un punto fisso) e posso riscrivere
 gli altri due termini in forma matriciale, riconducendomi alla forma~\eqref{def:sistema-lineare-non-omogeneo}
 della \autoref{def:sistema-lineare-non-omogeneo}.
 
@@ -273,7 +273,7 @@ Per chiarezza, le matrici $A$ e $B$ sono definite dalla~\eqref{eq:matrici-A-B}.
     A_{ij} = \frac{df_i}{dx_j},\ B_{ij} = \frac{df_i}{du_j}.
     \label{eq:matrici-A-B}
 \end{equation}
-\todo{controlla questa cosa qui perchè sono 99\% sicuro che sia giusta ma non ho controllato.}
+\todo{controlla questa cosa qui perché sono 99\% sicuro che sia giusta ma non ho controllato.}
 
 \subsection{Comportamento asintotico delle soluzioni}
 \label{subsec:comportamento-asintotico}
@@ -292,8 +292,8 @@ Le condizioni sufficienti per avere un certo comportamento sono riassunte nella 
     Se $A$ è diagonalizzabile, il comportamento asintotico delle soluzioni è interamente
     determinato dagli autovalori di $A$:
     \begin{itemize}
-        \item Se tutti gli autovalori hanno parte reale \textbf{neativa}, allora $\norm{\b x(t)} \to 0$ per $t \to +\infty$.%
-        \item Se almeno un autovalore hanno parte reale \textbf{positiva}, allora $\norm{\b x(t)} \to 0$ per $t \to +\infty$.%
+        \item Se tutti gli autovalori hanno parte reale \textbf{negativa}, allora $\norm{\b x(t)} \to 0$ per $t \to +\infty$.%
+        \item Se almeno un autovalore ha parte reale \textbf{positiva}, allora $\norm{\b x(t)} \to 0$ per $t \to +\infty$.%
         \item Se tutti gli autovalori hanno parte reale \textbf{nulla}, allora le soluzioni sono periodiche.
     \end{itemize}
     \label{prop:comportamento-asintotico}

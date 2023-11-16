@@ -176,7 +176,7 @@ Per chiarezza, divido la dimostrazione in più passaggi.
                 &= \b x_0 + (\b x_1 - \b x_0) \int_0^t e^{A(t-s)} B B^\T e^{-A^\T s} \Wc^{-1} e^{-At}\ ds \\
                 &= \b x_0 + (\b x_1 - \b x_0) e^{At} e^{-At} \left(\int_0^t e^{-As} B B^\T e^{-A^\T s}\ ds \right)\Wc^{-1}. \numberthis \label{eq:x0eatint}
     \end{align*}
-    Nella~\eqref{eq:x0eatint} compare la definizione di Gramiano~\eqref{eq:controllability-gramian}
+    Nella~\eqref{eq:x0eatint} compare la definizione~\eqref{eq:controllability-gramian}
     che si semplifica con il termine~$\Wc^{-1}$.
     Anche i rimanenti due termini esponenziali si semplificano e si ottiene la soluzione
     \begin{equation*}
@@ -377,7 +377,7 @@ Per chiarezza, divido la dimostrazione in più passaggi.
     Ora considero il prodotto delle prime $n-1$ righe di  $\mathcal C^{-1}$
     con le ultime $n-1$ colonne di $A\mathcal C$
     Queste corrispondono alle prime $n-1$ colonne di $\mathcal C$ e il loro prodotto
-    con $\mathcal C^{-1}$ da origine a una matrice identità troncata.
+    con $\mathcal C^{-1}$ dà origine a una matrice identità troncata.
     \begin{equation*}
         \mathcal C^{-1} (A^{n-1} B, \ldots, AB) = \left(
         \begin{array}{cccc}
