@@ -7,24 +7,20 @@
 \section{Teoria del Controllo}
 La Teoria del Controllo è una disciplina che ha origini antiche,
 tracciabili fino all'era degli antichi greci,
-%todo cite
-e che si è sviluppata formalmente solo nel corso degli ultimi due secoli.
-%todo cite, di nuovo
+e che si è sviluppata formalmente solo nel corso degli ultimi due secoli~\cite{history}.
 
 L'obiettivo alla base della Teoria è la necessità di poter alterare
 lo stato di un sistema in modo arbitrario, entro i limiti fisici
 del sistema stesso.
 Anche se per un essere umano questo obiettivo può sembrare banale,
-questa è solo un illusione data dall'estrema complessità del cervello umano:
-spesso, attività che per noi appaiono semplici, contengono un
+questa è solo un'illusione data dall'estrema complessità del cervello umano:
+spesso, attività che per noi appaiono semplici contengono un
 alto grado di complessità nascosta.
 Basti prendere come esempio \emph{l'atto di andare in bicicletta}.
 Un mito comune è che la bicicletta sia \emph{facile} da guidare perchè
 è stabilizzata dall'effetto giroscopico delle ruote, che la mantiene in verticale.
 Questo è falso!
-Uno studio
-\cite{bicycle}
-%todo cite ALMOST EVERYONE can ride a bicycle, yet apparently no one knows how they do it.
+Uno studio~\cite{bicycle}
 afferma che la bicicletta \emph{deve essere inerentemente instabile} per poter
 essere usata da un essere umano; la facilità è data dal nostro cervello che,
 in automatico, impara a correggere le instabilità.
@@ -34,20 +30,22 @@ Dal metabolismo del singolo batterio, ai flussi di automobili nel traffico:
 tutto questo necessita di Controllo.
 In questa tesi mostrerò alcuni risultati della Teoria e
 mostrerò il risultato della loro applicazione ad un vero sistema
-meccanico realizzato in laboratorio, il \emph{pendolo (invertito) su rotaia}.
+meccanico che ho realizzato in laboratorio, il \emph{pendolo (invertito) su rotaia}.
 
 \section{Organizzazione del testo}
 Il testo è diviso in cinque capitoli, oltre al presente.
-Nei capitoli~\ref{sec:linear-control} e~\ref{sec:nonlinear-control} introduco
-i concetti teorici che servono per il mio studio e dimostro alcuni dei risultati
+Nei capitoli~\ref{sec:linear-control} e~\ref{sec:nonlinear-control} introdurrò
+i concetti teorici che ho usato nel mio studio e dimostrerò alcuni dei risultati
 principali della Teoria, applicata ai sistemi lineari e non lineari.
-Nel capitolo~\ref{sec:pic} enuncio gli obiettivi del mio studio, sviluppo il modello
-teorico del sistema e uso quanto ricavato nei capitoli
+Nel capitolo~\ref{sec:pic} enuncerò gli obiettivi del mio studio, svilupperò il modello
+teorico del sistema e userò quanto ricavato nei capitoli
 precedenti per trovare una strategia di controllo che raggiunga gli obiettivi.
-Nel capitolo~\ref{sec:pic-irl} mostro come ho costruito il sistema in laboratorio
-e nel capitolo~\ref{sec:results} mostro i risultati che ho ottenuto applicando
+Nel capitolo~\ref{sec:pic-irl} mostrerò come ho costruito il sistema in laboratorio
+e nel capitolo~\ref{sec:results} elencherò i risultati che ho ottenuto applicando
 il modello teorico al sistema reale.
 
 La trattazione teorica in questo testo è largamente ispirata ai lavori di
-Sontag e Brunton.
-Nel costo del testo farò uso di altri risultati, che verranno citati di conseguenza.
+Sontag~\cite{sontagMath} e Brunton~et.~al.~\cite{brunton_kutz_2019};
+i concetti principali che presenterò in questo testo
+sono un riadattamento di quanto scritto da loro.
+Farò uso anche di altri risultati, che citerò di conseguenza.

@@ -4,8 +4,10 @@ la controllabilità asintotica, chiamato \emph{metodo di Ljapunov}.
 L'idea è di trovare una \emph{energia generalizzata} $V(\b x)$
 che sia sempre decrescente nel tempo,
 così che il sistema tenda a minimizzarla.
-La difficoltà nel risolvere un problema di controllo si riduce quindi
-nella ricerca di una funzione di Lyapunov.
+La difficoltà sta nel trovare una funzione di Lyapunov;
+compito non facile, in generale, e per cui spesso è richiesta
+una qualche forma di \emph{ispirazione Divina}~\cite{strogatz}.
+
 
 Per usare i risultati della teoria di Ljapunov è necessario lavorare
 con \emph{sistemi topologici}, una classe più ristretta di problemi di controllo.
@@ -500,7 +502,6 @@ del teorema e poi quella globale.
 
 Concludo questo capitolo dicendo che è possibile
 dimostrare la seguente proposizione.
-%todo cite sontag
 \begin{prop}
     Sia dato uno spazio topologico in cui è 
     definita una funzione $V : \Sigma \to \R$ continua.
@@ -518,6 +519,4 @@ dimostrare la seguente proposizione.
     Se questa proprietà vale per $\mathcal O = \Sigma$, $V$ è una funzione di controllo di Ljapunov globale. 
     \label{prop:condizione-sufficiente-ljapunov}
 \end{prop}
-
-
-
+La dimostrazione si trova in~\cite{sontagMath}.

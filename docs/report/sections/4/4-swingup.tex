@@ -1,8 +1,7 @@
 \section{Strategia di swing-up}
 \label{sec:strategia-swingup}
-Per lo swing-up uso il metodo di Ljapunov.
-%così come descritto in [Astrom Furuta swinging up a pendulum by energy control].
-%todo ref
+Per lo swing-up uso il metodo di Ljapunov, adattando il metodo
+descritto in~\cite{furutaSwingup}.
 Ricavo l'energia del solo pendolo e la uso per cercare una funzione
 di controllo di Ljapunov.
 
@@ -24,8 +23,7 @@ Ottengo
     I \ddot \theta - mgl\sin \theta + mal \cos \theta = 0
     \label{eq:moto-pendolo}
 \end{equation}
-%todo qui bisogna sistemare un po' i simboli
-e posso usare le due equazioni \eqref{eq:moto-pendolo} e \eqref{eq:energia-pendolo} per calcolare la variazione di energia istantanea che produce l'accelerazione $a$ lungo la traiettoria del moto.
+e posso usare le due equazioni~\eqref{eq:moto-pendolo} e~\eqref{eq:energia-pendolo} per calcolare la variazione di energia istantanea che produce l'accelerazione $a$ lungo la traiettoria del moto.
 Ottengo
 \begin{equation*}
     \begin{aligned}
@@ -72,7 +70,6 @@ con $a_{\max}$ l'accelerazione massima possibile per il sistema.
 La \autoref{fig:energy-control} mostra che questa strategia porta il sistema a
 zero.
 
-%todo questi grafici vanno rifatti mettendo le frecce dirette verso l'asse E=0.
 \begin{figure}
     \vskip 0pt
     \centering

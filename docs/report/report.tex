@@ -6,7 +6,6 @@
 
 \usepackage{phdstyle}   % Custom style
 \usepackage{amsmath}
-\usepackage[toc]{glossaries}
 \usepackage{mdframed}
 \usepackage[utf8]{inputenc}
 \usepackage{caption}
@@ -21,15 +20,7 @@
 \usepackage{empheq}
 \usepackage{xfrac}
 \usepackage[section]{placeins}
-
-\RequirePackage[backend  = biber,
-    sortcites  = true,
-    giveninits = true,
-    doi        = false,
-    isbn       = false,
-    url        = false,
-    style      = alphabetic,
-    refsection = chapter]{biblatex}
+\usepackage[sorting=none]{biblatex}
 
 \addto\extrasitalian{%
     \def\subsectionautorefname{paragrafo}%
@@ -43,7 +34,7 @@
 \vspace*{\fill}
 \hfill
     \begin{center}
-        Questa pagina è intenzionalmente lasciata vuota.
+        Pagina intenzionalmente vuota.
     \end{center}
     \vspace{\fill}
     \thispagestyle{empty}
@@ -59,11 +50,12 @@
 \newcommand*{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
-\input{sections/glossary}
 \input{sections/theorems}
 \input{sections/frontespizio}
 
 \addbibresource{picRefs.bib}
+\DeclareFieldFormat{doi}{\small{DOI:} #1}
+\DeclareFieldFormat{url}{\small{URL:} #1}
 
 \begin{document}
 
@@ -102,11 +94,9 @@
    %     \appendixpage       % Similar to \part*{Appendices}, but appears in TOC
 
     %        \include{sections/appendixA}
-    \printbibliography
     \backmatter
     \cleartorecto
     \include{sections/conclusioni}
     \cleartorecto
     \printbibliography
-    %\printglossary[title=Glossario, toctitle=Glossario]
 \end{document}

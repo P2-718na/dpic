@@ -1,7 +1,9 @@
 \section{Parametri del sistema}
 Il valore numerico di tutti i parametri d'interesse per il sistema è riportato
-in \autoref{tab:parametri-numerici}. Ho misurato direttamente la maggior parte dei
-parametri, esclusi quelli relativi al motore. Per
+in \autoref{tab:parametri-numerici}.
+Ho misurato direttamente la maggior parte dei
+parametri, esclusi quelli relativi al motore.
+Per
 determinare questi ultimi, ho seguito il procedimento spiegato nel
 paragrafo~\ref{subsec:parametri-motore}.
 
@@ -12,7 +14,6 @@ paragrafo~\ref{subsec:parametri-motore}.
     \centering
 \begin{tabular}{| gc | c | }
         \noalign{\hrule height 2pt}
-        %todo°ò.-
         \rowcolor{Black}%
         \multicolumn{1}{=c}{\rowstyle{\bfseries\sffamily \color{White}} Parametro} & \multicolumn{1}{+c}{ Valore} \\
         \hline
@@ -33,16 +34,15 @@ paragrafo~\ref{subsec:parametri-motore}.
         \noalign{\hrule height 2pt}
     \end{tabular}
     \caption{Parametri numerici del sistema.}
-    \label{tab:parametri-numerici} %todo qui manca la descrizion2e di un tot di parametri.i
+    \label{tab:parametri-numerici}
 \end{table}
 \egroup
-
 
 \subsection{Parametri del motore}
 \label{subsec:parametri-motore}
 Per determinare i parametri del motore osservo il comportamento del solo
 carrello quando applico un segnale $u$ costante al motore.
-L'equazione che regola il comportamento del motore è la \eqref{eq:caratteristica-motore}.
+L'equazione che regola il comportamento del motore è la~\eqref{eq:caratteristica-motore}.
 L'espressione per la forza $f$
 esercitata dal motore è data dalla legge di Newton
 \begin{equation}
@@ -74,8 +74,10 @@ I parametri $A$ e $B$ sono costanti quindi, variando $u$, mi aspetto di trovare
 una famiglia di curve con cui svolgere un \emph{fit} per la~\eqref{eq:equazione-fit-motore}.
 
 In \autoref{fig:motor-vmax-fit} ho riportato i dati delle velocità in funzione di
-$u$ e del tempo $t$. Chiamo $v_\infty(u)$ il limite della
-curva~\eqref{eq:equazione-fit-motore} per $t \to +\infty$. I valori di
+$u$ e del tempo $t$.
+Chiamo $v_\infty(u)$ il limite della
+curva~\eqref{eq:equazione-fit-motore} per $t \to +\infty$.
+I valori di
 $v_\infty(u)$ sono ottenuti da una media delle velocità oltre un certo tempo.
 Nella \autoref{fig:motor-vmax-fit} una linea verticale delimita i punti su cui è
 stata eseguita la media e a sinistra sono riportati i valori numerici delle $v_\infty(u)$.

@@ -1,6 +1,4 @@
 \section{Sistemi lineari}
-\todo{scrivi qualcosa qui}
-
 \subsection{Sistemi dinamici}
 Introduco alcuni concetti di base.
 
@@ -21,8 +19,8 @@ fatto che, in generale, per definire lo stato di un sistema meccanico è
 necessario conoscere sia il valore delle coordinate generalizzate
 che delle rispettive velocità generalizzate associate.
 È possibile definire uno spazio delle fasi che abbia dimensione dispari
-oppure che sia un insieme dispcreto, ma ciò non è utile per quanto riguarda
-questo testo. \todo{magari qui ci sta cit al turchetti che parla di questa roba all'inizio}
+oppure che sia un insieme dispcreto~\cite{Turchetti_1998}, ma ciò non è utile per quanto riguarda
+questo testo.
 
 \begin{definition}
     Sia $t \in \mathcal T$ insieme del tempo, $\Sigma$ spazio delle fasi di un sistema e siano $\b x_0, \b x(t) \in \Sigma$.
@@ -57,15 +55,11 @@ Ora uso le definizioni appena enunciate per introdurre il concetto di
     \label{def:sistema-dinamico}
 \end{definition}
 
-%todo 
-%non ha senso fare questa distinzione
-A seconda di come è costruito il flusso di fase, un sistema dinamico
-può essere categorizzato come \emph{lineare} o \emph{non lineare}.
-Inoltre, a seconda della scelta di $\mathcal T$, il sistema è detto
+A seconda della scelta di $\mathcal T$, il sistema è detto
 \emph{a tempo continuo} oppure \emph{a tempo discreto}.
 
-L'esempio \ref{ex:semaforo} mostra come è possibile costruire
-il più semplice sistema dinamico.
+L'esempio~\ref{ex:semaforo} mostra come è possibile costruire
+un semplice sistema dinamico.
 
 \begin{example}
     \label{ex:semaforo}
@@ -73,7 +67,7 @@ il più semplice sistema dinamico.
     Il semaforo può essere o verde o rosso e cambia colore a intervalli regolari.
     Posso definire lo spazio delle fasi del sistema come:
     \begin{equation*}
-        \Sigma := \{\text{Verde}, \text{Rosso} \}.
+        \Sigma = \{\text{Verde}, \text{Rosso} \}.
     \end{equation*}
     Il tempo è discreto: $\mathcal T = \Z^+$ e definisco il flusso di fase $\phi$:
     \begin{equation*}
@@ -160,7 +154,7 @@ sufficiente sostituirla nella~\eqref{eq:sistema-lineare} e verificare che
 si ottiene un'identità.
 Inoltre, il \autoref{thm:esistenza-unicità} garantisce che,
 fissate le condizioni iniziali, la
-soluzione è unica.
+soluzione è unica~\cite{De_Marco_1999}.
 
 \begin{thm}[Esistenza e unicità della soluzione]
     Siano:
@@ -194,9 +188,6 @@ $\phi^t(\b x) = e^{At} \b x$ trovo
         \left. \frac d{dt} \right|_{t=0} e^{At} \b x_0 = A \b x.
 \end{equation*}
 
-\todo {Qui posso dire qualcosa riguardo alla possibilità di calcolare
-esponenziale di matrici per sistemi diagonalizzabili.}
-
 Questa possibilità di ricavare il flusso di fase partendo dal campo vettoriale per
 sistemi lineari è utile, in quanto permette di passare da un sistema a tempo continuo
 a un sistema a tempo discreto.
@@ -219,7 +210,6 @@ con $\b x_{k+1} = \b x(k\Delta t)$ e $\b x = \b x(t)$.
 
 Tutte queste considerazioni possono essere estese anche ai sistemi lineari
 \emph{non omogenei}.
-
 
 \begin{definition}
     Sia $\b x = \b x(t) \in \R^n$, $A \in \M_{n\times n}(\R)$, $B \in \M_{n\times m}(\R)$ e $\b u = \b u(t) \in C^0(\R, \R^n)$.
@@ -250,10 +240,11 @@ analoga alla~\eqref{eq:mapping-sistema}, con
     \end{aligned}
     \label{eq:bdequalsint}
 \end{equation}
-%todo cite PII: S0098-1354(99)00007-1
+La giustificazione di questa formula è disponibile in~\cite{KAZANTZIS1999763}.
 
 Nel corso di questo testo, userò il termine generale \emph{"sistema"} per indicare
-un sistema dinamico a cui è associata un equazione differenziale. Assumerò che le variabili
+un sistema dinamico a cui è associata un equazione differenziale.
+Assumerò che le variabili
 coinvolte siano ristrette agli spazi definiti dal sistema dinamico.
 
 

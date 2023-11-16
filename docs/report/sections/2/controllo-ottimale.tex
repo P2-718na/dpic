@@ -47,8 +47,9 @@ dove $P$ è la soluzione all'equazione di Riccati
     \label{eq:riccati}
 \end{equation}
 La soluzione della~\eqref{eq:riccati} si può trovare numericamente in tempo polinomiale
-in $n$.
-%todo qui ci va una reference lol riccatiO3
+in $n$~\cite{riccatiO3}.
+Nel corso di questo testo, userò la funzione \verb|RiccatiSolve| del software
+\emph{Mathematica}~\cite{Mathematica} per risolvere la~\eqref{eq:riccati}.
 
 \subsection{Derivazione dell'equazione di Riccati}
 
@@ -123,7 +124,8 @@ La riscrivo in notazione matriciale
 \end{equation*}
 Raccogliendo $\b x$ e imponendo $\dot P \to 0$ per $t \to +\infty$ si riottiene
 la~\eqref{eq:riccati}. I fattori $2$ e $\frac 1 2$ possono essere rimossi
-definendo $P = 2P'$ e dividendo tutto per $2$. Per ottenere la~\eqref{eq:riccati-K} basta riscrivere
+definendo $P = 2P'$ e dividendo tutto per $2$.
+Per ottenere la~\eqref{eq:riccati-K} basta riscrivere
 la~\eqref{eq:riccati-u} in forma matriciale.
 
 \hfill\qedsymbol

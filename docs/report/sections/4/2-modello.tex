@@ -50,10 +50,6 @@ dove $v_{cm}$ è la velocità del centro di massa del pendolo, data da
     v^2_{cm} = (\dot x + l \dot \theta \cos \theta)^2 + (l \dot \theta \sin \theta)^2.
 \end{equation*}
 
-
-
-
-%todo here
 Scrivo la Lagrangiana del sistema
 \begin{equation*}
     \mathcal L = T - V
@@ -133,11 +129,9 @@ La stabilità è data da considerazioni fisiche
 
 \subsection{Motore}
 \label{subsec:modello-motore}
-\todo{fix reference}
-%{https://homepages.laas.fr/lzaccari/seminars/DCmotors.pdf}
-Lavoro con un motore \textsc{DC} spazzolato.
+Lavoro con un motore \textsc{DC} a spazzole.
 Riporto i parametri e le variabili d'interesse per il motore in \autoref{tab:parametri-motore}.
-Si può ricavare che valgono le equazioni
+Si può ricavare~\cite{Zaccarian} che valgono le equazioni
 \begin{subequations}
     \begin{empheq}[left=\empheqlbrace,right=_.]{align}
             u &= L_a \dot J + R_a J + K_e \omega \label{eq:motore-1} \\
@@ -203,6 +197,6 @@ dipende quindi solo da due parametri $A$ e $B$ determinabili sperimentalmente.
         \noalign{\hrule height 2pt}
     \end{tabularx}
     \caption{Descrizione di parametri e variabili del motore.}
-    \label{tab:parametri-motore} %todo qui manca la descrizion2e di un tot di parametri.i
+    \label{tab:parametri-motore}
 \end{table}
 \egroup
