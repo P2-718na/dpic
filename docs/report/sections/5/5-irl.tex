@@ -68,7 +68,7 @@ e ho trascurato il suo effetto sul sistema.
     \caption[Dettaglio encoder]{Dettaglio dell'encoder che misura la posizione.
     La cinghia è tenuta in tensione dall'encoder.
     In alto sono visibili due microcontrollori
-    \emph{ESP-32}; solo uno di questi è utilizzato.
+    \emph{ESP32}; solo uno di questi è utilizzato.
     }
     \label{fig:dettaglio-encoder}
 \end{figure}
@@ -92,9 +92,9 @@ ogni volta che si avvia l'esperimento.
     fotocellule, è possibile ricavare la direzione di rotazione.
 }
 
-I dati dei sensori sono letti da due microcontrollori \emph{ESP-32}~\cite{esp32}.
+I dati dei sensori sono letti da due microcontrollori \emph{ESP32}~\cite{esp32}.
 I due microcontrollori comunicano usando la tecnologia \emph{ESP-NOW}~\cite{espnow}.
-Gli \emph{ESP-32} sono dotati di un microprocessore dual-core. Questo mi
+Gli \emph{ESP32} sono dotati di un microprocessore dual-core. Questo mi
 permette di riservare un core in ciascun microcontrollore solamente per contare
 gli impulsi ricevuti dal rispettivo encoder. Il secondo core è usato, in un caso,
 per comunicare i dati all'altro microcontrollore e, nell'altro, per ricevere i dati

@@ -34,7 +34,7 @@
 \vspace*{\fill}
 \hfill
     \begin{center}
-        Pagina intenzionalmente vuota.
+        Pagina intenzionalmente lasciata vuota.
     \end{center}
     \vspace{\fill}
     \thispagestyle{empty}
@@ -53,9 +53,10 @@
 \input{sections/theorems}
 \input{sections/frontespizio}
 
+\newcommand{\mysc}[1]{\textrm{\textsc{#1}}}
 \addbibresource{picRefs.bib}
-\DeclareFieldFormat{doi}{\small{DOI:} #1}
-\DeclareFieldFormat{url}{\small{URL:} #1}
+\DeclareFieldFormat{doi}{\small{\mysc{DOI:}\\ #1}}
+\DeclareFieldFormat{url}{\small{\mysc{URL:}\\ #1}}
 
 \begin{document}
 
