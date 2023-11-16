@@ -9,4 +9,7 @@ pdflatex -interaction=batchmode  -output-directory=build ./report.tex > /dev/nul
 makeglossaries -d build/sections sections/glossary;
 texfot bibtex build/report.aux;     # Whoever wrote bibtex needs to just stop.
 pdfatex -interaction=batchmode -output-directory=build ./report.tex  > /dev/null; # Yep. Needed for references.
-texfot pdflatex -file-line-error -interaction=nonstopmode  -output-directory=build ./report.tex;   # Yep. Needed for bibtex.
+texfot pdflatex -file-line-error -interaction=nonstopmode  -output-directory=build ./report.tex &&   # Yep. Needed for bibtex.
+cp build/report.pdf build/report-stable.pdf;
+
+echo "DONE";

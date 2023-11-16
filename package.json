@@ -10,9 +10,7 @@
     "build:report": "./scripts/build:report.sh",
     "watch:report": "nodemon -e tex,cls,sty,bib --watch ./docs/report --exec npm run build:report",
     "build:report-fast": "./scripts/build:report-fast.sh",
-    "watch:report-fast": "nodemon -e tex,cls,sty --watch ./docs/report --exec npm run build:report-fast",
-    "build:display": "webpack",
-    "watch:display": "nodemon --watch code/display --exec npm run build:display -e js,ejs,json,css"
+    "watch:report-fast": "nodemon -e tex,cls,sty --watch ./docs/report --exec npm run build:report-fast"
   },
   "repository": {
     "type": "git",
@@ -25,14 +23,8 @@
   },
   "homepage": "https://github.com/P2-718na/inverted-pendulum#readme",
   "devDependencies": {
-    "css-loader": "^6.7.1",
-    "html-webpack-plugin": "^5.5.0",
-    "nodemon": "^2.0.20",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.70.0",
-    "webpack-cli": "^4.9.2"
+    "nodemon": "^2.0.20"
   },
   "dependencies": {
-    "fs-extra": "^11.1.1"
   }
 }
