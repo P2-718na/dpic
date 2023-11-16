@@ -143,33 +143,6 @@ SOFTWARE.
 \renewcommand{\doitext}{DOI:\space}
 
 
-%% Bibliography
-\RequirePackage{mathscinet}
-\RequirePackage[backend    = bibtex,
-                sortcites  = true,
-                giveninits = true,
-                doi        = false,
-                isbn       = false,
-                url        = false,
-                sortlocale = nb_NO,
-                style      = alphabetic,
-                refsection = chapter]{biblatex}
-\DeclareNameAlias{sortname}{family-given}
-\DeclareNameAlias{default}{family-given}
-\DeclareFieldFormat[article]{volume}{\bibstring{jourvol}\addnbspace#1}
-\DeclareFieldFormat[article]{number}{\bibstring{number}\addnbspace#1}
-\renewbibmacro*{volume+number+eid}
-{
-    \printfield{volume}
-    \setunit{\addcomma\space}
-    \printfield{number}
-    \setunit{\addcomma\space}
-    \printfield{eid}
-}
-%\addbibresource{bibliographies/chapter2.bib}
-%\addbibresource{bibliographies/chapter4.bib}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% USER-DEFINED MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 

@@ -22,6 +22,15 @@
 \usepackage{xfrac}
 \usepackage[section]{placeins}
 
+\RequirePackage[backend  = biber,
+    sortcites  = true,
+    giveninits = true,
+    doi        = false,
+    isbn       = false,
+    url        = false,
+    style      = alphabetic,
+    refsection = chapter]{biblatex}
+
 \addto\extrasitalian{%
     \def\subsectionautorefname{paragrafo}%
     \def\sectionautorefname{paragrafo}%
@@ -54,8 +63,7 @@
 \input{sections/theorems}
 \input{sections/frontespizio}
 
-\bibliographystyle{plain} % We choose the "plain" reference style
-\bibliography{picRefs}
+\addbibresource{picRefs.bib}
 
 \begin{document}
 
@@ -94,8 +102,9 @@
    %     \appendixpage       % Similar to \part*{Appendices}, but appears in TOC
 
     %        \include{sections/appendixA}
-
+    \printbibliography
     \backmatter
+    \cleartorecto
     \include{sections/conclusioni}
     \cleartorecto
     \printbibliography
