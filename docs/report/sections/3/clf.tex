@@ -4,7 +4,7 @@ la controllabilità asintotica, chiamato \emph{metodo di Ljapunov}.
 L'idea è di trovare una \emph{energia generalizzata} $V$
 che sia sempre decrescente nel tempo,
 così che il sistema tenda a minimizzarla.
-La difficoltà sta nel trovare una funzione di Lyapunov;
+La difficoltà nell'applicare questo metodo sta nel trovare una funzione di Lyapunov;
 compito non facile, in generale, e per cui spesso è richiesta
 una qualche forma di \emph{ispirazione Divina}~\cite{strogatz}.
 
@@ -88,7 +88,7 @@ sia che il termine \emph{locale} sia presente o meno.
 \end{definition}
 
 Il risultato principale che si ottiene dalle funzioni di Ljapunov è racchiuso nel seguente teorema.
-\begin{thm}
+\begin{thm}[Teorema di controllabilità di Ljapunov]
     Dato un sistema topologico, se esiste una funzione (locale) di controllo di Ljapunov,
     allora il problema è (localmente) asintoticamente controllabile.
     \label{thm:ljapunov}
@@ -373,6 +373,7 @@ del teorema e poi quella globale.
             \item Con $\xi_n(t) = \phi^t(\b x_n, \omega_n)$ vale $V[\xi_n(t)] \leq \frac 1 {2^n} V(\b x), \ \forall t \in [0, t_n]$
         \end{itemize}
     \end{aff}
+
     \emph{Dimostrazione}.
     Procedo per induzione.
     Voglio dimostrare che  per ogni $\b x \in \Sigma$ tale che
@@ -413,6 +414,7 @@ del teorema e poi quella globale.
         V(\b y) < \delta_0 \implies d(\b y, \b x^*) < \delta.
         \label{eq:vylessdelta0}
     \end{equation}
+
     Per l'affermazione (2), vale $B(\b x) = 0$.
     Quindi esiste un controllo $\omega_1$ e un tempo $t_1$ tale
     che, dato $\xi_1 = \phi^{t_1}(\b x, \omega_1)$, vale

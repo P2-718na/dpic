@@ -136,8 +136,14 @@ SOFTWARE.
 %% Cross references and links
 \RequirePackage[obeyspaces, spaces, hyphens]{url}             % Format URLs
 \urlstyle{sf}
-\RequirePackage{varioref}                                     % \vref
-\RequirePackage[pdfusetitle, hidelinks]{hyperref}                        % Clickable links
+\RequirePackage{varioref}
+\RequirePackage[
+    pdfusetitle,
+    hidelinks,
+    pdftex,
+    pdfauthor={Matteo Bonacini},
+    pdftitle={Applicazione della Teoria del Controllo: il pendolo invertito su rotaia},
+]{hyperref}                        % Clickable links
 \RequirePackage[nameinlink, capitalize, noabbrev]{cleveref}   % \cref
 \RequirePackage{doi}           % Ignore LaTeX syntax in DOI links
 \renewcommand{\doitext}{DOI:\space}
