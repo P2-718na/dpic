@@ -42,7 +42,7 @@ Nel paragrafo~\ref{subsec:derivazione-riccati} mostrerò che la soluzione per $K
     \label{eq:riccati-K}
 \end{equation}
 dove $P$ è la soluzione all'equazione di Riccati\footnote{Con \emph{equazione di Riccati} ci
-si riferisce, in generale, ad un equazione differenziale ordinaria al primo ordine, quadratica nella funzione incognita.}
+si riferisce, in generale, ad un equazione differenziale ordinaria al primo ordine, quadratica nella funzione incognita.}\footnotemark
 \begin{equation}
         A^{\T} P + P A - P B R^{-1} B^{\T} P + Q = \b 0.
     \label{eq:riccati}
@@ -51,6 +51,10 @@ La soluzione della~\eqref{eq:riccati} si può trovare numericamente in tempo pol
 in $n$~\cite{riccatiO3}.
 Nel corso di questo testo, userò la funzione \verb|RiccatiSolve| del software
 \emph{Mathematica}~\cite{Mathematica} per risolvere la~\eqref{eq:riccati}.
+
+\footnotetext{Jacopo Francesco Riccati (1676 – 1754) era un matematico
+e un giurista. È conosciuto per aver studiato l'equazione che porta il suo
+nome.}
 
 \subsection{Derivazione dell'equazione di Riccati}
 

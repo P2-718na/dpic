@@ -164,7 +164,7 @@ soluzione sia unica~\cite{De_Marco_1999}.
         \item $\b a(t, \b y) : I \times Y \to Y$ continua rispetto a $t$ e lipshitziana rispetto a $\b y$.%
         \item $(t_0, \b y_0) \in I \times Y$.
     \end{itemize}
-    Allora il problema di Cauchy
+    Allora il problema di Cauchy\footnotemark
     \begin{equation*}
         \left\{
             \begin{array}{ll}
@@ -178,6 +178,12 @@ soluzione sia unica~\cite{De_Marco_1999}.
     identicamente in $I$ e $\b \phi(t_0) = \b y_0$.
     \label{thm:esistenza-unicità}
 \end{thm}
+
+\footnotetext{%
+        Augustin-Louis Cauchy (1789 - 1857) è stato un matematico e ingegnere francese. Ha avviato il progetto della formulazione e dimostrazione rigorosa dei teoremi dell’analisi infinitesimale e Ha dato anche importanti contribuiti alla teoria delle funzioni di variabile complessa e alla teoria delle equazioni differenziali. Il lavoro che ha svolto
+        durante la sua carriera lo porta ad essere considerato uno dei padri
+        dell'analisi matematica.
+}
 
 La soluzione~\eqref{eq:soluzione-lineare}
 corrisponde al flusso di fase associato al sistema dinamico che ha come campo vettoriale
@@ -257,7 +263,7 @@ Considero un sistema dinamico caratterizzato da un campo vettoriale del tipo
 \end{equation}
 È possibile linearizzare la dinamica del sistema~\eqref{eq:sistema-non-lineare} in un intorno di un punto fisso
 $(\bar{\b x}, \bar{\b u})$ (che, per semplicità, prendo uguale a $(\b 0, \b 0)$) espandendo
-in serie di Taylor:
+in serie di Taylor\footnotemark:
 \begin{equation}
     \b a(\b x, \b u) \approx \b a(\b 0, \b 0) +
     \left.\frac{d \b a}{d \b x}\right|_{(\b 0, \b 0)} \b x +
@@ -267,6 +273,11 @@ in serie di Taylor:
 $\b a(\b 0, \b 0)$ si annulla (perché corrisponde a un punto fisso) e posso riscrivere
 gli altri due termini in forma matriciale, riconducendomi alla forma~\eqref{def:sistema-lineare-non-omogeneo}
 della \autoref{def:sistema-lineare-non-omogeneo}.
+
+\footnotetext{Brook Taylor (1685 – 1731) è stato un matematico inglese.
+Aggiunse alla matematica una nuova branca, conosciuta oggi come \emph{il calcolo
+delle differenze finite} e inventò l'integrazione per parti,
+oltre a scoprire la formula che ora porta il suo nome.}
 
 Per chiarezza, le matrici $A$ e $B$ sono definite dalla~\eqref{eq:matrici-A-B}.
 \begin{equation}
@@ -338,6 +349,7 @@ sono date dalla~\eqref{eq:soluzioni-complesse}.
 \end{equation}
 La dimostrazione termina calcolando il limite per $t \to +\infty$
 della~\eqref{eq:soluzioni-complesse} nei tre casi considerati.
+
 \hfill \qedsymbol \paragraph{}
 
 Per i sistemi a tempo discreto le condizioni

@@ -134,12 +134,17 @@ La dimostrazione si basa sulla costruzione di una strategia di controllo $\b u(t
 che soddisfi la \autoref{def:controllabilità} di controllabilità.
 Per chiarezza, divido la dimostrazione in più passaggi.
 \begin{steps}
-    \item Definisco il \emph{Gramiano di controllabilità} del sistema
+    \item Definisco il \emph{Gramiano\footnotemark di controllabilità} del sistema
         \begin{equation}
             W_{\mathcal C} = \int_0^t e^{-As} BB^{\T} e^{-A^\T s}\ ds \in \M_{n\times n} (\R),
             \label{eq:controllability-gramian}
         \end{equation}
     dove ho usato il simbolo $\T$ a esponente per indicare la matrice trasposta.
+
+\footnotetext{
+Jørgen Pedersen Gram (1850 – 1916) è stato un matematico ed attuario danese.
+Tra i suoi studi si ricordano le espansioni in serie determinate dai metodi dei minimi quadrati, i numeri primi minori di un dato numero e le serie per la funzione zeta di Riemann.
+}
 
     \item Dimostro che l'ipotesi implica l'invertibilità di $W_{\mathcal C}$, ovvero,
     $\Ker \Wc = \{\b 0\}$.
@@ -199,6 +204,7 @@ Per chiarezza, divido la dimostrazione in più passaggi.
 \end{steps}
 Di conseguenza, fissato uno stato arbitrario $x_1$, è possibile raggiungerlo in un tempo finito $t$
 partendo da qualsiasi condizione iniziale $\b x_0$ e quindi il sistema è controllabile.
+
 \hfill\qedsymbol \paragraph{}
 
 La dimostrazione che ho appena presentato è estendibile facilmente anche a
