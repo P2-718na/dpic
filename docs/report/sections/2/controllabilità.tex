@@ -44,8 +44,6 @@ per indicare lo spazio di tutte le funzioni da $\mathcal T$ a $\mathcal U$.
     \end{itemize}
     \label{def:problema-di-controllo}
 \end{definition}
-\todo{Questa definizione l'ho presa dal sontag e ho cercato di alleggerire appena la notazione, rendendola simile
-alla definizione di sistema dinamico. Il concetto alla base è lo stesso, spero che vada bene lo stesso.}
 
 Per descrivere un problema di controllo, posso usare un'equazione del moto con la stessa forma
 della~\eqref{eq:sistema-non-lineare}:
@@ -272,7 +270,7 @@ di sistemi rispettivamente controllabili e non controllaibli.
 
         \caption[Punto materiale su una retta]{Esempio di controllabilità di
         un sistema formato da un punto materiale vincolato a muoversi su una retta
-        in assenza di forze.}%todo
+        in assenza di forze.}
     \end{figure}
 
 
@@ -313,8 +311,8 @@ Questo è dovuto al \autoref{thm:eigenvalue-placement} che enuncio di seguito.
 \emph{Dimostrazione}.
 Svolgerò la dimostrazione solamente per sistemi in cui $m = 1$, ovvero,
 in cui $B$ è un vettore colonna.
-La dimostrazione si basa sulla proprietà dei sistemi controllabili di essere
-riscritti in una forma detta \emph{forma canonica}:
+La dimostrazione, adattata da~\cite{luenberger1979introduction}, si basa sulla proprietà dei sistemi controllabili
+di essere riscrivibili in una forma detta \emph{forma canonica}:
 \begin{equation}
     \tilde A = \left(
         \begin{array}{ccccc}
@@ -368,8 +366,13 @@ Per chiarezza, divido la dimostrazione in più passaggi.
         A\mathcal C &= (A^n B, A^{n-1} B, \ldots, AB) \numberthis\label{eq:canb} \\
         &= \left((*), A^{n-1} B, \ldots, AB \right)
     \end{align*}
-    dove il termine $(*)$ si ottiene applicando la formula di Cayley-Hamilton
-    %todo maybe add citation or source
+    dove il termine $(*)$ si ottiene applicando la formula di Cayley-Hamilton\footnote{
+    Il teorema di Cayley-Hamilton dice che ogni matrice quadrata annulla il proprio
+    polinomio caratteristico. La \emph{formula} di Cayley-Hamilton consiste semplicemente
+    nell'inserire una matrice nel suo polinomio caratteristico, imporne l'annullamento
+    e riordinare i termini dell'equazione per ottenre una formula per le potenze
+    della matrice in esame.
+    }
     al primo termine della~\eqref{eq:canb} e vale
     \begin{equation*}
      (*) = -c_0 B - c_{1} AB \ldots - c_{n-1}A^{n-1} B.
@@ -443,7 +446,6 @@ Per chiarezza, divido la dimostrazione in più passaggi.
     vedere che i suoi coefficienti sono dati proprio dai $c_i$.
 \end{steps}
 \hfill \qedsymbol \paragraph{}
-%todo cite luenberger
 
 Se scelgo come legge di controllo $\b u = K \b x$ e la inserisco
 nella~\eqref{eq:sistema-lineare-controllabile}, l'equazione del moto del sistema
