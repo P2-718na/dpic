@@ -30,10 +30,10 @@ Posso formulare un problema di controllo ottimale definendo una funzione costo.
     con $\b x = \b x(s)$ e $\b u = \b u(s)$.
     La strategia di controllo $\b u = K\b x$ con $K \in \M_{n\times m}(\R)$ scelta in modo da
     minimizzare la funzione costo~\eqref{eq:lqr-cost} per $t \to +\infty$ è
-    detta \textbf{regolatore lineare quadratico (\textsc{LQR}}).
+    detta \textbf{regolatore lineare quadratico (\mysc{LQR}}).
     \label{def:lqr}
 \end{definition}
-Le matrici $Q$ ed $R$ nella \autoref{def:lqr} rappresentano rispettivamenge
+Le matrici $Q$ ed $R$ nella Definizione~\ref{def:lqr} rappresentano rispettivamenge
 il costo della deviazione dello stato del sistema da $\b 0$ e il costo dell'attuazione del
 controllo.
 Nel paragrafo~\ref{subsec:derivazione-riccati} mostrerò che la soluzione per $K$ è
@@ -68,7 +68,15 @@ Uso il metodo dei moltiplicatori di Lagrange e impongo che la variazione totale 
     \label{eq:variation-is-zero}
 \end{equation*}
 La funzione integranda nella~\eqref{eq:variation-is-zero} deve
-soddisfare le equazioni di Eulero-Lagrange.
+soddisfare le equazioni di Eulero-Lagrange\footnotemark.
+\footnotetext{
+    Leonhard Euler (1707 – 1783) è stato un matematico, fisico e astronomo svizzero.
+    È considerato il più importante matematico del Settecento, e uno dei massimi della storia. Ha fornito contributi storicamente cruciali in svariate aree: analisi infinitesimale, funzioni speciali, meccanica razionale, meccanica celeste, teoria dei numeri e teoria dei grafi.
+
+    Giuseppe Luigi Lagrangia, naturalizzato in seguito Joseph-Louis Lagrange
+    (1736 – 1813), è stato un matematico e astronomo italiano naturalizzato francese.
+    La sua più importante opera è la \emph{Mécanique analytique}, pubblicata nel 1788, con cui nasce convenzionalmente la meccanica razionale e analitica.
+}
 Per chiarezza la indico con $f$ e la riscrivo in notazione indiciale,
 in cui sottointendo la somma sugli indici ripetuti.
 \begin{equation*}

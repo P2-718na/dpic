@@ -46,6 +46,7 @@ questo testo.
             \int_A \det J_\phi \ d\mu~=~\int_{\phi^t(A)} d\mu.
         \end{equation*}
     \end{itemize}
+    \vspace{-.5cm}
 \end{definition}
 
 Ora uso le definizioni appena enunciate per introdurre il concetto di
@@ -66,7 +67,7 @@ A seconda della scelta di $\mathcal T$, il sistema è detto
 \emph{a tempo continuo} oppure \emph{a tempo discreto}.
 
 L'esempio~\ref{ex:semaforo} mostra come è possibile costruire
-un semplice sistema dinamico.
+un sistema dinamico molto semplice.
 
 \begin{example}
     \label{ex:semaforo}
@@ -183,7 +184,11 @@ soluzione sia unica~\cite{De_Marco_1999}.
 \end{thm}
 
 \footnotetext{%
-        Augustin-Louis Cauchy (1789 - 1857) è stato un matematico e ingegnere francese. Ha avviato il progetto della formulazione e dimostrazione rigorosa dei teoremi dell’analisi infinitesimale e Ha dato anche importanti contribuiti alla teoria delle funzioni di variabile complessa e alla teoria delle equazioni differenziali. Il lavoro che ha svolto
+        Augustin-Louis Cauchy (1789 - 1857) è stato un matematico e ingegnere francese.
+        Ha avviato il progetto della formulazione e dimostrazione rigorosa dei teorem
+        dell’analisi infinitesimale e ha dato anche importanti contribuiti alla teoria
+        delle funzioni di variabile complessa e alla teoria delle equazioni differenziali.
+        Il lavoro che ha svolto
         durante la sua carriera lo porta ad essere considerato uno dei padri
         dell'analisi matematica.
 }
@@ -275,7 +280,7 @@ in serie di Taylor\footnotemark:
 \end{equation}
 $\b a(\b 0, \b 0)$ si annulla (perché corrisponde a un punto fisso) e posso riscrivere
 gli altri due termini in forma matriciale, riconducendomi alla forma~\eqref{def:sistema-lineare-non-omogeneo}
-della \autoref{def:sistema-lineare-non-omogeneo}.
+della Definizione~\ref{def:sistema-lineare-non-omogeneo}.
 
 \footnotetext{Brook Taylor (1685 – 1731) è stato un matematico inglese.
 Aggiunse alla matematica una nuova branca, conosciuta oggi come \emph{il calcolo
@@ -284,7 +289,7 @@ oltre a scoprire la formula che ora porta il suo nome.}
 
 Per chiarezza, le matrici $A$ e $B$ sono definite dalla~\eqref{eq:matrici-A-B}.
 \begin{equation}
-    A_{ij} = \frac{df_i}{dx_j},\ B_{ij} = \frac{df_i}{du_j}.
+    A_{ij} = \frac{da_i}{dx_j},\ B_{ij} = \frac{da_i}{du_j}.
     \label{eq:matrici-A-B}
 \end{equation}
 
@@ -301,7 +306,7 @@ sistema, secondo la~\eqref{eq:sistema-lineare}.
 Le condizioni sufficienti per avere un certo comportamento sono riassunte nella \autoref{prop:comportamento-asintotico}.
 \begin{prop}
     Sia $A$ la matrice associata a un sistema di equazioni differenziali omogeneo,
-    definita secondo la \autoref{def:sistema-lineare}.
+    definita secondo la Definizione~\ref{def:sistema-lineare}.
     Se $A$ è diagonalizzabile, il comportamento asintotico delle soluzioni è interamente
     determinato dagli autovalori di $A$:
     \begin{itemize}

@@ -2,7 +2,7 @@
 \label{sec:strategia-swingup}
 Per lo swing-up uso il metodo di Ljapunov, adattando il metodo
 descritto in~\cite{furutaSwingup}.
-Ricavo l'energia del solo pendolo e la uso per cercare una funzione
+Ora ricavo l'energia del solo pendolo e la uso per cercare una funzione
 di controllo di Ljapunov.
 
 \subsection{Energia del pendolo}
@@ -51,7 +51,7 @@ e cerco una strategia di controllo $a$ per cui
 secondo la \autoref{prop:condizione-sufficiente-ljapunov}.
 Calcolo la derivata
 \begin{align*}
-    \frac{dV}{dt} &= \totald t \left( \frac 1 2 \dot E^2\right) \\
+    \frac{dV}{dt} &= \totald t \left( \frac 1 2  E^2\right) \\
     &=  E \dot E \\
     &=  E (-mal \dot \theta \cos \theta) \numberthis\label{eq:dvdt}.
 \end{align*}

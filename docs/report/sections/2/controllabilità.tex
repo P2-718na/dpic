@@ -9,8 +9,10 @@ Di seguito userò la notazione
     \mathcal U^{\mathcal T},\ \text{con } \mathcal T \text{ intervallo}
 \end{equation*}
 per indicare lo spazio di tutte le funzioni da $\mathcal T$ a $\mathcal U$.
+\vspace{1cm}
 
 \begin{definition}
+    \label{def:problema-di-controllo}
     La quadrupla $\left( \Sigma, \mathcal T, \mathcal U, \phi \right)$ in cui:
     \begin{itemize}
         \item $\Sigma$ è uno spazio delle fasi
@@ -54,11 +56,10 @@ per indicare lo spazio di tutte le funzioni da $\mathcal T$ a $\mathcal U$.
             \phi^s(\b x_1, \omega_2) &= \b x_2.
             \end{align*}
         \item \textbf{Non-trivialità:}
-            Per ogni stato $\b x \in \Sigma$ esiste sempre un tempo $t_{amm}$ e un
-            controllo $\omega_{amm}$ per cui $(t*, \b x, \omega*) \in D_\phi$.
-        Si dice che $\omega_{amm}$ \textbf{è un controllo ammesso per} $\b x$.
+            Per ogni stato $\b x \in \Sigma$ esiste sempre un tempo $t_{a}$ e un
+            controllo $\omega_{a}$ per cui $(t_a, \b x, \omega_a) \in D_\phi$.
+        Si dice che $\omega_{a}$ \textbf{è un controllo ammesso per} $\b x$.
     \end{itemize}
-    \label{def:problema-di-controllo}
 \end{definition}
 
 Per descrivere un problema di controllo, posso usare un'equazione del moto con la stessa forma
@@ -93,13 +94,13 @@ Intuitivamente, la nozione di controllabilità riguarda la possibilità di porta
 in uno stato arbitrario, partendo da una qualsiasi condizione iniziale.
 Ne enuncio la definizione.
 \begin{definition}
+    \label{def:controllabilità}
     Un problema di controllo descritto dall'equazione del moto~\eqref{eq:sistema-non-lineare}
     è detto \textbf{controllabile} se per qualsiasi $t \in \mathcal T$ e per qualsiasi $\b x_0, \b x_1 \in \Sigma$
     esiste una funzione di controllo $\omega \in  \mathcal U^{[0, t[ \subseteq \mathcal T}$ tale che
     \begin{equation*}
         \phi^t(\b x_0, \omega) = \b x_1.
     \end{equation*}
-    \label{def:controllabilità}
 \end{definition}
 
 Per un sistema lineare nella forma~\eqref{eq:sistema-lineare-non-omogeneo},
@@ -134,7 +135,7 @@ La dimostrazione si basa sulla costruzione di una strategia di controllo $\b u(t
 che soddisfi la \autoref{def:controllabilità} di controllabilità.
 Per chiarezza, divido la dimostrazione in più passaggi.
 \begin{steps}
-    \item Definisco il \emph{Gramiano\footnotemark di controllabilità} del sistema
+    \item Definisco il \emph{Gramiano\footnotemark\ di controllabilità} del sistema
         \begin{equation}
             W_{\mathcal C} = \int_0^t e^{-As} BB^{\T} e^{-A^\T s}\ ds \in \M_{n\times n} (\R),
             \label{eq:controllability-gramian}
@@ -213,7 +214,8 @@ sistemi a tempo discreto.
 L'esempio~\ref{ex:controllabilità} mostra due casi estremamente semplificati
 di sistemi rispettivamente controllabili e non controllaibli.
 \begin{example}
-    Considero un punto materiale in assenza di forze vincolato a muoversi su una retta.
+    Considero un punto materiale su cui agisce solo
+    un controllo $\b u$, vincolato a muoversi su una retta.
     Lo spazio delle fasi è rappresentato in \autoref{fig:ex-pianocartesiano}.
     L'equazione del moto è
     \begin{equation*}
@@ -221,7 +223,7 @@ di sistemi rispettivamente controllabili e non controllaibli.
     \end{equation*}
     con $\b u = (u_{1}, u_{2})^\T$ vettore colonna arbitrario e $B$ una matrice $2x2$.
     Il vettore colonna $B\b u$ corrisponde al
-    controllo $\omega$ nella definizione~\ref{def:problema-di-controllo}.
+    controllo $\omega$ nella Definizione~\ref{def:problema-di-controllo}.
     Il modo in cui è strutturata $B$ influisce sulla controllabilità del sistema.
     Per esempio, se vale
     \begin{equation*}
@@ -301,9 +303,6 @@ di sistemi rispettivamente controllabili e non controllaibli.
         un sistema formato da un punto materiale vincolato a muoversi su una retta
         in assenza di forze.}
     \end{figure}
-
-
-    Sul punto non agiscono forze oltre al controllo $\b u$.
     \label{ex:controllabilità}
 \end{example}
 
@@ -313,10 +312,10 @@ Ho detto nella sezione~\ref{subsec:comportamento-asintotico} che la stabilità
 di un sistema lineare è determinata dagli autovalori della matrice associata.
 Il concetto di controllabilità di un sistema lineare si traduce nella possibilità
 di cambiare gli autovalori associati al sistema in modo arbitrario.
-Questo è dovuto al \autoref{thm:eigenvalue-placement} che enuncio di seguito.
+Questo è dovuto al Teorema~\ref{thm:eigenvalue-placement} che enuncio di seguito.
 
 \begin{thm}[Scelta degli autovalori]
-
+    \label{thm:eigenvalue-placement}
     Dato un sistema linere
     \begin{equation}
         \dot {\b x} = A\b x + B \b u
@@ -333,8 +332,6 @@ Questo è dovuto al \autoref{thm:eigenvalue-placement} che enuncio di seguito.
         A + BK
     \end{equation*}
     ha $P(\lambda)$ come polinomio caratteristico.
-
-    \label{thm:eigenvalue-placement}
 \end{thm}
 
 \emph{Dimostrazione}.
@@ -401,8 +398,17 @@ Per chiarezza, divido la dimostrazione in più passaggi.
     nell'inserire una matrice nel suo polinomio caratteristico, imporne l'annullamento
     e riordinare i termini dell'equazione per ottenre una formula per le potenze
     della matrice in esame.
-    }
+    }\footnotemark\
     al primo termine della~\eqref{eq:canb} e vale
+    \footnotetext{Arthur Cayley (1821 – C1895) è stato un matematico inglese,
+        che diede un forte contributo alla crescita della
+        matematica pura nel mondo anglosassone.
+
+        Sir William Rowan Hamilton (1805 – 1865)
+        è stato un matematico, fisico, astronomo e
+        poliglotta irlandese, noto per i suoi contributi
+        nello sviluppo dell'ottica, della meccanica e dell'algebra.
+    }
     \begin{equation*}
      (*) = -c_0 B - c_{1} AB \ldots - c_{n-1}A^{n-1} B.
     \end{equation*}
@@ -471,9 +477,18 @@ Per chiarezza, divido la dimostrazione in più passaggi.
         \label{eq:a+bk}
     \end{equation}
     Calcolando il polinomio caratteristico della~\eqref{eq:a+bk}
-    usando lo sviluppo di Laplace per le colonne è immediato
+    usando lo sviluppo di Laplace\footnotemark\ per le colonne è immediato
     vedere che i suoi coefficienti sono dati proprio dai $c_i$.
 \end{steps}
+
+\footnotetext{Pierre-Simon Laplace, marchese di Laplace (1749 – 1827),
+    è stato un matematico, fisico e astronomo francese.
+    Ha dato fondamentali contributi in vari campi della matematica,
+    della fisica, dell'astronomia e della teoria della probabilità
+    ed è stato uno degli scienziati più influenti al suo tempo,
+    anche per il suo contributo all'affermazione del determinismo.
+}
+
 \hfill \qedsymbol \paragraph{}
 
 Se scelgo come legge di controllo $\b u = K \b x$ e la inserisco

@@ -18,7 +18,7 @@ continua.
 
 \begin{definition}
     Un \textbf{sistema topologico} è un problema di controllo in
-    cui lo spazio delle fasi $\Sigma$ è dotato di metrica e,
+    cui lo spazio delle fasi $\Sigma$ è dotato di metrica $d$ e,
     dato $t \in \mathcal T$ e $\b x \in \Sigma$,
     vale la seguente proprietà:
 
@@ -44,7 +44,6 @@ Enuncio la definizione di \emph{funzione di controllo di Ljapunov}.
     \end{equation*}
     è detta \textbf{funzione locale di controllo di Ljapunov} se
     e solo se valgono le seguenti proprietà:
-
     \begin{itemize}
         \item 1) $V$ è propria in $\b x^*$, ovvero l'insieme
         \begin{equation*}
@@ -76,6 +75,7 @@ Il termine (\emph{locale}) tra parentesi indica che l'affermazione è da intende
 sia che il termine \emph{locale} sia presente o meno.
 
 \begin{definition}
+    \label{def:ben-raggiungibile}
     Sia $V$ una funzione (locale) di controllo di Ljapunov.
     Dati $\b x, \b z \in \Sigma$, si dice che $\b z$ è \textbf{ben raggiungibile
     da} $\b x$ se esiste un tempo $t > 0$ e un controllo $\omega \in \mathcal U^{[0,t[ \subseteq \mathcal T}$ ammesso per $\b x$
@@ -84,7 +84,7 @@ sia che il termine \emph{locale} sia presente o meno.
         V(\xi(s)) &\leq V(\b x) \text{ per ogni } s \in ]0,t[ \subseteq \mathcal T,~\\
         V(\xi(t)) &< V(\b x).
     \end{align*}
-    \label{def:ben-raggiungibile}
+    \vspace{-1cm}
 \end{definition}
 
 Il risultato principale che si ottiene dalle funzioni di Ljapunov è racchiuso nel seguente teorema.
@@ -108,7 +108,7 @@ del teorema e poi quella globale.
     \end{equation}
     sia \emph{compatto}.
 
-    Dimostro la seguente affermazione
+    Dimostro la seguente affermazione:
 
     \begin{aff}
         Per ogni intorno aperto $\mathcal W$ di $\b x^*$ esiste
@@ -125,7 +125,7 @@ del teorema e poi quella globale.
     \{\b x_n\}
     \end{equation*}
     tali che per ogni $n$
-    valgono
+    valgano
     \begin{align*}
         &\b x_n \notin \mathcal W, \\
         &V(\b x_n) \to 0 \text{ per } n \to +\infty.
@@ -179,7 +179,7 @@ del teorema e poi quella globale.
     \begin{equation*}
         V[\xi(t)] \to 0 \text{ per } t \to +\infty
     \end{equation*}
-    allora deve essere
+    allora deve valere
     \begin{equation}
         \xi(t) \to \b x^*.
         \label{eq:xi-to-xstar}
