@@ -23,12 +23,13 @@ oppure che sia un insieme discreto~\cite{Turchetti_1998}, ma ciò non è utile p
 questo testo.
 
 \begin{definition}
+\label{def:flusso-di-fase}
     Sia $t \in \mathcal T$ insieme del tempo, $\Sigma$ spazio delle fasi di un sistema e siano $\b x_0, \b x(t) \in \Sigma$.
     L'applicazione: \\
     \begin{equation*}
         \begin{array}{cccc}%
             \phi: &\mathcal T \times \Sigma &\to &\Sigma \\
-            &\phi^t(\b x_0) &\mapsto &\b x(t)
+            &(t, \b x_0) &\mapsto &\b \phi^t(\b x_0) = \b x(t)
         \end{array}%
     \end{equation*}
     è detta \textbf{flusso di fase} se e solo se rispetta le seguenti proprietà:
@@ -37,7 +38,10 @@ questo testo.
         \item \textbf{Composizione:} $\phi^t \circ \phi^s = \phi^{t+s}$.
         \raggedright
         \item \textbf{Conservazione della misura:} esiste una misura $\mu$ di $\Sigma$ %
-        conservata $\int_A \det J_\phi \ d\mu~=~\int_{\phi^t(A)} d\mu$.
+        conservata:
+        \begin{equation*}
+            \int_A \det J_\phi \ d\mu~=~\int_{\phi^t(A)} d\mu.
+        \end{equation*}
     \end{itemize}
 \end{definition}
 
@@ -102,26 +106,22 @@ un semplice sistema dinamico.
 
 In generale, dalla osservazione di un sistema fisico si riesce a costruire un campo vettoriale
 di equazioni differenziali che ne descrive il moto:
-\begin{equation*}
+\begin{equation}
     \dot {\b x} (t) = \b a(\b x).
-\end{equation*}
+    \label{eq:campo-vett}
+\end{equation}
 È naturale quindi chiedersi \emph{come e se} sia possibile ricavare il flusso di fase partendo
 dal campo vettoriale (e viceversa).
-Si può dimostrare \todo{devo mettere la dimostrazione?} che vale la relazione~\eqref{eq:campo-vettoriale},
-che mette quindi in relazione ogni sistema di equazioni differenziali con un rispettivo sistema dinamico.
+La relazione~\eqref{eq:campo-vettoriale},
+analoga alla~\eqref{eq:campo-vett},
+mette in relazione ogni sistema di equazioni differenziali con un rispettivo sistema dinamico.
 \begin{equation}
     \b a (\b x) = \left.\frac d {dt} \right| _{t=0} \phi^t (\b x_0).
     \label{eq:campo-vettoriale}
 \end{equation}
 
 La~\eqref{eq:campo-vettoriale} è, in generale, impossibile da integrare analiticamente.
-Tuttavia, per i sistemi lineari, esiste una soluzione in forma chiusa.
-Questa proprietà dei sistemi lineari è molto utile, dato che permette di trasformare un sistema
-da tempo continuo a tempo discreto e viceversa.
-Mostrerò come nel paragrafo seguente.
-\todo{eventualmente, posso fare un esempio di campo vettoriale mostrando il flow delle fasi...
-Non so se serve, per ora non lo faccio.}
-
+Per i sistemi lineari, tuttavia, esiste una soluzione in forma chiusa.
 
 \subsection{Equazioni differenziali lineari}
 \label{subsec:equazioni-differenziali-lineari}
@@ -342,9 +342,10 @@ La dimostrazione termina calcolando il limite per $t \to +\infty$
 della~\eqref{eq:soluzioni-complesse} nei tre casi considerati.
 \hfill \qedsymbol \paragraph{}
 
-Per i sistemi a tempo discreto si ottengono condizioni diverse sugli autovalori
-che riporto nella \autoref{prop:comportamento-asintotico-discreto}, senza
-dimostrazione.
+Per i sistemi a tempo discreto le condizioni
+sugli autovalori sono fisicamente le stesse,
+ma vengono trasformate dalla~\eqref{eq:mapping-sistema} secondo la
+seguente proposizione.
 \begin{prop}
     Sia $A_d = e^{A\Delta t}$ la matrice associata a un sistema di equazioni differenziali omogeneo
     a tempo discreto:
@@ -358,5 +359,4 @@ dimostrazione.
         \item Se almeno un autovalore ha modulo \textbf{maggiore di $1$}, allora $\norm{\b x_k} \to 0$ per $k \to +\infty$.%
         \item Se tutti gli autovalori hanno \textbf{modulo uguale a $1$}, allora le soluzioni sono periodiche.
     \end{itemize}
-    \label{prop:comportamento-asintotico-discreto}
 \end{prop}
