@@ -2,6 +2,7 @@ docs/papers
 code/esp32/build
 code/build
 *.drawio.bkp
+cmake-build-debug
 
 # Generic OS and IDE stuff...
 .DS_Store
